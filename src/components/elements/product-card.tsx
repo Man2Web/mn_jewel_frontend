@@ -1,53 +1,49 @@
 import Slider from 'react-slick'
 import { Card, CardContent, CardHeader } from '../ui/card'
 import { HeartIcon, IndianRupee } from 'lucide-react'
+import { useState } from 'react'
 
 const ProductCard = () => {
+  const [autoplay, setAutoplay] = useState(false)
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: autoplay,
     autoplaySpeed: 1500,
   }
   return (
     <div>
-      <Card className="max-w-[300px] border-none shadow-none">
+      <Card
+        onMouseOver={() => setAutoplay(true)}
+        onMouseLeave={() => setAutoplay(false)}
+        className="max-w-[400px] border-none shadow-none lg:max-w-[300px]"
+      >
         <CardHeader className="p-0">
-          <Slider {...settings}>
-            <div className="relative">
+          <div className="relative">
+            <Slider {...settings}>
               <img
                 className="bg-red-50 p-6"
                 src="https://pics.clipartpng.com/midle/Diamond_Earrings_PNG_Clipart-284.png"
                 alt="product image"
               />
-              <div className="absolute right-2 top-2">
-                <HeartIcon size={16} strokeWidth={0.6} />
-              </div>
-            </div>
-            <div className="relative">
               <img
                 className="bg-red-50 p-6"
                 src="https://pics.clipartpng.com/midle/Diamond_Earrings_PNG_Clipart-284.png"
                 alt="product image"
               />
-              <div className="absolute right-2 top-2">
-                <HeartIcon size={16} strokeWidth={0.6} />
-              </div>
-            </div>
-            <div className="relative">
               <img
                 className="bg-red-50 p-6"
                 src="https://pics.clipartpng.com/midle/Diamond_Earrings_PNG_Clipart-284.png"
                 alt="product image"
               />
-              <div className="absolute right-2 top-2">
-                <HeartIcon size={16} strokeWidth={0.6} />
-              </div>
+            </Slider>
+            <div className="absolute right-2 top-2">
+              <HeartIcon size={20} strokeWidth={0.6} />
             </div>
-          </Slider>
+          </div>
         </CardHeader>
         <CardContent className="p-0">
           <div className="flex items-center py-2">

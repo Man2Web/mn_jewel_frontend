@@ -55,7 +55,7 @@ export function Header() {
         </div>
       </header>
       <div className="flex items-center p-2 lg:hidden">
-        <div className="relative flex w-[400px] items-center">
+        <div className="relative mx-auto flex w-[400px] items-center">
           <Input type="email" placeholder="Search for Diamon Bracelets" className="w-full" />
           <Search className="absolute right-2 opacity-20" />
         </div>
