@@ -10,7 +10,7 @@ const SectionSeperator = ({ title, description }: { title: string; description: 
       </div>
       <div className="py-2">
         <h1 className="flex justify-center font-serif text-xl capitalize tracking-wide lg:text-2xl">{title}</h1>
-        <p className="flex justify-center py-2 text-sm capitalize">{description}</p>
+        <p className="flex justify-center py-2 text-center text-sm capitalize">{description}</p>
       </div>
     </section>
   )

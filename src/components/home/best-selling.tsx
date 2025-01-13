@@ -6,15 +6,15 @@ import SectionSeperator from './section-seperator'
 const BestSelling = () => {
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 2500,
   }
   return (
-    <section className="block px-6 py-8 lg:hidden">
+    <section className="block overflow-hidden px-6 py-8 lg:hidden">
       <SectionSeperator title="Best Selling" description="Love the most to bought the most" />
       <Slider {...settings}>
         {Array.from({ length: 6 }).map((_, index) => (

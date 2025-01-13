@@ -9,8 +9,8 @@ const Categories = () => {
       <SectionSeperator title="Shop By Categories" description="Explore our wide range of products" />
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         {categories.map((category, index) => (
-          <a href={category.link} className="flex flex-col items-center" key={index}>
-            <ImageEffect image_source={category.img} image_alt_text={category.name} />
+          <a href={category.link} className={`flex flex-col items-center`} key={index}>
+            <ImageEffect className="rounded-b-none" image_source={category.img} image_alt_text={category.name} />
             <p className="hidden pt-2 text-sm lg:block">{category.name}</p>
           </a>
         ))}
