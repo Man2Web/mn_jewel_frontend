@@ -22,7 +22,7 @@ const ProductCard = () => {
         className="max-w-[400px] border-none shadow-none lg:max-w-[300px]"
       >
         <CardHeader className="p-0">
-          <div className="relative">
+          <div className="relative overflow-hidden">
             <Slider {...settings}>
               <img
                 className="bg-red-50 p-6"

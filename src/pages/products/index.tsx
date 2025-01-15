@@ -1,44 +1,85 @@
-import { ArrowDownWideNarrowIcon, FilterIcon } from 'lucide-react'
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
 import ProductCard from 'src/components/elements/product-card'
 import FiltersMenu from 'src/components/products/filters-menu'
-import SortModal from 'src/components/products/sort-modal'
-import { Dialog, DialogTrigger } from 'src/components/ui/dialog'
+import { Button } from 'src/components/ui/button'
 import { Drawer, DrawerTrigger } from 'src/components/ui/drawer'
+import { Label } from 'src/components/ui/label'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from 'src/components/ui/select'
 
 const Products = () => {
+  const methods = useForm<ProductsFormInterface>({
+    mode: 'onChange',
+    defaultValues: {
+      sortOption: 'relevance',
+    },
+  })
+  const { register, handleSubmit, watch, setValue } = methods
+  const onSubmit = (data: any) => {
+    console.log(data)
+  }
+  const data = watch()
+  useEffect(() => {
+    console.log(data)
+  }, [data])
+
   return (
     <section>
-      <Dialog>
-        <div className="flex bg-red-50">
-          <DialogTrigger className="flex w-1/2 items-center justify-center gap-2 px-2 py-4 text-red-400">
-            <ArrowDownWideNarrowIcon strokeWidth={1.5} />
-            <div>
-              <p className="text-sm font-semibold uppercase">Revelance</p>
+      <div className="px-6 py-8">
+        <div className="flex flex-col md:flex-row lg:items-center lg:justify-between">
+          <p className="my-4 hidden font-semibold capitalize opacity-50 lg:block">
+            (showing {Number(10000).toLocaleString()} designs)
+          </p>
+          <form className="flex items-center gap-2">
+            <div className="items-center gap-2 lg:flex">
+              <Label>Sort By</Label>
+              <Select
+                onValueChange={(value) => setValue('sortOption', value, { shouldValidate: true })}
+                defaultValue="relevance"
+              >
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Select Sort Option" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem className="hover:cursor-pointer" value="relevance">
+                    Relevance
+                  </SelectItem>
+                  <SelectItem className="hover:cursor-pointer" value="bestsellers">
+                    Bestsellers
+                  </SelectItem>
+                  <SelectItem className="hover:cursor-pointer" value="price-low">
+                    Price (Low - High)
+                  </SelectItem>
+                  <SelectItem className="hover:cursor-pointer" value="price-high">
+                    Price (High - Low)
+                  </SelectItem>
+                </SelectContent>
+              </Select>
             </div>
-          </DialogTrigger>
-          <SortModal />
-          <span className="w-0.5 bg-red-200" />
-          <Drawer>
-            <DrawerTrigger className="flex w-1/2 items-center justify-center gap-2 px-2 py-4 text-red-400">
-              <FilterIcon strokeWidth={1.5} />
-              <div>
-                <p className="text-sm font-semibold uppercase">Filters</p>
-              </div>
-            </DrawerTrigger>
-            <FiltersMenu />
-          </Drawer>
+            <div className="items-center gap-2 lg:flex">
+              <Drawer>
+                <Label>Filters</Label>
+                <DrawerTrigger>
+                  <Button variant="outline" className="w-[180px] px-3 py-5 font-normal">
+                    Show Filters
+                  </Button>
+                </DrawerTrigger>
+                <FiltersMenu register={register} methods={methods} />
+              </Drawer>
+            </div>
+          </form>
         </div>
-        <div className="px-6 py-8">
-          <p className="font-semibold capitalize opacity-50">(showing {Number(10000).toLocaleString()} designs)</p>
-          <div className="grid grid-cols-1 items-center justify-center overflow-hidden lg:grid-cols-5">
-            {Array.from({ length: 50 }).map((_, index) => (
-              <a href="#" key={index} className="flex justify-center p-2">
-                <ProductCard />
-              </a>
-            ))}
-          </div>
+        <p className="my-4 font-semibold capitalize opacity-50 lg:hidden">
+          (showing {Number(10000).toLocaleString()} designs)
+        </p>
+        <div className="grid grid-cols-1 items-center justify-center lg:grid-cols-5">
+          {Array.from({ length: 50 }).map((_, index) => (
+            <a href="#" key={index} className="flex justify-center p-2">
+              <ProductCard />
+            </a>
+          ))}
         </div>
-      </Dialog>
+      </div>
     </section>
   )
 }
