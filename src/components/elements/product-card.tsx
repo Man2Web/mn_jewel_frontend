@@ -15,7 +15,7 @@ const ProductCard = () => {
     autoplaySpeed: 1500,
   }
   return (
-    <div>
+    <div className="overflow-hidden">
       <Card
         onMouseOver={() => setAutoplay(true)}
         onMouseLeave={() => setAutoplay(false)}

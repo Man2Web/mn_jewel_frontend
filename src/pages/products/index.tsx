@@ -25,19 +25,19 @@ const Products = () => {
 
   return (
     <section>
-      <div className="px-6 py-8">
+      <div className=" px-2 py-4 lg:px-6 lg:py-8">
         <div className="flex flex-col md:flex-row lg:items-center lg:justify-between">
           <p className="my-4 hidden font-semibold capitalize opacity-50 lg:block">
             (showing {Number(10000).toLocaleString()} designs)
           </p>
           <form className="flex items-center gap-2">
-            <div className="items-center gap-2 lg:flex">
+            <div className="w-1/2 items-center gap-2 lg:flex lg:w-full">
               <Label>Sort By</Label>
               <Select
                 onValueChange={(value) => setValue('sortOption', value, { shouldValidate: true })}
                 defaultValue="relevance"
               >
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-full lg:w-[180px]">
                   <SelectValue placeholder="Select Sort Option" />
                 </SelectTrigger>
                 <SelectContent>
@@ -56,7 +56,7 @@ const Products = () => {
                 </SelectContent>
               </Select>
             </div>
-            <div className="items-center gap-2 lg:flex">
+            <div className="w-1/2 items-center gap-2 lg:flex">
               <Drawer>
                 <Label>Filters</Label>
                 <DrawerTrigger>
