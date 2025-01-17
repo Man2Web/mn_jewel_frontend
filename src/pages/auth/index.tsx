@@ -47,9 +47,14 @@ const Auth = () => {
             </InputOTP>
           </div>
         )}
-        <Button onClick={() => setisMobileTrue(true)} className="my-4 w-full" variant="primary">
-          Sign In
-        </Button>
+        <div className="my-4 flex gap-2">
+          <Button onClick={() => setisMobileTrue(true)} className="w-full" variant="primary">
+            Sign In with (Passcode)
+          </Button>
+          <Button onClick={() => setisMobileTrue(true)} className=" w-full" variant="primary">
+            Sign In with (OTP)
+          </Button>
+        </div>
         <p className="flex justify-center pt-8 text-sm">
           Dont have an Account?{' '}
           <a className="pl-1 text-red-400" href="#">
