@@ -5,7 +5,7 @@ const Navbar = () => {
   const [isEarRingsMenuOpen, setIsEarRingsMenuOpen] = useState(false)
   const [isPendantMenuOpen, setIsPendantMenuOpen] = useState(false)
   return (
-    <nav className="relative hidden w-full justify-center space-x-8 border border-solid border-b-slate-200 border-t-yellow-600 py-2 lg:flex lg:px-60 xl:px-80">
+    <nav className="relative hidden w-full justify-center gap-4 border border-solid border-b-slate-200 border-t-yellow-600 py-2 lg:flex lg:px-32 xl:px-60">
       <div
         className="group relative"
         onMouseEnter={() => setIsEarRingsMenuOpen(true)}
@@ -14,32 +14,6 @@ const Navbar = () => {
         <p className="mx-auto cursor-pointer text-sm opacity-70 transition-colors duration-300 hover:font-semibold hover:text-yellow-500">
           Ear Rings
         </p>
-        {isEarRingsMenuOpen && (
-          <div
-            className="absolute left-0 top-full z-10 w-screen overflow-hidden bg-white p-2 transition-opacity duration-300"
-            style={{ transform: 'translateX(-31%)', left: '0%' }}
-          >
-            <EarRingsMenu />
-          </div>
-        )}
-      </div>
-
-      <div
-        className="group relative"
-        onMouseEnter={() => setIsPendantMenuOpen(true)}
-        onMouseLeave={() => setIsPendantMenuOpen(false)}
-      >
-        <p className="mx-auto cursor-pointer text-sm opacity-70 transition-colors duration-300 hover:font-semibold hover:text-yellow-500">
-          Pendants
-        </p>
-        {isPendantMenuOpen && (
-          <div
-            className="absolute left-0 top-full z-10 w-screen overflow-hidden bg-white p-2 transition-opacity duration-300"
-            style={{ transform: 'translateX(-35.5%)', left: '0%' }}
-          >
-            <EarRingsMenu />
-          </div>
-        )}
       </div>
       <div
         className="group relative"
@@ -47,16 +21,8 @@ const Navbar = () => {
         onMouseLeave={() => setIsEarRingsMenuOpen(false)}
       >
         <p className="mx-auto cursor-pointer text-sm opacity-70 transition-colors duration-300 hover:font-semibold hover:text-yellow-500">
-          Rings
+          Ear Rings
         </p>
-        {false && (
-          <div
-            className="absolute left-0 top-full z-10 w-screen overflow-hidden bg-white p-2 transition-opacity duration-300"
-            style={{ transform: 'translateX(-31%)', left: '0%' }}
-          >
-            <EarRingsMenu />
-          </div>
-        )}
       </div>
       <div
         className="group relative"
@@ -64,16 +30,8 @@ const Navbar = () => {
         onMouseLeave={() => setIsEarRingsMenuOpen(false)}
       >
         <p className="mx-auto cursor-pointer text-sm opacity-70 transition-colors duration-300 hover:font-semibold hover:text-yellow-500">
-          Diamond Jewellery
+          Ear Rings
         </p>
-        {false && (
-          <div
-            className="absolute left-0 top-full z-10 w-screen overflow-hidden bg-white p-2 transition-opacity duration-300"
-            style={{ transform: 'translateX(-31%)', left: '0%' }}
-          >
-            <EarRingsMenu />
-          </div>
-        )}
       </div>
       <div
         className="group relative"
@@ -81,16 +39,8 @@ const Navbar = () => {
         onMouseLeave={() => setIsEarRingsMenuOpen(false)}
       >
         <p className="mx-auto cursor-pointer text-sm opacity-70 transition-colors duration-300 hover:font-semibold hover:text-yellow-500">
-          More Jewellery
+          Ear Rings
         </p>
-        {false && (
-          <div
-            className="absolute left-0 top-full z-10 w-screen overflow-hidden bg-white p-2 transition-opacity duration-300"
-            style={{ transform: 'translateX(-31%)', left: '0%' }}
-          >
-            <EarRingsMenu />
-          </div>
-        )}
       </div>
       <div
         className="group relative"
@@ -98,16 +48,8 @@ const Navbar = () => {
         onMouseLeave={() => setIsEarRingsMenuOpen(false)}
       >
         <p className="mx-auto cursor-pointer text-sm opacity-70 transition-colors duration-300 hover:font-semibold hover:text-yellow-500">
-          Gifting
+          Ear Rings
         </p>
-        {false && (
-          <div
-            className="absolute left-0 top-full z-10 w-screen overflow-hidden bg-white p-2 transition-opacity duration-300"
-            style={{ transform: 'translateX(-31%)', left: '0%' }}
-          >
-            <EarRingsMenu />
-          </div>
-        )}
       </div>
       <div
         className="group relative"
@@ -115,17 +57,23 @@ const Navbar = () => {
         onMouseLeave={() => setIsEarRingsMenuOpen(false)}
       >
         <p className="mx-auto cursor-pointer text-sm opacity-70 transition-colors duration-300 hover:font-semibold hover:text-yellow-500">
-          Wedding Collection
+          Ear Rings
         </p>
-        {false && (
-          <div
-            className="absolute left-0 top-full z-10 w-screen overflow-hidden bg-white p-2 transition-opacity duration-300"
-            style={{ transform: 'translateX(-31%)', left: '0%' }}
-          >
-            <EarRingsMenu />
-          </div>
-        )}
       </div>
+      <div
+        className="group relative"
+        onMouseEnter={() => setIsEarRingsMenuOpen(true)}
+        onMouseLeave={() => setIsEarRingsMenuOpen(false)}
+      >
+        <p className="mx-auto cursor-pointer text-sm opacity-70 transition-colors duration-300 hover:font-semibold hover:text-yellow-500">
+          Ear Rings
+        </p>
+      </div>
+      {isEarRingsMenuOpen && (
+        <div className="absolute left-0 right-0 top-full z-10 w-full bg-white p-2 transition-opacity duration-300">
+          <EarRingsMenu />
+        </div>
+      )}
     </nav>
   )
 }
