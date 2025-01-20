@@ -1,7 +1,9 @@
 import Slider from 'react-slick'
 import ProductCard from '../elements/product-card'
+import useGetAllProducts from 'src/hooks/products/getAllProducts'
 
 const SimilarProducts = () => {
+  const [products] = useGetAllProducts()
   const settings = {
     slidesToShow: 5,
     slidesToScroll: 5,
@@ -31,15 +33,14 @@ const SimilarProducts = () => {
       },
     ],
   }
-
   return (
     <section>
       <h1 className="pb-2 text-2xl">Similar Products</h1>
       <div className="overflow-hidden">
         <Slider {...settings}>
-          {Array.from({ length: 20 }).map((_, index) => (
-            <div key={index}>
-              <ProductCard />
+          {products.map((product, index) => (
+            <div className="px-2 lg:px-0" key={index}>
+              <ProductCard product={product} bestSellingSection={true} />
             </div>
           ))}
         </Slider>

@@ -1,4 +1,4 @@
-const ProductDetails = ({ title, points }: ProductDetailsType) => {
+const ProductDetails = ({ title, points }: { title: string; points: { key: string; value: number | string }[] }) => {
   return (
     <div className="flex flex-col rounded-lg border border-red-400 bg-red-50 p-2">
       <h1 className="text-lg">{title}</h1>

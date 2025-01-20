@@ -27,77 +27,70 @@ const FiltersMenu = ({ register, methods }: FiltersMenuProps) => {
         </DrawerHeader>
         <div className="flex">
           <div className="flex w-2/3 flex-col border-r border-slate-200 lg:w-1/3">
-            <a
+            <div
               onClick={() => {
                 setOpenMenu(0)
               }}
               className={`border-b  px-4 py-2 text-sm font-semibold hover:text-red-400 ${
                 openMenu === 0 ? 'text-red-400' : ''
               }`}
-              href="#"
             >
               Product Type
-            </a>
-            <a
+            </div>
+            <div
               onClick={() => {
                 setOpenMenu(1)
               }}
               className={`border-b  px-4 py-2 text-sm font-semibold hover:text-red-400 ${
                 openMenu === 1 ? 'text-red-400' : ''
               }`}
-              href="#"
             >
               Material
-            </a>
-            <a
+            </div>
+            <div
               onClick={() => {
                 setOpenMenu(2)
               }}
               className={`border-b  px-4 py-2 text-sm font-semibold hover:text-red-400 ${
                 openMenu === 2 ? 'text-red-400' : ''
               }`}
-              href="#"
             >
               Metal
-            </a>
-            <a
+            </div>
+            <div
               onClick={() => {
                 setOpenMenu(3)
               }}
               className={`border-b  px-4 py-2 text-sm font-semibold hover:text-red-400 ${
                 openMenu === 3 ? 'text-red-400' : ''
               }`}
-              href="#"
             >
               Metal Color
-            </a>
-            <a
+            </div>
+            <div
               onClick={() => setOpenMenu(4)}
               className={`border-b  px-4 py-2 text-sm font-semibold hover:text-red-400 ${
                 openMenu === 4 ? 'text-red-400' : ''
               }`}
-              href="#"
             >
               Price
-            </a>
-            <a
+            </div>
+            <div
               onClick={() => setOpenMenu(5)}
               className={`border-b  px-4 py-2 text-sm font-semibold hover:text-red-400 ${
                 openMenu === 5 ? 'text-red-400' : ''
               }`}
-              href="#"
             >
               Gender
-            </a>
-            <a
+            </div>
+            <div
               onClick={() => setOpenMenu(6)}
               className={`border-b  px-4 py-2 text-sm font-semibold hover:text-red-400 ${
                 openMenu === 6 ? 'text-red-400' : ''
               }`}
-              href="#"
             >
               Ocassion
-            </a>
+            </div>
           </div>
           <div className="w-2/3 p-2">
             {openMenu === 0 && <ProductType register={register} />}

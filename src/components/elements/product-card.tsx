@@ -2,8 +2,9 @@ import Slider from 'react-slick'
 import { Card, CardContent, CardHeader } from '../ui/card'
 import { HeartIcon, IndianRupee } from 'lucide-react'
 import { useState } from 'react'
+import { Product } from 'src/types/components/product'
 
-const ProductCard = () => {
+const ProductCard = ({ product, bestSellingSection }: { product: Product; bestSellingSection?: boolean }) => {
   const [autoplay, setAutoplay] = useState(false)
   const settings = {
     dots: false,
@@ -14,6 +15,11 @@ const ProductCard = () => {
     autoplay: autoplay,
     autoplaySpeed: 1500,
   }
+
+  if (!product.product_Images) {
+    return <div>Loading...</div>
+  }
+
   return (
     <div className="overflow-hidden">
       <Card
@@ -24,23 +30,16 @@ const ProductCard = () => {
         <CardHeader className="p-0">
           <div className="relative overflow-hidden">
             <Slider {...settings}>
-              <img
-                className="bg-red-50 p-6"
-                src="https://pics.clipartpng.com/midle/Diamond_Earrings_PNG_Clipart-284.png"
-                alt="product image"
-              />
-              <img
-                className="bg-red-50 p-6"
-                src="https://pics.clipartpng.com/midle/Diamond_Earrings_PNG_Clipart-284.png"
-                alt="product image"
-              />
-              <img
-                className="bg-red-50 p-6"
-                src="https://pics.clipartpng.com/midle/Diamond_Earrings_PNG_Clipart-284.png"
-                alt="product image"
-              />
+              {product.product_Images.map((data, index) => (
+                <img
+                  key={index}
+                  className={`${bestSellingSection ? 'h-[250px] w-[250px]' : 'h-[150px] w-[150px]'} object-cover`}
+                  src={`${import.meta.env.VITE_STRAPI}${data.url}`}
+                  alt="product image"
+                />
+              ))}
             </Slider>
-            <div className="absolute right-2 top-2">
+            <div className="absolute right-2 top-2 rounded-full bg-white p-1 opacity-80">
               <HeartIcon size={20} strokeWidth={0.6} />
             </div>
           </div>
@@ -48,9 +47,16 @@ const ProductCard = () => {
         <CardContent className="p-0">
           <div className="flex items-center py-2">
             <IndianRupee size={14} />
-            <p>{Number(12000).toLocaleString()}</p>
+            <p>
+              {Number(
+                product.item_Net_Weight * product.material_type.price +
+                  product.value_Addition * product.material_type.price +
+                  product.other_Stone_Price +
+                  product.gst,
+              ).toLocaleString()}
+            </p>
           </div>
-          <p className="text-sm opacity-70">Lavish Gold Earrings</p>
+          <p className="text-sm opacity-70">{product.product_Name}</p>
         </CardContent>
       </Card>
     </div>

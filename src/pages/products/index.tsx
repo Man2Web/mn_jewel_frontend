@@ -6,6 +6,7 @@ import { Button } from 'src/components/ui/button'
 import { Drawer, DrawerTrigger } from 'src/components/ui/drawer'
 import { Label } from 'src/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from 'src/components/ui/select'
+import useGetAllProducts from 'src/hooks/products/getAllProducts'
 
 const Products = () => {
   const methods = useForm<ProductsFormInterface>({
@@ -15,14 +16,14 @@ const Products = () => {
     },
   })
   const { register, handleSubmit, watch, setValue } = methods
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: ProductsFormInterface) => {
     console.log(data)
   }
   const data = watch()
   useEffect(() => {
     console.log(data)
   }, [data])
-
+  const [products] = useGetAllProducts()
   return (
     <section>
       <div className=" px-2 py-4 lg:px-6 lg:py-8">
@@ -30,8 +31,14 @@ const Products = () => {
           <p className="my-4 hidden font-semibold capitalize opacity-50 lg:block">
             (showing {Number(10000).toLocaleString()} designs)
           </p>
-          <form className="flex items-center gap-2">
-            <div className="w-1/2 items-center gap-2 lg:flex lg:w-full">
+          <form
+            className="flex items-center gap-2"
+            onSubmit={(event) => {
+              event.preventDefault()
+              handleSubmit(onSubmit)()
+            }}
+          >
+            <div className="lg:w/full w-1/2 items-center gap-2 lg:flex">
               <Label>Sort By</Label>
               <Select
                 onValueChange={(value) => setValue('sortOption', value, { shouldValidate: true })}
@@ -73,9 +80,9 @@ const Products = () => {
           (showing {Number(10000).toLocaleString()} designs)
         </p>
         <div className="grid grid-cols-1 items-center justify-center lg:grid-cols-5">
-          {Array.from({ length: 50 }).map((_, index) => (
-            <a href="#" key={index} className="flex justify-center p-2">
-              <ProductCard />
+          {products.map((product, index) => (
+            <a href={'/products/' + product.documentId} key={index} className="flex justify-center p-2">
+              <ProductCard product={product} bestSellingSection />
             </a>
           ))}
         </div>
