@@ -1,47 +1,26 @@
-import { useFormContext, UseFormRegister } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import { Checkbox } from 'src/components/ui/checkbox'
 import { FormLabel } from 'src/components/ui/form'
+import { useGetCategories } from 'src/hooks/products-data/getProductsData'
+import { ProductsFormInterface } from 'src/types/forms/products-form'
 
-const items = [
-  {
-    id: 'bracelet',
-    label: 'Bracelet',
-  },
-  {
-    id: 'earrings',
-    label: 'Earrings',
-  },
-  {
-    id: 'chains',
-    label: 'Chains',
-  },
-  {
-    id: 'rings',
-    label: 'Rings',
-  },
-] as const
-
-interface FiltersMenuProps {
-  register: UseFormRegister<ProductsFormInterface>
-}
-
-const ProductType = ({ register }: FiltersMenuProps) => {
+const ProductType = () => {
   const { setValue, getValues } = useFormContext<ProductsFormInterface>()
 
   const handleCheckboxChange = (id: string, checked: boolean) => {
     const currentValues = getValues('productType') || {}
     setValue('productType', { ...currentValues, [id]: checked })
   }
-
+  const [categoriesData] = useGetCategories()
   return (
     <div>
-      {items.map((item, index) => (
+      {categoriesData.map((data, index) => (
         <div key={index} className="flex flex-row items-start space-x-3 space-y-0">
           <Checkbox
-            checked={getValues(`productType.${item.id}`) || false}
-            onCheckedChange={(checked) => handleCheckboxChange(item.id, checked === true)}
+            checked={getValues(`productType.${data.name}`) || false}
+            onCheckedChange={(checked) => handleCheckboxChange(data.name, checked === true)}
           />
-          <FormLabel className="text-sm font-normal">{item.label}</FormLabel>
+          <FormLabel className="text-sm font-normal">{data.name}</FormLabel>
         </div>
       ))}
     </div>

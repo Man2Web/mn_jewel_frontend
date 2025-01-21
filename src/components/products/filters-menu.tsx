@@ -10,6 +10,7 @@ import MetalType from './filtering-options/metal-type'
 import MetalColor from './filtering-options/metal-color'
 import Gender from './filtering-options/gender'
 import OcassionType from './filtering-options/ocassion-type'
+import { ProductsFormInterface } from 'src/types/forms/products-form'
 
 interface FiltersMenuProps {
   register: UseFormRegister<ProductsFormInterface>
@@ -93,13 +94,13 @@ const FiltersMenu = ({ register, methods }: FiltersMenuProps) => {
             </div>
           </div>
           <div className="w-2/3 p-2">
-            {openMenu === 0 && <ProductType register={register} />}
-            {openMenu === 1 && <MaterialType register={register} />}
-            {openMenu === 2 && <MetalType register={register} />}
-            {openMenu === 3 && <MetalColor register={register} />}
+            {openMenu === 0 && <ProductType />}
+            {openMenu === 1 && <MaterialType />}
+            {openMenu === 2 && <MetalType />}
+            {openMenu === 3 && <MetalColor />}
             {openMenu === 4 && <PriceRange register={register} />}
-            {openMenu === 5 && <Gender register={register} />}
-            {openMenu === 6 && <OcassionType register={register} />}
+            {openMenu === 5 && <Gender />}
+            {openMenu === 6 && <OcassionType />}
           </div>
         </div>
         <DrawerFooter className="flex flex-col justify-center lg:flex-row lg:gap-2">

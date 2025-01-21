@@ -47,14 +47,7 @@ const ProductCard = ({ product, bestSellingSection }: { product: Product; bestSe
         <CardContent className="p-0">
           <div className="flex items-center py-2">
             <IndianRupee size={14} />
-            <p>
-              {Number(
-                product.item_Net_Weight * product.material_type.price +
-                  product.value_Addition * product.material_type.price +
-                  product.other_Stone_Price +
-                  product.gst,
-              ).toLocaleString()}
-            </p>
+            <p>{Number(product.calculatedPrice).toLocaleString()}</p>
           </div>
           <p className="text-sm opacity-70">{product.product_Name}</p>
         </CardContent>

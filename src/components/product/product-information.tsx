@@ -50,16 +50,18 @@ const ProductInformation = ({ product }: { product: Product | undefined }) => {
           points={[
             { key: 'Material', value: product.basic_Information.material },
             { key: 'Material Purity', value: product.basic_Information.metal_Purity },
-            { key: 'Gross Weight', value: product.basic_Information.gross_Weight },
-            { key: 'Height', value: product.basic_Information.Height },
+            { key: 'Gross Weight', value: `${product.basic_Information.gross_Weight} gms` },
+            { key: 'Height', value: `${product.basic_Information.Height} cms` },
           ]}
         />
-        <ProductDetails
-          title="Stone Information"
-          points={product.stone_information.map((data) => {
-            return { key: data.stone_name, value: data.stone_weight }
-          })}
-        />
+        {product.stone_information && (
+          <ProductDetails
+            title="Stone Information"
+            points={product.stone_information.map((data) => {
+              return { key: data.stone_name, value: data.stone_weight }
+            })}
+          />
+        )}
         <ProductDetails
           title="Other Information"
           points={[

@@ -10,7 +10,6 @@ function useGetProductData(productId: string | undefined) {
       const response = await axios.get<SingleProductResponse>(
         `${import.meta.env.VITE_STRAPI_API}/products/${productId}?populate=*`,
       )
-      console.log(response.data)
       setProductData(response.data.data)
     } catch (error) {
       console.error(error)

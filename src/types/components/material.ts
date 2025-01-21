@@ -1,10 +1,11 @@
 import { Product } from './product'
 
-interface Material {
+export interface Material {
   id: number
   documentId: string
   material_type: string
   price: number
+  name: string
   createdAt: string
   updatedAt: string
   publishedAt: string
@@ -24,5 +25,10 @@ interface Meta {
 
 export interface MaterialResponse {
   data: Material
+  meta: Meta
+}
+
+export interface MultiMaterialResponse {
+  data: Material[]
   meta: Meta
 }

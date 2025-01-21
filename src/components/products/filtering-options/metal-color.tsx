@@ -1,27 +1,21 @@
-import { useFormContext, UseFormRegister } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import { Checkbox } from 'src/components/ui/checkbox'
 import { FormLabel } from 'src/components/ui/form'
+import { ProductsFormInterface } from 'src/types/forms/products-form'
 
 const items = [
   {
-    id: 'yellowGold',
-    label: 'Yellow Gold',
+    label: 'Yellow',
   },
   {
-    id: 'whiteGold',
-    label: 'White Gold',
+    label: 'White',
   },
   {
-    id: 'roseGold',
-    label: 'Rose Gold',
+    label: 'Rose',
   },
 ] as const
 
-interface FiltersMenuProps {
-  register: UseFormRegister<ProductsFormInterface>
-}
-
-const MetalColor = ({ register }: FiltersMenuProps) => {
+const MetalColor = () => {
   const { setValue, getValues } = useFormContext<ProductsFormInterface>()
 
   const handleCheckboxChange = (id: string, checked: boolean) => {
@@ -34,8 +28,8 @@ const MetalColor = ({ register }: FiltersMenuProps) => {
       {items.map((item, index) => (
         <div key={index} className="flex flex-row items-start space-x-3 space-y-0">
           <Checkbox
-            checked={getValues(`metalColor.${item.id}`) || false}
-            onCheckedChange={(checked) => handleCheckboxChange(item.id, checked === true)}
+            checked={getValues(`metalColor.${item.label}`) || false}
+            onCheckedChange={(checked) => handleCheckboxChange(item.label, checked === true)}
           />
           <FormLabel className="text-sm font-normal">{item.label}</FormLabel>
         </div>

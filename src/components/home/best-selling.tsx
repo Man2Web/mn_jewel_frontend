@@ -1,5 +1,5 @@
 import Slider from 'react-slick'
-import ProductCard from '../elements/product-card'
+import ProductCard from '../product/product-card'
 import { Button } from '../ui/button'
 import SectionSeperator from './section-seperator'
 import useBestSellerHook from 'src/hooks/products/get-bestSellers'

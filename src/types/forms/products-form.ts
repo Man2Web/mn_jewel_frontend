@@ -1,41 +1,25 @@
-interface ProductsFormInterface {
+export interface ProductsFormInterface {
   sortOption: string
   productType: {
-    bracelet: boolean
-    earrings: boolean
-    chains: boolean
-    rings: boolean
+    [key: string]: boolean
   }
   materialType: {
-    gold: boolean
-    silver: boolean
-    diamond: boolean
+    [key: string]: boolean
   }
   metalType: {
-    gold18: boolean
-    gold22: boolean
-    gold24: boolean
+    [key: string]: boolean
   }
   metalColor: {
-    yellowGold: boolean
-    roseGold: boolean
-    whiteGold: boolean
+    [key: string]: boolean
   }
   priceRange: {
     minPrice: number
     maxPrice: number
   }
   gender: {
-    men: boolean
-    women: boolean
-    girl: boolean
-    boy: boolean
+    [key: string]: boolean
   }
-  ocassionType: {
-    wedding: boolean
-    engagement: boolean
-    anniversary: boolean
-    birthday: boolean
-    festival: boolean
+  ocassion: {
+    [key: string]: boolean
   }
 }

@@ -42,6 +42,7 @@ export interface MaterialType {
   documentId: string
   material_type: string
   price: number
+  name: string
   createdAt: string
   updatedAt: string
   publishedAt: string
@@ -105,6 +106,7 @@ export interface Product {
   tags: Tag[]
   basic_Information: BasicInformation
   stone_information: StoneInformation[]
+  calculatedPrice: number
 }
 
 export interface SingleProductResponse {
