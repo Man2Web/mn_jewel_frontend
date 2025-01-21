@@ -1,4 +1,4 @@
-import { ChevronRight, IndianRupeeIcon, StoreIcon, UserIcon, XIcon } from 'lucide-react'
+import { ChevronRight, IndianRupeeIcon, StoreIcon, XIcon } from 'lucide-react'
 import { useState } from 'react'
 import EarRingsMenu from './mobile/ear-rings-menu'
 import { headerData } from 'src/data/components/header'
@@ -7,17 +7,26 @@ const Sidebar = ({ setIsMenuOpen }: HeaderProps) => {
   const [isEarMenuOpen, setIsEarMenuOpen] = useState(false)
   return (
     <section className="absolute top-0 z-10 h-full w-full bg-white">
-      <div className="flex justify-between border border-b-yellow-500 p-4">
+      <div className="flex items-center justify-between border border-b-yellow-500 p-4">
         <div className="flex gap-2">
-          <UserIcon strokeWidth={1} />
-          <p>Account</p>
+          <a href="/">
+            <img
+              src="https://www.mnjewelpark.com/mnjewel/uploads/2020/12/cropped-MN-JEWEL-copy-2.png"
+              alt="logo"
+              className="h-10 rounded-sm"
+            />
+          </a>
         </div>
         <XIcon onClick={() => setIsMenuOpen(false)} className="ml-auto " strokeWidth={1} />
       </div>
       <div className="flex gap-2 overflow-scroll p-4">
         {headerData.map((item, index) => (
           <div className="flex flex-col items-center" key={index}>
-            <img src={item.img} alt={item.name} className="max-h-[125px] min-h-[125px] min-w-[125px] max-w-[125px]" />
+            <img
+              src={item.img}
+              alt={item.name}
+              className="max-h-[125px] min-h-[125px] min-w-[125px] max-w-[125px] rounded-sm"
+            />
             <p className="py-2 text-sm">{item.name}</p>
           </div>
         ))}

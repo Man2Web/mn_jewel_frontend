@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState, useCallback } from 'react'
 import { MultiProductResponse, Product } from 'src/types/components/product'
-import { ProductsFormInterface } from 'src/types/forms/products-form'
+import { ProductsFormInterface, ProductsFormInterfaceParams } from 'src/types/forms/products-form'
 
 function useGetAllProducts(filters?: ProductsFormInterface) {
   const [productsData, setProductsData] = useState<Product[]>([])
@@ -14,44 +14,83 @@ function useGetAllProducts(filters?: ProductsFormInterface) {
       const metalColorFilters = Object.keys(filters?.metalColor || {}).filter((key) => filters?.metalColor?.[key])
       const genderFilters = Object.keys(filters?.gender || {}).filter((key) => filters?.gender?.[key])
 
-      const { data } = await axios.get<MultiProductResponse>(`${import.meta.env.VITE_STRAPI_API}/products`, {
-        params: {
-          filters: {
-            ...(productTypeFilters.length > 0 && {
-              category: {
-                name: {
-                  $in: productTypeFilters,
-                },
-              },
-            }),
-            ...(metalTypeFilters.length > 0 && {
-              material_type: {
-                material_type: {
-                  $in: metalTypeFilters,
-                },
-              },
-            }),
-            ...(materialFilters.length > 0 && {
-              material: {
-                $in: materialFilters,
-              },
-            }),
-            ...(metalColorFilters.length > 0 && {
-              metal_Color: {
-                $in: metalColorFilters,
-              },
-            }),
-            ...(genderFilters.length > 0 && {
-              gender: {
-                $in: genderFilters,
-              },
-            }),
+      const sortOption = filters?.sortOption
+
+      console.log(sortOption)
+
+      const params: ProductsFormInterfaceParams = {
+        populate: '*',
+      }
+
+      if (productTypeFilters.length > 0) {
+        params.filters = {
+          ...params.filters,
+          category: {
+            name: {
+              $in: productTypeFilters,
+            },
           },
-          minPrice: filters?.priceRange?.minPrice || null,
-          maxPrice: filters?.priceRange?.maxPrice || null,
-          sort: 'calculatedPrice:asc',
-          populate: '*',
-        },
+        }
+      }
+
+      if (metalTypeFilters.length > 0) {
+        params.filters = {
+          ...params.filters,
+          material_type: {
+            material_type: {
+              $in: metalTypeFilters,
+            },
+          },
+        }
+      }
+
+      if (materialFilters.length > 0) {
+        params.filters = {
+          ...params.filters,
+          material: {
+            $in: materialFilters,
+          },
+        }
+      }
+
+      if (metalColorFilters.length > 0) {
+        params.filters = {
+          ...params.filters,
+          metal_Color: {
+            $in: metalColorFilters,
+          },
+        }
+      }
+
+      if (genderFilters.length > 0) {
+        params.filters = {
+          ...params.filters,
+          gender: {
+            $in: genderFilters,
+          },
+        }
+      }
+
+      if (filters?.priceRange?.minPrice != null) {
+        params.minPrice = filters.priceRange.minPrice
+      }
+
+      if (filters?.priceRange?.maxPrice != null) {
+        params.maxPrice = filters.priceRange.maxPrice
+      }
+
+      if (filters?.sortOption) {
+        params.sort = `${
+          filters.sortOption === 'bestsellers'
+            ? 'bestSeller:desc'
+            : filters.sortOption === 'price-low'
+            ? 'calculatedPrice:asc'
+            : 'calculatedPrice:desc'
+        }`
+      }
+
+      const { data } = await axios.get<MultiProductResponse>(`${import.meta.env.VITE_STRAPI_API}/products`, {
+        params,
       })
 
       setProductsData(data.data)
@@ -66,6 +105,7 @@ function useGetAllProducts(filters?: ProductsFormInterface) {
     filters?.materialType,
     filters?.metalColor,
     filters?.gender,
+    filters?.sortOption,
   ])
 
   useEffect(() => {

@@ -1,9 +1,9 @@
-import { HeartIcon, IndianRupeeIcon, MailQuestionIcon, UserPlusIcon } from 'lucide-react'
+import { HeartIcon, IndianRupeeIcon, MailQuestionIcon } from 'lucide-react'
 import { Button } from '../ui/button'
 import ProductDetails from './product-details'
 import ProductFeatures from './product-features'
 import { Product } from 'src/types/components/product'
-// import { otherInformation, productDetails, stoneDetails } from 'src/data/components/product'
+import ProductPriceBreakdown from './product-price-breakdown'
 
 const ProductInformation = ({ product }: { product: Product | undefined }) => {
   if (!product) {
@@ -16,25 +16,14 @@ const ProductInformation = ({ product }: { product: Product | undefined }) => {
       <div className="flex items-center py-2">
         <IndianRupeeIcon size={18} strokeWidth={2} />
         <h1 className="flex items-center gap-2 text-xl">
-          {Number(
-            product.item_Net_Weight * product.material_type.price +
-              product.value_Addition * product.material_type.price +
-              product.other_Stone_Price +
-              (product.gst + (product.material_type.price + product.value_Addition + product.other_Stone_Price)),
-          ).toLocaleString()}
+          {Number(product.calculatedPrice).toLocaleString()}
           <span className="text-sm font-medium opacity-50">(Approx)</span>
         </h1>
       </div>
       <div className="hidden w-full gap-2 lg:flex">
-        <Button variant="primary" className="flex w-1/2 gap-2 ">
+        <Button variant="primary" className="flex w-1/2 gap-2">
           <span>
             <MailQuestionIcon strokeWidth={1.5} />
-          </span>
-          Inquire Product
-        </Button>
-        <Button variant="primary" className="flex w-1/2 gap-2 ">
-          <span>
-            <UserPlusIcon strokeWidth={1.5} />
           </span>
           Inquire Product
         </Button>
@@ -49,7 +38,7 @@ const ProductInformation = ({ product }: { product: Product | undefined }) => {
           title="Basic Information"
           points={[
             { key: 'Material', value: product.basic_Information.material },
-            { key: 'Material Purity', value: product.basic_Information.metal_Purity },
+            { key: 'Material Purity', value: product.material_type.name },
             { key: 'Gross Weight', value: `${product.basic_Information.gross_Weight} gms` },
             { key: 'Height', value: `${product.basic_Information.Height} cms` },
           ]}
@@ -58,7 +47,11 @@ const ProductInformation = ({ product }: { product: Product | undefined }) => {
           <ProductDetails
             title="Stone Information"
             points={product.stone_information.map((data) => {
-              return { key: data.stone_name, value: data.stone_weight }
+              return {
+                key: data.stone_name,
+                value: `${data.stone_weight} gms`,
+                price: data.stone_price,
+              }
             })}
           />
         )}
@@ -71,7 +64,10 @@ const ProductInformation = ({ product }: { product: Product | undefined }) => {
           ]}
         />
       </div>
-      <div>
+      <div className="w-full pb-4">
+        <ProductPriceBreakdown title="Price Breakdown" product={product} />
+      </div>
+      <div className="block lg:hidden">
         <ProductFeatures />
       </div>
     </div>

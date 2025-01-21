@@ -2,8 +2,10 @@ import { categories } from 'src/data/components/home'
 import { Button } from '../ui/button'
 import SectionSeperator from './section-seperator'
 import ImageEffect from '../elements/image-effect'
+import { useNavigate } from 'react-router-dom'
 
 const Categories = () => {
+  const navigate = useNavigate()
   return (
     <section className="px-6 py-8">
       <SectionSeperator title="Shop By Categories" description="Explore our wide range of products" />
@@ -15,7 +17,7 @@ const Categories = () => {
           </a>
         ))}
       </div>
-      <Button variant="primary" className="mx-auto mt-8 flex justify-center">
+      <Button onClick={() => navigate('/products')} variant="primary" className="mx-auto mt-8 flex justify-center">
         View All Categories
       </Button>
     </section>

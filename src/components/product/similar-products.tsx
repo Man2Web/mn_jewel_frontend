@@ -33,6 +33,7 @@ const SimilarProducts = () => {
       },
     ],
   }
+  console.log(products)
   return (
     <section>
       <h1 className="pb-2 text-2xl">Similar Products</h1>

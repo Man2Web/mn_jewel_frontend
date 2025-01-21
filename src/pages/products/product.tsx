@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import Slider from 'react-slick'
 import MobileEnquiry from 'src/components/product/mobile-enquiry'
+import ProductFeatures from 'src/components/product/product-features'
 import ProductInformation from 'src/components/product/product-information'
 import SimilarProducts from 'src/components/product/similar-products'
 import useGetProductData from 'src/hooks/products/getProductData'
@@ -10,6 +11,8 @@ const Product = () => {
 
   const [productData] = useGetProductData(productId)
   const settings = {
+    autoplay: true,
+    autoplaySpeed: 2500,
     responsive: [
       {
         breakpoint: 1024,
@@ -36,7 +39,6 @@ const Product = () => {
       },
     ],
   }
-  // console.log(productData)
   return (
     <section>
       <div className="flex flex-col px-4 py-6 lg:flex-row">
@@ -45,16 +47,16 @@ const Product = () => {
             {productData?.product_Images.map((data, index) => (
               <div key={index}>
                 <img
-                  className="h-96 w-full lg:h-[750px] lg:w-[900px]"
+                  className="h-96 w-full rounded-lg lg:h-[750px] lg:w-[900px]"
                   src={`${import.meta.env.VITE_STRAPI}${data.url}`}
                   alt="Product Image"
                 />
               </div>
             ))}
           </Slider>
-          {/* <div className="hidden w-full lg:block">
+          <div className="my-4 hidden w-full lg:block">
             <ProductFeatures />
-          </div> */}
+          </div>
         </div>
         <div className="lg:w-1/2 lg:px-2">
           <ProductInformation product={productData} />

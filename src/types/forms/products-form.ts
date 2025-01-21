@@ -23,3 +23,31 @@ export interface ProductsFormInterface {
     [key: string]: boolean
   }
 }
+
+export interface ProductsFormInterfaceParams {
+  populate: string
+  filters?: {
+    category?: {
+      name: {
+        $in: string[]
+      }
+    }
+    material_type?: {
+      material_type: {
+        $in: string[]
+      }
+    }
+    material?: {
+      $in: string[]
+    }
+    metal_Color?: {
+      $in: string[]
+    }
+    gender?: {
+      $in: string[]
+    }
+  }
+  minPrice?: number | null
+  maxPrice?: number | null
+  sort?: string
+}

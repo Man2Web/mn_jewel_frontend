@@ -12,7 +12,7 @@ const Products = () => {
   const methods = useForm<ProductsFormInterface>({
     mode: 'onChange',
     defaultValues: {
-      sortOption: 'relevance',
+      sortOption: 'bestsellers',
     },
   })
   const { register, handleSubmit, watch, setValue } = methods
@@ -20,9 +20,6 @@ const Products = () => {
     console.log(data)
   }
   const data = watch()
-  // useEffect(() => {
-  //   console.log(data)
-  // }, [data])
   const [products] = useGetAllProducts(data)
   return (
     <section>
@@ -42,15 +39,12 @@ const Products = () => {
               <Label>Sort By</Label>
               <Select
                 onValueChange={(value) => setValue('sortOption', value, { shouldValidate: true })}
-                defaultValue="relevance"
+                defaultValue="bestsellers"
               >
                 <SelectTrigger className="w-full lg:w-[180px]">
                   <SelectValue placeholder="Select Sort Option" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem className="hover:cursor-pointer" value="relevance">
-                    Relevance
-                  </SelectItem>
                   <SelectItem className="hover:cursor-pointer" value="bestsellers">
                     Bestsellers
                   </SelectItem>

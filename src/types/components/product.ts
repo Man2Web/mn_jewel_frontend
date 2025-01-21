@@ -78,6 +78,7 @@ export interface StoneInformation {
   id: number
   stone_name: string
   stone_weight: number
+  stone_price: number
 }
 
 export interface Product {

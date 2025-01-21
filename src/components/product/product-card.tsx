@@ -33,7 +33,9 @@ const ProductCard = ({ product, bestSellingSection }: { product: Product; bestSe
               {product.product_Images.map((data, index) => (
                 <img
                   key={index}
-                  className={`${bestSellingSection ? 'h-[250px] w-[250px]' : 'h-[150px] w-[150px]'} object-cover`}
+                  className={`${
+                    bestSellingSection ? 'h-[250px] w-[250px]' : 'h-[150px] w-[150px]'
+                  } rounded-t-lg object-cover`}
                   src={`${import.meta.env.VITE_STRAPI}${data.url}`}
                   alt="product image"
                 />
