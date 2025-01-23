@@ -5,7 +5,7 @@ import { Input } from '../ui/input'
 import { Label } from '../ui/label'
 import { Textarea } from '../ui/textarea'
 import { ProductEnquiryFormInterface, ProductEnquiryFormInterfaceSchema } from 'src/types/forms/products-enquiry'
-import useFormSubmit from 'src/hooks/form/useFormSubmit'
+import submitEnquiry from 'src/hooks/form/product-enquiry-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 const InquireProduct = ({ productId }: { productId: string | undefined }) => {
@@ -18,7 +18,7 @@ const InquireProduct = ({ productId }: { productId: string | undefined }) => {
   })
   return (
     <DialogContent>
-      <form onSubmit={handleSubmit((data) => useFormSubmit(data, productId))} className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit((data) => submitEnquiry(data, productId))} className="flex flex-col gap-4">
         <div>
           <Label>Name</Label>
           <Input {...register('name')} type="text" placeholder="John Doe" />

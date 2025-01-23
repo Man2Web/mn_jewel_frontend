@@ -2,7 +2,7 @@ import axios from 'axios'
 import { toast } from 'react-hot-toast'
 import { ProductEnquiryFormInterface } from 'src/types/forms/products-enquiry'
 
-async function useFormSubmit(data: ProductEnquiryFormInterface, productId: string | undefined) {
+async function submitEnquiry(data: ProductEnquiryFormInterface, productId: string | undefined) {
   try {
     const response = await axios.post(`${import.meta.env.VITE_STRAPI_API}/product-enquiries`, {
       data: { ...data, product: productId },
@@ -15,4 +15,4 @@ async function useFormSubmit(data: ProductEnquiryFormInterface, productId: strin
   }
 }
 
-export default useFormSubmit
+export default submitEnquiry
