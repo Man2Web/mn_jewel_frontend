@@ -86,9 +86,7 @@ const FiltersMenu = ({ register, methods }: FiltersMenuProps) => {
             </div>
             <div
               onClick={() => setOpenMenu(6)}
-              className={`border-b  px-4 py-2 text-sm font-semibold hover:text-red-400 ${
-                openMenu === 6 ? 'text-red-400' : ''
-              }`}
+              className={`px-4 py-2 text-sm font-semibold hover:text-red-400 ${openMenu === 6 ? 'text-red-400' : ''}`}
             >
               Ocassion
             </div>

@@ -65,7 +65,7 @@ const Product = () => {
       <div className="px-4 pb-6">
         <SimilarProducts />
       </div>
-      <MobileEnquiry />
+      <MobileEnquiry productId={productId} />
     </section>
   )
 }

@@ -14,10 +14,6 @@ function useGetAllProducts(filters?: ProductsFormInterface) {
       const metalColorFilters = Object.keys(filters?.metalColor || {}).filter((key) => filters?.metalColor?.[key])
       const genderFilters = Object.keys(filters?.gender || {}).filter((key) => filters?.gender?.[key])
 
-      const sortOption = filters?.sortOption
-
-      console.log(sortOption)
-
       const params: ProductsFormInterfaceParams = {
         populate: '*',
       }
