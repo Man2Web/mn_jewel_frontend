@@ -1,7 +1,7 @@
 import Slider from 'react-slick'
 import useBannerHook from 'src/hooks/data/use-banner-hook'
 
-const Banner = () => {
+const Banner: React.FC = () => {
   const [bannerImages] = useBannerHook()
   const settings = {
     dots: false,
@@ -11,6 +11,7 @@ const Banner = () => {
     slidesToScroll: 1,
     autoplay: true,
   }
+
   return (
     <section className="overflow-hidden">
       <Slider {...settings}>
