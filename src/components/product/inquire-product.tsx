@@ -12,13 +12,17 @@ const InquireProduct = ({ productId }: { productId: string | undefined }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<ProductEnquiryFormInterface>({
     resolver: zodResolver(ProductEnquiryFormInterfaceSchema),
   })
   return (
     <DialogContent>
-      <form onSubmit={handleSubmit((data) => submitEnquiry(data, productId))} className="flex flex-col gap-4">
+      <form
+        onSubmit={handleSubmit((data) => submitEnquiry(data, productId).then(() => reset()))}
+        className="flex flex-col gap-4"
+      >
         <div>
           <Label>Name</Label>
           <Input {...register('name')} type="text" placeholder="John Doe" />
@@ -28,7 +32,7 @@ const InquireProduct = ({ productId }: { productId: string | undefined }) => {
           <Label>Phone Number</Label>
           <div className="flex items-center gap-2">
             <Button className="flex h-full w-[125px] font-semibold" variant="outline">
-              🇮🇳 (+91)
+              <img className="h-6 pr-2" src="\src\assets\icons\flag.png" /> +91
             </Button>
             <Input {...register('phone_number')} type="text" placeholder="8790988098" />
           </div>
@@ -56,8 +60,3 @@ const InquireProduct = ({ productId }: { productId: string | undefined }) => {
 }
 
 export default InquireProduct
-function zodresolver(
-  ProductEnquiryFormSchema: any,
-): import('react-hook-form').Resolver<ProductEnquiryFormInterface, any> | undefined {
-  throw new Error('Function not implemented.')
-}

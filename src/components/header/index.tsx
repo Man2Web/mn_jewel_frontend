@@ -119,9 +119,9 @@ export function Header() {
               </Tooltip>
             </TooltipProvider>
           </div>
-          <div>
+          <a href="/auth">
             <UserIcon strokeWidth={1} />
-          </div>
+          </a>
           <div>
             <HeartIcon strokeWidth={1} />
           </div>
