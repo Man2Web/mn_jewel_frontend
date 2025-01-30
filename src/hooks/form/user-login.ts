@@ -9,9 +9,11 @@ async function userLogin(data: LoginFormInterface) {
       password: data.password,
     })
     response.status ? toast.success('User created loggin you in...') : toast.error('Something went wrong')
-  } catch (error: any) {
+    localStorage.setItem('token', response.data.jwt)
+    window.location.href = '/'
+  } catch (error) {
     console.error(error)
-    toast.error(error.response.data.error.message)
+    toast.error('Invalid credentials')
   }
 }
 

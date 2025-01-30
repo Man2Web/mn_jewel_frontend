@@ -1,10 +1,12 @@
-import { ChevronRight, IndianRupeeIcon, StoreIcon, XIcon } from 'lucide-react'
+import { ChevronRight, IndianRupeeIcon, LogOutIcon, StoreIcon, UserIcon, XIcon } from 'lucide-react'
 import { useState } from 'react'
 import EarRingsMenu from './mobile/ear-rings-menu'
-import { headerData } from 'src/data/components/header'
+import { Button } from '../ui/button'
+import { userLogout } from 'src/hooks/functions/userLogout'
 
 const Sidebar = ({ setIsMenuOpen }: HeaderProps) => {
   const [isEarMenuOpen, setIsEarMenuOpen] = useState(false)
+  const token = localStorage.getItem('token')
   return (
     <section className="absolute top-0 z-10 h-full w-full bg-white">
       <div className="flex items-center justify-between border border-b-yellow-500 p-4">
@@ -18,18 +20,6 @@ const Sidebar = ({ setIsMenuOpen }: HeaderProps) => {
           </a>
         </div>
         <XIcon onClick={() => setIsMenuOpen(false)} className="ml-auto " strokeWidth={1} />
-      </div>
-      <div className="flex gap-2 overflow-scroll p-4">
-        {headerData.map((item, index) => (
-          <div className="flex flex-col items-center" key={index}>
-            <img
-              src={item.img}
-              alt={item.name}
-              className="max-h-[125px] min-h-[125px] min-w-[125px] max-w-[125px] rounded-sm"
-            />
-            <p className="py-2 text-sm">{item.name}</p>
-          </div>
-        ))}
       </div>
       <div className="flex flex-col gap-2 p-4">
         <div
@@ -108,15 +98,38 @@ const Sidebar = ({ setIsMenuOpen }: HeaderProps) => {
           </div>
         </div>
       </div>
-      <div className="flex gap-2 p-4">
-        <div className="flex max-h-10 w-1/2 items-center gap-2 rounded-sm border border-red-400 px-4 py-2">
-          <IndianRupeeIcon color="red" size={12} strokeWidth={1} />
-          <p className="text-xs">Gold Rate</p>
+      <div className="absolute bottom-0 flex w-full flex-col gap-2 px-4 py-2">
+        <div className="flex gap-2">
+          <div className="flex max-h-10 w-1/2 items-center gap-2 rounded-sm border border-red-400 px-4 py-2">
+            <IndianRupeeIcon color="red" size={12} strokeWidth={1} />
+            <p className="text-xs">Gold Rate</p>
+          </div>
+          <div className="flex max-h-10 w-1/2 items-center gap-2 rounded-sm border border-red-400 px-4 py-2">
+            <StoreIcon color="red" size={12} strokeWidth={1} />
+            <p className="text-xs">Store Locator</p>
+          </div>
         </div>
-        <div className="flex max-h-10 w-1/2 items-center gap-2 rounded-sm border border-red-400 px-4 py-2">
-          <StoreIcon color="red" size={12} strokeWidth={1} />
-          <p className="text-xs">Store Locator</p>
-        </div>
+        {token ? (
+          <Button
+            onClick={() => userLogout()}
+            variant="primary"
+            className="flex max-h-10 w-full items-center gap-2 px-4 py-2"
+          >
+            <LogOutIcon color="red" size={12} strokeWidth={1} />
+            <p className="text-xs">Logout</p>
+          </Button>
+        ) : (
+          <Button
+            onClick={() => {
+              window.location.href = '/auth'
+            }}
+            variant="primary"
+            className="flex max-h-10 w-full items-center gap-2 px-4 py-2"
+          >
+            <UserIcon color="red" size={12} strokeWidth={1} />
+            <p className="text-xs">Login</p>
+          </Button>
+        )}
       </div>
       <div
         className={`fixed inset-0 z-50 transform ${

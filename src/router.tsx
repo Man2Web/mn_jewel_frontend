@@ -6,12 +6,15 @@ import Home from './pages/home'
 import Auth from './pages/auth'
 import ForgotPass from './pages/auth/forgot-pass'
 import Loader from './components/layout/loader'
+import PrivateRoute from './components/layout/private-route'
+import Dashboard from './pages/dashboard'
 
 const Product = lazy(() => import('./pages/products/product'))
 const Products = lazy(() => import('./pages/products/index'))
 
 type PrivateRouteProps = RouteObject & {
   getLayout: boolean
+  private?: boolean
 }
 
 export const routerObjects: PrivateRouteProps[] = [
@@ -40,6 +43,12 @@ export const routerObjects: PrivateRouteProps[] = [
     Component: ForgotPass,
     getLayout: false,
   },
+  {
+    path: '/dashboard',
+    Component: Dashboard,
+    getLayout: true,
+    private: true,
+  },
 ]
 
 export function createRouter(): ReturnType<typeof createBrowserRouter> {
@@ -49,7 +58,7 @@ export function createRouter(): ReturnType<typeof createBrowserRouter> {
     const page = getLayout(<Suspense fallback={<Loader />}>{Component ? <Component /> : null}</Suspense>)
     return {
       ...router,
-      element: page,
+      element: router.private ? <PrivateRoute>{page}</PrivateRoute> : page,
       Component: null,
       ErrorBoundary: ErrorPage,
     }

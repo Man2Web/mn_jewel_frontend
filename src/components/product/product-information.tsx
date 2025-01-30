@@ -1,4 +1,4 @@
-import { HeartIcon, IndianRupeeIcon, MailQuestionIcon } from 'lucide-react'
+import { IndianRupeeIcon, MailQuestionIcon, ShoppingBagIcon } from 'lucide-react'
 import { Button } from '../ui/button'
 import ProductDetails from './product-details'
 import ProductFeatures from './product-features'
@@ -6,11 +6,13 @@ import { Product } from 'src/types/components/product'
 import ProductPriceBreakdown from './product-price-breakdown'
 import { Dialog, DialogTrigger } from '../ui/dialog'
 import InquireProduct from './inquire-product'
+import { useAddToCart } from 'src/hooks/user/user'
 
 const ProductInformation = ({ product }: { product: Product | undefined }) => {
   if (!product) {
     return null
   }
+  const [addProduct] = useAddToCart()
   return (
     <Dialog>
       <div className="lg:p-4">
@@ -25,17 +27,19 @@ const ProductInformation = ({ product }: { product: Product | undefined }) => {
         </div>
         <div className="hidden w-full gap-2 lg:flex">
           <DialogTrigger className="flex w-1/2 gap-2">
-            <Button variant="primary" className="w-full">
-              <span>
-                <MailQuestionIcon strokeWidth={1.5} />
-              </span>
+            <Button variant="primary" className="flex w-full gap-2">
+              <MailQuestionIcon strokeWidth={1.5} />
               Inquire Product
             </Button>
           </DialogTrigger>
-          <Button variant="primary" className="flex gap-2">
-            <span>
-              <HeartIcon strokeWidth={1.5} />
-            </span>
+          <Button
+            onClick={() => addProduct(product && product.id)}
+            disabled={product.stock_Quantity === 0}
+            variant="primary"
+            className="flex w-1/2 gap-2"
+          >
+            <ShoppingBagIcon strokeWidth={1.5} />
+            Add to Cart
           </Button>
         </div>
         <div className="grid w-full grid-cols-1 gap-4 py-4 lg:grid-cols-3">

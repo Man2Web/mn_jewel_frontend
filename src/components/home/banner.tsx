@@ -1,5 +1,5 @@
 import Slider from 'react-slick'
-import useBannerHook from 'src/hooks/data/use-banner-hook'
+import useBannerHook from 'src/hooks/data/useBannerHook'
 
 const Banner: React.FC = () => {
   const [bannerImages] = useBannerHook()
@@ -17,7 +17,7 @@ const Banner: React.FC = () => {
       <Slider {...settings}>
         {bannerImages?.map((data, index) => (
           <div key={index} className="flex h-auto w-full items-center justify-center bg-gray-200">
-            <img className="h-[200px] w-full max-w-full sm:h-[300px] lg:h-[600px]" src={data} alt="img" />
+            <img className="h-64 w-full max-w-full lg:h-[600px]" src={data} alt="img" />
           </div>
         ))}
       </Slider>

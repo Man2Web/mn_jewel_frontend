@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader } from '../ui/card'
 import { HeartIcon, IndianRupee } from 'lucide-react'
 import { useState } from 'react'
 import { Product } from 'src/types/components/product'
+import Loader from '../layout/loader'
 
 const ProductCard = ({ product, bestSellingSection }: { product: Product; bestSellingSection?: boolean }) => {
   const [autoplay, setAutoplay] = useState(false)
@@ -17,7 +18,7 @@ const ProductCard = ({ product, bestSellingSection }: { product: Product; bestSe
   }
 
   if (!product.product_Images) {
-    return <div>Loading...</div>
+    return <Loader />
   }
 
   return (

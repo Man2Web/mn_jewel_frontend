@@ -1,3 +1,4 @@
+import { HeartIcon } from 'lucide-react'
 import { useParams } from 'react-router-dom'
 import Slider from 'react-slick'
 import MobileEnquiry from 'src/components/product/mobile-enquiry'
@@ -42,7 +43,7 @@ const Product = () => {
   return (
     <section>
       <div className="flex flex-col px-4 py-6 lg:flex-row">
-        <div className="overflow-hidden lg:w-1/2 lg:px-2">
+        <div className="relative overflow-hidden lg:w-1/2 lg:px-2">
           <Slider {...settings}>
             {productData?.product_Images.map((data, index) => (
               <div key={index}>
@@ -54,6 +55,9 @@ const Product = () => {
               </div>
             ))}
           </Slider>
+          <div className="absolute right-2 top-2 rounded-full bg-white p-1 opacity-80 md:right-4">
+            <HeartIcon size={20} strokeWidth={0.6} />
+          </div>
           <div className="my-4 hidden w-full lg:block">
             <ProductFeatures />
           </div>
@@ -65,7 +69,7 @@ const Product = () => {
       <div className="px-4 pb-6">
         <SimilarProducts />
       </div>
-      <MobileEnquiry productId={productId} />
+      <MobileEnquiry productId={productId} productData={productData} />
     </section>
   )
 }

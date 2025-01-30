@@ -1,9 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import SignUpForm from 'src/components/auth/signup-form'
 import LoginForm from 'src/components/auth/login-form'
+import { useNavigate } from 'react-router-dom'
 
 const Auth = () => {
   const [login, setLogin] = useState(true)
+  const navigate = useNavigate()
+  useEffect(() => {
+    const jwt = localStorage.getItem('token')
+    if (jwt) {
+      navigate('/')
+    }
+  }, [navigate])
   return (
     <div className="mx-auto flex h-screen max-w-md flex-col px-6 py-4 lg:mx-0 lg:max-w-none lg:flex-row lg:px-6 lg:py-4">
       <div className="order-2 px-0 py-0 lg:order-1 lg:w-1/2 lg:px-32 lg:py-16">
@@ -21,7 +29,7 @@ const Auth = () => {
           </div>
         </p>
       </div>
-      <div className="order-1 h-40 w-full lg:order-2 lg:h-full lg:w-1/2">
+      <div className="order-1 h-48 w-full lg:order-2 lg:h-full lg:w-1/2">
         <img className="h-full w-full rounded-lg" src="https://images4.alphacoders.com/133/1339103.png" />
       </div>
     </div>

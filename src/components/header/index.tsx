@@ -6,10 +6,12 @@ import Sidebar from './sidebar'
 import { useGetMaterialPrice } from 'src/hooks/data/getMaterialPrice'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table'
+import { useGetUserCartData } from 'src/hooks/user/user'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [materialPrice] = useGetMaterialPrice()
+  const [userCartData] = useGetUserCartData()
   return (
     <div>
       <div className="overflow-hidden border-b border-red-400 bg-red-50 py-1 text-sm lg:hidden">
@@ -125,8 +127,13 @@ export function Header() {
           <div>
             <HeartIcon strokeWidth={1} />
           </div>
-          <div>
+          <div className="relative">
             <ShoppingBagIcon strokeWidth={1} />
+            {userCartData && userCartData.length > 0 && (
+              <span className="absolute right-[-4px] top-[-8px] flex h-4 w-4 justify-center rounded-full bg-red-400 text-xs text-white">
+                {userCartData.length}
+              </span>
+            )}
           </div>
         </div>
       </header>

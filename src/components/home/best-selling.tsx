@@ -2,7 +2,7 @@ import Slider from 'react-slick'
 import ProductCard from '../product/product-card'
 import { Button } from '../ui/button'
 import SectionSeperator from './section-seperator'
-import useBestSellerHook from 'src/hooks/products/get-bestSellers'
+import useBestSellerHook from 'src/hooks/products/getBestSellers'
 
 const BestSelling = () => {
   const [productsData] = useBestSellerHook()

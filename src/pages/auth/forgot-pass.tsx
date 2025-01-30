@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button } from 'src/components/ui/button'
 import { Input } from 'src/components/ui/input'
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from 'src/components/ui/input-otp'
@@ -6,7 +7,13 @@ import { Label } from 'src/components/ui/label'
 
 const ForgotPass = () => {
   const [isMobileTrue, setisMobileTrue] = useState(false)
-
+  const navigate = useNavigate()
+  useEffect(() => {
+    const jwt = localStorage.getItem('token')
+    if (jwt) {
+      navigate('/')
+    }
+  }, [navigate])
   return (
     <div className="mx-auto flex h-screen max-w-md flex-col px-6 py-4 lg:mx-0 lg:max-w-none lg:flex-row lg:px-6 lg:py-4">
       <div className="order-2 px-0 py-0 lg:order-1 lg:w-1/2 lg:px-32 lg:py-16">
