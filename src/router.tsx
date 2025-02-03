@@ -7,10 +7,11 @@ import Auth from './pages/auth'
 import ForgotPass from './pages/auth/forgot-pass'
 import Loader from './components/layout/loader'
 import PrivateRoute from './components/layout/private-route'
-import Dashboard from './pages/dashboard'
 
 const Product = lazy(() => import('./pages/products/product'))
 const Products = lazy(() => import('./pages/products/index'))
+const Cart = lazy(() => import('./pages/user/cart'))
+const Profile = lazy(() => import('./pages/user/profile'))
 
 type PrivateRouteProps = RouteObject & {
   getLayout: boolean
@@ -44,8 +45,14 @@ export const routerObjects: PrivateRouteProps[] = [
     getLayout: false,
   },
   {
-    path: '/dashboard',
-    Component: Dashboard,
+    path: '/cart',
+    Component: Cart,
+    getLayout: true,
+    private: true,
+  },
+  {
+    path: '/profile',
+    Component: Profile,
     getLayout: true,
     private: true,
   },

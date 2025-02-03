@@ -23,7 +23,7 @@ const Products = () => {
   const [products] = useGetAllProducts(data)
   return (
     <section>
-      <div className=" px-2 py-4 lg:px-6 lg:py-8">
+      <div className="px-2 py-4 lg:px-6 lg:py-8">
         <div className="flex flex-col md:flex-row lg:items-center lg:justify-between">
           <p className="my-4 hidden font-semibold capitalize opacity-50 lg:block">
             (showing {products.length.toLocaleString()} designs)

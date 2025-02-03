@@ -6,13 +6,22 @@ import { Product } from 'src/types/components/product'
 import ProductPriceBreakdown from './product-price-breakdown'
 import { Dialog, DialogTrigger } from '../ui/dialog'
 import InquireProduct from './inquire-product'
-import { useAddToCart } from 'src/hooks/user/user'
+import { useAddToCart, useRemoveFromCart } from 'src/hooks/user/user'
+import { useContext } from 'react'
+import { MyContext } from '../layout/context'
 
 const ProductInformation = ({ product }: { product: Product | undefined }) => {
   if (!product) {
     return null
   }
   const [addProduct] = useAddToCart()
+  const [removeProduct] = useRemoveFromCart()
+  const context = useContext(MyContext)
+  if (!context) {
+    throw new Error('MyContext must be used within a MyContextProvider')
+  }
+  const { userCartData } = context
+  const isProductInCart = userCartData.filter((data) => data.id === product?.id)
   return (
     <Dialog>
       <div className="lg:p-4">
@@ -32,15 +41,22 @@ const ProductInformation = ({ product }: { product: Product | undefined }) => {
               Inquire Product
             </Button>
           </DialogTrigger>
-          <Button
-            onClick={() => addProduct(product && product.id)}
-            disabled={product.stock_Quantity === 0}
-            variant="primary"
-            className="flex w-1/2 gap-2"
-          >
-            <ShoppingBagIcon strokeWidth={1.5} />
-            Add to Cart
-          </Button>
+          {isProductInCart.length > 0 ? (
+            <Button onClick={() => removeProduct(product && product.id)} variant="primary" className="flex w-1/2 gap-2">
+              <ShoppingBagIcon strokeWidth={1.5} />
+              Remove from Cart
+            </Button>
+          ) : (
+            <Button
+              disabled={product?.stock_Quantity === 0}
+              onClick={() => addProduct(product && product.id)}
+              variant="primary"
+              className="flex w-1/2 gap-2"
+            >
+              <ShoppingBagIcon strokeWidth={1.5} />
+              Add to Cart
+            </Button>
+          )}
         </div>
         <div className="grid w-full grid-cols-1 gap-4 py-4 lg:grid-cols-3">
           <ProductDetails

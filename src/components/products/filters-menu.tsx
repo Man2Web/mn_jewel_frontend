@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Button } from '../ui/button'
 import { DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle } from '../ui/drawer'
 import PriceRange from './filtering-options/price-range'
-
 import { UseFormRegister, FormProvider, useForm } from 'react-hook-form'
 import ProductType from './filtering-options/product-type'
 import MaterialType from './filtering-options/material-type'

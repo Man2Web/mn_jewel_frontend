@@ -9,7 +9,6 @@ import useGetProductData from 'src/hooks/products/getProductData'
 
 const Product = () => {
   const { productId } = useParams()
-
   const [productData] = useGetProductData(productId)
   const settings = {
     autoplay: true,

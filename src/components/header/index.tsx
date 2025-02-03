@@ -1,17 +1,24 @@
 import { DiamondIcon, HeartIcon, MapPin, MenuIcon, Phone, Search, ShoppingBagIcon, UserIcon } from 'lucide-react'
 import { Input } from '../ui/input'
 import Navbar from './navbar'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Sidebar from './sidebar'
 import { useGetMaterialPrice } from 'src/hooks/data/getMaterialPrice'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table'
+import { MyContext } from '../layout/context'
 import { useGetUserCartData } from 'src/hooks/user/user'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [materialPrice] = useGetMaterialPrice()
-  const [userCartData] = useGetUserCartData()
+  const context = useContext(MyContext)
+  if (!context) {
+    throw new Error('MyContext must be used within a MyContextProvider')
+  }
+  useGetUserCartData()
+  const { userCartData } = context
+  const isLoggedIn = localStorage.getItem('token')
   return (
     <div>
       <div className="overflow-hidden border-b border-red-400 bg-red-50 py-1 text-sm lg:hidden">
@@ -121,20 +128,20 @@ export function Header() {
               </Tooltip>
             </TooltipProvider>
           </div>
-          <a href="/auth">
+          <a href={isLoggedIn ? '/profile' : '/auth'}>
             <UserIcon strokeWidth={1} />
           </a>
           <div>
             <HeartIcon strokeWidth={1} />
           </div>
-          <div className="relative">
+          <a href="/cart" className="relative hover:cursor-pointer">
             <ShoppingBagIcon strokeWidth={1} />
             {userCartData && userCartData.length > 0 && (
               <span className="absolute right-[-4px] top-[-8px] flex h-4 w-4 justify-center rounded-full bg-red-400 text-xs text-white">
                 {userCartData.length}
               </span>
             )}
-          </div>
+          </a>
         </div>
       </header>
       <div className="flex items-center p-2 lg:hidden">

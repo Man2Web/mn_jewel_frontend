@@ -1,6 +1,7 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { Product } from 'src/types/components/product'
+import { useContext, useEffect, useState } from 'react'
+import { toast } from 'react-hot-toast'
+import { MyContext } from 'src/components/layout/context'
 import { User } from 'src/types/components/user'
 
 function useGetUserData() {
@@ -9,7 +10,7 @@ function useGetUserData() {
   useEffect(() => {
     if (!jwt) return
     getCartData()
-  })
+  }, [])
   const getCartData = async () => {
     try {
       const response = await axios.get(`${import.meta.env.VITE_STRAPI_API}/users/me?populate=*`, {
@@ -17,7 +18,6 @@ function useGetUserData() {
           Authorization: `Bearer ${jwt}`,
         },
       })
-      console.log(response.data)
       setUserData(response.data)
     } catch (error) {
       console.error(error)
@@ -27,14 +27,18 @@ function useGetUserData() {
 }
 
 function useGetUserCartData() {
+  const context = useContext(MyContext)
+  if (!context) {
+    throw new Error('MyContext must be used within a MyContextProvider')
+  }
+  const { setUserCartData } = context
   const jwt = localStorage.getItem('token')
-  const [userCartData, setUserCartData] = useState<Product[]>([])
   const [userData] = useGetUserData()
   useEffect(() => {
     if (!jwt) return
     if (!userData) return
     getCartData(userData?.user_cart.documentId)
-  })
+  }, [userData])
   const getCartData = async (userCartId: string | undefined) => {
     try {
       const response = await axios.get(`${import.meta.env.VITE_STRAPI_API}/user-carts/${userCartId}?populate=*`, {
@@ -47,20 +51,30 @@ function useGetUserCartData() {
       console.error(error)
     }
   }
-  return [userCartData]
+  return { getCartData }
 }
 
 function useAddToCart() {
+  const context = useContext(MyContext)
+  if (!context) {
+    throw new Error('MyContext must be used within a MyContextProvider')
+  }
+  const { userCartData } = context
   const jwt = localStorage.getItem('token')
-  if (!jwt) window.location.href = '/auth'
   const [userData] = useGetUserData()
+  const { getCartData } = useGetUserCartData()
+  const prevCartItems = userCartData.map((data) => data.id)
   const addProduct = async (productId: number | undefined) => {
+    if (!jwt) {
+      toast.error('Please login to add product to cart')
+      return
+    }
     try {
-      const response = await axios.put(
+      await axios.put(
         `${import.meta.env.VITE_STRAPI_API}/user-carts/${userData?.user_cart.documentId}`,
         {
           data: {
-            products: [productId],
+            products: [...prevCartItems, productId],
           },
         },
         {
@@ -69,12 +83,51 @@ function useAddToCart() {
           },
         },
       )
-      console.log(response)
+      getCartData(userData?.user_cart.documentId)
     } catch (error) {
       console.error(error)
+      toast.error('Error adding product to cart')
     }
   }
   return [addProduct]
 }
 
-export { useGetUserData, useAddToCart, useGetUserCartData }
+function useRemoveFromCart() {
+  const context = useContext(MyContext)
+  if (!context) {
+    throw new Error('MyContext must be used within a MyContextProvider')
+  }
+  const { userCartData } = context
+  const jwt = localStorage.getItem('token')
+  const [userData] = useGetUserData()
+  const { getCartData } = useGetUserCartData()
+  const removeProduct = async (productId: number | undefined) => {
+    if (!jwt) {
+      toast.error('Please login to add product to cart')
+      return
+    }
+    const udpatedCartItems = userCartData.filter((data) => data.id !== productId).map((data) => data.id)
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_STRAPI_API}/user-carts/${userData?.user_cart.documentId}`,
+        {
+          data: {
+            products: [...udpatedCartItems],
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        },
+      )
+      getCartData(userData?.user_cart.documentId)
+    } catch (error) {
+      console.error(error)
+      toast.error('Error adding product to cart')
+    }
+  }
+  return [removeProduct]
+}
+
+export { useGetUserData, useAddToCart, useGetUserCartData, useRemoveFromCart }
