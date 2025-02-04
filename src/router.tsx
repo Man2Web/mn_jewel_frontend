@@ -2,12 +2,12 @@ import { lazy, Suspense } from 'react'
 import { createBrowserRouter, RouteObject } from 'react-router-dom'
 import ErrorPage from './components/error-page'
 import { getDefaultLayout } from './components/layout'
-import Home from './pages/home'
 import Auth from './pages/auth'
 import ForgotPass from './pages/auth/forgot-pass'
 import Loader from './components/layout/loader'
 import PrivateRoute from './components/layout/private-route'
 
+const Home = lazy(() => import('./pages/home'))
 const Product = lazy(() => import('./pages/products/product'))
 const Products = lazy(() => import('./pages/products/index'))
 const Cart = lazy(() => import('./pages/user/cart'))

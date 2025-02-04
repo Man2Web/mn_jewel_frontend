@@ -62,10 +62,10 @@ const ProductInformation = ({ product }: { product: Product | undefined }) => {
           <ProductDetails
             title="Basic Information"
             points={[
-              { key: 'Material', value: product.basic_Information.material },
+              { key: 'Material', value: product.material },
               { key: 'Material Purity', value: product.material_type.name },
-              { key: 'Gross Weight', value: `${product.basic_Information.gross_Weight} gms` },
-              { key: 'Height', value: `${product.basic_Information.Height} cms` },
+              { key: 'Gross Weight', value: `${product.item_Gross_Weight} gms` },
+              { key: 'Height', value: `${product.item_Height} cms` },
             ]}
           />
           {product.stone_information && (

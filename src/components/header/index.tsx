@@ -11,6 +11,7 @@ import { useGetUserCartData } from 'src/hooks/user/user'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [product_Name, setProduct_Name] = useState('')
   const [materialPrice] = useGetMaterialPrice()
   const context = useContext(MyContext)
   if (!context) {
@@ -64,8 +65,18 @@ export function Header() {
         </div>
         <div className="hidden items-center lg:flex">
           <div className="relative flex w-[400px] items-center">
-            <Input type="email" placeholder="Search for Diamon Bracelets" className="w-full" />
-            <Search className="absolute right-2 opacity-20" />
+            <Input
+              onChange={(e) => setProduct_Name(e.target.value)}
+              type="email"
+              placeholder="Search for Diamon Bracelets"
+              className="w-full"
+            />
+            <Search
+              onClick={() => {
+                window.location.href = `products?productName=${product_Name}`
+              }}
+              className="absolute right-2 opacity-20 hover:cursor-pointer"
+            />
           </div>
         </div>
         <div className="ml-auto flex items-center space-x-4 px-4 lg:ml-0">

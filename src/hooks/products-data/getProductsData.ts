@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Category, CategoryResponse } from 'src/types/components/category'
 import { Material, MultiMaterialResponse } from 'src/types/components/material'
+import { SubCategory, SubCategoryResponse } from 'src/types/components/subCategory'
 
 function useGetCategories() {
   const [categoriesData, setCategoriesData] = useState<Category[]>([])
@@ -11,7 +12,7 @@ function useGetCategories() {
 
   const getCategoriesData = async () => {
     try {
-      const response = await axios.get<CategoryResponse>(`${import.meta.env.VITE_STRAPI_API}/categories`)
+      const response = await axios.get<CategoryResponse>(`${import.meta.env.VITE_STRAPI_API}/categories?populate=*`)
       setCategoriesData(response.data.data)
     } catch (error) {
       console.error(error)
@@ -54,4 +55,23 @@ function useGetMetal() {
   return [materialData]
 }
 
-export { useGetCategories, useGetTags, useGetMetal }
+function useGetSubCategory() {
+  const [subCategoryData, setSubCategoryData] = useState<SubCategory[]>([])
+  useEffect(() => {
+    getCategoriesData()
+  }, [])
+
+  const getCategoriesData = async () => {
+    try {
+      const response = await axios.get<SubCategoryResponse>(
+        `${import.meta.env.VITE_STRAPI_API}/subcategories?populate=*`,
+      )
+      setSubCategoryData(response.data.data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  return [subCategoryData]
+}
+
+export { useGetCategories, useGetTags, useGetMetal, useGetSubCategory }

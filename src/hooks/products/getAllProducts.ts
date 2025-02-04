@@ -1,11 +1,13 @@
 import axios from 'axios'
 import { useEffect, useState, useCallback } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { MultiProductResponse, Product } from 'src/types/components/product'
 import { ProductsFormInterface, ProductsFormInterfaceParams } from 'src/types/forms/products-form'
 
 function useGetAllProducts(filters?: ProductsFormInterface) {
   const [productsData, setProductsData] = useState<Product[]>([])
-
+  const [searchParams] = useSearchParams()
+  const productName = searchParams.get('productName')
   const getProducts = useCallback(async () => {
     try {
       const productTypeFilters = Object.keys(filters?.productType || {}).filter((key) => filters?.productType?.[key])
@@ -16,6 +18,15 @@ function useGetAllProducts(filters?: ProductsFormInterface) {
 
       const params: ProductsFormInterfaceParams = {
         populate: '*',
+      }
+
+      if (productName) {
+        params.filters = {
+          ...params.filters,
+          product_Name: {
+            $containsi: productName,
+          },
+        }
       }
 
       if (productTypeFilters.length > 0) {
@@ -102,6 +113,7 @@ function useGetAllProducts(filters?: ProductsFormInterface) {
     filters?.metalColor,
     filters?.gender,
     filters?.sortOption,
+    productName,
   ])
 
   useEffect(() => {

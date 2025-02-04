@@ -32,6 +32,9 @@ export interface ProductsFormInterfaceParams {
         $in: string[]
       }
     }
+    product_Name?: {
+      $containsi: string
+    }
     material_type?: {
       material_type: {
         $in: string[]

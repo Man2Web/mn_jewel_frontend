@@ -12,6 +12,7 @@ const MetalType = () => {
     setValue('metalType', { ...currentValues, [id]: checked })
   }
   const [metalData] = useGetMetal()
+  console.log(metalData)
   return (
     <div>
       {metalData.map((data, index) => (
@@ -20,7 +21,7 @@ const MetalType = () => {
             checked={getValues(`metalType.${data.material_type}`) || false}
             onCheckedChange={(checked) => handleCheckboxChange(data.material_type, checked === true)}
           />
-          <FormLabel className="text-sm font-normal">{data.material_type}</FormLabel>
+          <FormLabel className="text-sm font-normal">{data.name}</FormLabel>
         </div>
       ))}
     </div>

@@ -108,6 +108,8 @@ export interface Product {
   basic_Information: BasicInformation
   stone_information: StoneInformation[]
   calculatedPrice: number
+  material: string
+  item_Height: number
 }
 
 export interface SingleProductResponse {
