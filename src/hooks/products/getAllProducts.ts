@@ -11,11 +11,11 @@ function useGetAllProducts(filters?: ProductsFormInterface) {
   const getProducts = useCallback(async () => {
     try {
       const productTypeFilters = Object.keys(filters?.productType || {}).filter((key) => filters?.productType?.[key])
+      const SubProductTypeFilters = Object.keys(filters?.subCategory || {}).filter((key) => filters?.subCategory?.[key])
       const materialFilters = Object.keys(filters?.materialType || {}).filter((key) => filters?.materialType?.[key])
       const metalTypeFilters = Object.keys(filters?.metalType || {}).filter((key) => filters?.metalType?.[key])
       const metalColorFilters = Object.keys(filters?.metalColor || {}).filter((key) => filters?.metalColor?.[key])
       const genderFilters = Object.keys(filters?.gender || {}).filter((key) => filters?.gender?.[key])
-
       const params: ProductsFormInterfaceParams = {
         populate: '*',
       }
@@ -39,6 +39,28 @@ function useGetAllProducts(filters?: ProductsFormInterface) {
           },
         }
       }
+
+      if (SubProductTypeFilters.length > 0) {
+        params.filters = {
+          ...params.filters,
+          sub_category: {
+            name: {
+              $in: SubProductTypeFilters,
+            },
+          },
+        }
+      }
+
+      // if (productTypeFilters.length > 0 || productType) {
+      //   params.filters = {
+      //     ...params.filters,
+      //     category: {
+      //       name: {
+      //         $in: productTypeFilters.length > 0 ? productTypeFilters : productType ? [productType] : [],
+      //       },
+      //     },
+      //   }
+      // }
 
       if (metalTypeFilters.length > 0) {
         params.filters = {
@@ -113,7 +135,8 @@ function useGetAllProducts(filters?: ProductsFormInterface) {
     filters?.metalColor,
     filters?.gender,
     filters?.sortOption,
-    productName,
+    filters?.subCategory,
+    searchParams,
   ])
 
   useEffect(() => {

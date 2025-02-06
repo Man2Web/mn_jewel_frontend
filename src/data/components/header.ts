@@ -30,26 +30,38 @@ export const priceData = [
   {
     name: 'Under 10,000',
     link: '#',
+    minPrice: 0,
+    maxPrice: 10000,
   },
   {
     name: '10,000 - 20,000',
     link: '#',
+    minPrice: 10000,
+    maxPrice: 20000,
   },
   {
     name: '20,000 - 30,000',
     link: '#',
+    minPrice: 20000,
+    maxPrice: 30000,
   },
   {
     name: '30,000 - 40,000',
     link: '#',
+    minPrice: 30000,
+    maxPrice: 40000,
   },
   {
     name: '40,000 - 50,000',
     link: '#',
+    minPrice: 40000,
+    maxPrice: 50000,
   },
   {
     name: 'Above 50,000',
     link: '#',
+    minPrice: 50000,
+    maxPrice: null,
   },
 ]
 

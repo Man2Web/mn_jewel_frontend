@@ -3,6 +3,9 @@ export interface ProductsFormInterface {
   productType: {
     [key: string]: boolean
   }
+  subCategory: {
+    [key: string]: boolean
+  }
   materialType: {
     [key: string]: boolean
   }
@@ -28,6 +31,11 @@ export interface ProductsFormInterfaceParams {
   populate: string
   filters?: {
     category?: {
+      name: {
+        $in: string[]
+      }
+    }
+    sub_category?: {
       name: {
         $in: string[]
       }

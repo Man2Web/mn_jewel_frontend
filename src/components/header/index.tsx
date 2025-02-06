@@ -67,7 +67,7 @@ export function Header() {
           <div className="relative flex w-[400px] items-center">
             <Input
               onChange={(e) => setProduct_Name(e.target.value)}
-              type="email"
+              type="text"
               placeholder="Search for Diamon Bracelets"
               className="w-full"
             />
@@ -156,9 +156,19 @@ export function Header() {
         </div>
       </header>
       <div className="flex items-center p-2 lg:hidden">
-        <div className="relative mx-auto flex w-[400px] items-center">
-          <Input type="email" placeholder="Search for Diamon Bracelets" className="w-full" />
-          <Search className="absolute right-2 opacity-20" />
+        <div className="relative mx-auto flex w-full items-center">
+          <Input
+            onChange={(e) => setProduct_Name(e.target.value)}
+            type="text"
+            placeholder="Search for Diamon Bracelets"
+            className="w-full"
+          />
+          <Search
+            onClick={() => {
+              window.location.href = `products?productName=${product_Name}`
+            }}
+            className="absolute right-2 opacity-20"
+          />
         </div>
       </div>
       <Navbar />
