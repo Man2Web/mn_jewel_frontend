@@ -34,6 +34,7 @@ interface Category {
   navbarView: boolean
   products: Product[]
   homePageImage: Image
+  navBarPngImage: Image
   link: string
   sub_category: SubCategory
 }

@@ -46,7 +46,9 @@ function useGetMetal() {
 
   const getCategoriesData = async () => {
     try {
-      const response = await axios.get<MultiMaterialResponse>(`${import.meta.env.VITE_STRAPI_API}/material-types`)
+      const response = await axios.get<MultiMaterialResponse>(
+        `${import.meta.env.VITE_STRAPI_API}/material-types?populate=*`,
+      )
       setMaterialData(response.data.data)
     } catch (error) {
       console.error(error)

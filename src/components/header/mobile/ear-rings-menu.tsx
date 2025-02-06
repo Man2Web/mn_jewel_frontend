@@ -1,7 +1,18 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { earRingsData, metalsData, priceData } from 'src/data/components/header'
+import { priceData } from 'src/data/components/header'
+import { useGetMetal, useGetSubCategory } from 'src/hooks/products-data/getProductsData'
+import { Category } from 'src/types/components/category'
 
-const EarRingsMenu = ({ setIsEarMenuOpen }: { setIsEarMenuOpen: (data: boolean) => void }) => {
+const EarRingsMenu = ({
+  setIsEarMenuOpen,
+  menuData,
+}: {
+  setIsEarMenuOpen: (data: boolean) => void
+  menuData: Category | undefined
+}) => {
+  const [subCategoryData] = useGetSubCategory()
+  const subCategory = subCategoryData.filter((data) => data.name === menuData?.sub_category?.name)
+  const [metalData] = useGetMetal()
   return (
     <section className="absolute top-0 z-20 h-full w-full overflow-y-scroll bg-white">
       <div onClick={() => setIsEarMenuOpen(false)} className="flex items-center border border-b-yellow-500 px-2 py-4">
@@ -10,9 +21,9 @@ const EarRingsMenu = ({ setIsEarMenuOpen }: { setIsEarMenuOpen: (data: boolean) 
       </div>
       <div className="p-4">
         <img
-          src="https://img.freepik.com/premium-photo/surreal-3d-landscape-gold-earrings-wooden-surface_899449-202289.jpg"
-          alt="banner img"
-          className="max-h-[150px] min-h-[150px] w-full"
+          src={`${import.meta.env.VITE_STRAPI}${menuData?.homePageImage.url}`}
+          alt={menuData?.name}
+          className="max-h-[150px] min-h-[150px] w-full rounded-md"
         />
         <a href="#" className="flex items-center justify-between border border-x-0 border-b-yellow-500 py-2">
           <p className="text-sm">Shop all Ear Rings</p>
@@ -22,14 +33,18 @@ const EarRingsMenu = ({ setIsEarMenuOpen }: { setIsEarMenuOpen: (data: boolean) 
       <div className="px-4">
         <p className="text-sm">Shop By Style</p>
         <div className="mt-2 grid grid-cols-3 gap-2 border border-x-0 border-b-yellow-500 pb-2">
-          {earRingsData.map((earRing, index) => (
+          {subCategory.map((data, index) => (
             <a
-              href={earRing.link}
+              href="#"
               className="flex min-h-[50px] min-w-[50px] flex-col items-center gap-2 rounded-sm border border-red-400 px-4 py-2"
               key={index}
             >
-              <img className="h-full w-full" src={earRing.img} alt={earRing.name} />
-              <p className="text-sm">{earRing.name}</p>
+              <img
+                className="h-full w-full"
+                src={`${import.meta.env.VITE_STRAPI}${data?.png_Image.url}`}
+                alt={data.name}
+              />
+              <p className="text-sm">{data.name}</p>
             </a>
           ))}
         </div>
@@ -51,14 +66,14 @@ const EarRingsMenu = ({ setIsEarMenuOpen }: { setIsEarMenuOpen: (data: boolean) 
       <div className="px-4">
         <p className="text-sm">Shop By Metal & Stone</p>
         <div className="mt-2 grid grid-cols-3 gap-2 border border-x-0 border-b-yellow-500 pb-2">
-          {metalsData.map((metal, index) => (
+          {metalData.map((data, index) => (
             <a
-              href={metal.link}
-              className="flex min-h-[50px] min-w-[50px] flex-col items-center gap-2 rounded-sm border border-red-400 px-4 py-2"
               key={index}
+              href="#"
+              className="mx-auto flex w-full items-center gap-1 rounded-sm border border-red-400 bg-red-50 p-1 text-sm"
             >
-              <img className="h-full w-full" src={metal.img} alt={metal.name} />
-              <p className="text-sm">{metal.name}</p>
+              <span className="h-2 w-2 rounded-full bg-yellow-400" />
+              {data.name}
             </a>
           ))}
         </div>

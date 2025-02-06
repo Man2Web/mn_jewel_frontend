@@ -3,10 +3,16 @@ import { useState } from 'react'
 import EarRingsMenu from './mobile/ear-rings-menu'
 import { Button } from '../ui/button'
 import { userLogout } from 'src/hooks/functions/userLogout'
+import { useGetCategories } from 'src/hooks/products-data/getProductsData'
+import { Category } from 'src/types/components/category'
 
 const Sidebar = ({ setIsMenuOpen }: HeaderProps) => {
   const [isEarMenuOpen, setIsEarMenuOpen] = useState(false)
+  const [menuData, setMenuData] = useState<Category>()
   const token = localStorage.getItem('token')
+  const [categoriesData] = useGetCategories()
+  const isHomePageCategories = categoriesData.filter((data) => data.navbarView !== false)
+  if (isHomePageCategories.length === 0) return null
   return (
     <section className="absolute top-0 z-10 h-full w-full bg-white">
       <div className="flex items-center justify-between border border-b-yellow-500 p-4">
@@ -22,81 +28,27 @@ const Sidebar = ({ setIsMenuOpen }: HeaderProps) => {
         <XIcon onClick={() => setIsMenuOpen(false)} className="ml-auto " strokeWidth={1} />
       </div>
       <div className="flex flex-col gap-2 p-4">
-        <div
-          onClick={() => setIsEarMenuOpen(true)}
-          className="flex items-center justify-between rounded-sm bg-red-50 pr-2"
-        >
-          <div className="flex items-center gap-2">
-            <img
-              className="min-h-12 min-w-12 max-w-12 max-h-12"
-              src="https://png.pngtree.com/png-clipart/20230410/original/pngtree-gold-earring-jewellery-png-image_9042559.png"
-            />
-            <p className="text-sm">Ear Rings</p>
+        {isHomePageCategories.map((data, index) => (
+          <div
+            key={index}
+            onClick={() => {
+              setIsEarMenuOpen(true)
+              setMenuData(data)
+            }}
+            className="flex items-center justify-between rounded-sm bg-red-50 pr-2"
+          >
+            <div className="flex items-center gap-2">
+              <img
+                className="min-h-12 min-w-12 max-w-12 max-h-12"
+                src={`${import.meta.env.VITE_STRAPI}${data?.navBarPngImage.url}`}
+              />
+              <p className="text-sm">{data.name}</p>
+            </div>
+            <div>
+              <ChevronRight strokeWidth={2} color="#ecc94b" />
+            </div>
           </div>
-          <div>
-            <ChevronRight strokeWidth={2} color="#ecc94b" />
-          </div>
-        </div>
-        <div
-          onClick={() => setIsEarMenuOpen(true)}
-          className="flex items-center justify-between rounded-sm bg-red-50 pr-2"
-        >
-          <div className="flex items-center gap-2">
-            <img
-              className="min-h-12 min-w-12 max-w-12 max-h-12"
-              src="https://png.pngtree.com/png-clipart/20230410/original/pngtree-gold-earring-jewellery-png-image_9042559.png"
-            />
-            <p className="text-sm">Ear Rings</p>
-          </div>
-          <div>
-            <ChevronRight strokeWidth={2} color="#ecc94b" />
-          </div>
-        </div>
-        <div
-          onClick={() => setIsEarMenuOpen(true)}
-          className="flex items-center justify-between rounded-sm bg-red-50 pr-2"
-        >
-          <div className="flex items-center gap-2">
-            <img
-              className="min-h-12 min-w-12 max-w-12 max-h-12"
-              src="https://png.pngtree.com/png-clipart/20230410/original/pngtree-gold-earring-jewellery-png-image_9042559.png"
-            />
-            <p className="text-sm">Ear Rings</p>
-          </div>
-          <div>
-            <ChevronRight strokeWidth={2} color="#ecc94b" />
-          </div>
-        </div>
-        <div
-          onClick={() => setIsEarMenuOpen(true)}
-          className="flex items-center justify-between rounded-sm bg-red-50 pr-2"
-        >
-          <div className="flex items-center gap-2">
-            <img
-              className="min-h-12 min-w-12 max-w-12 max-h-12"
-              src="https://png.pngtree.com/png-clipart/20230410/original/pngtree-gold-earring-jewellery-png-image_9042559.png"
-            />
-            <p className="text-sm">Ear Rings</p>
-          </div>
-          <div>
-            <ChevronRight strokeWidth={2} color="#ecc94b" />
-          </div>
-        </div>
-        <div
-          onClick={() => setIsEarMenuOpen(true)}
-          className="flex items-center justify-between rounded-sm bg-red-50 pr-2"
-        >
-          <div className="flex items-center gap-2">
-            <img
-              className="min-h-12 min-w-12 max-w-12 max-h-12"
-              src="https://png.pngtree.com/png-clipart/20230410/original/pngtree-gold-earring-jewellery-png-image_9042559.png"
-            />
-            <p className="text-sm">Ear Rings</p>
-          </div>
-          <div>
-            <ChevronRight strokeWidth={2} color="#ecc94b" />
-          </div>
-        </div>
+        ))}
       </div>
       <div className="absolute bottom-0 flex w-full flex-col gap-2 px-4 py-2">
         <div className="flex gap-2">
@@ -136,7 +88,7 @@ const Sidebar = ({ setIsMenuOpen }: HeaderProps) => {
           isEarMenuOpen ? 'translate-x-0' : '-translate-x-full'
         } transition-transform duration-300`}
       >
-        {isEarMenuOpen && <EarRingsMenu setIsEarMenuOpen={setIsEarMenuOpen} />}
+        {isEarMenuOpen && <EarRingsMenu setIsEarMenuOpen={setIsEarMenuOpen} menuData={menuData} />}
       </div>
     </section>
   )

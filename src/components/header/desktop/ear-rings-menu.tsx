@@ -1,13 +1,11 @@
-import { metalsData, priceData } from 'src/data/components/header'
-import { useGetSubCategory } from 'src/hooks/products-data/getProductsData'
+import { priceData } from 'src/data/components/header'
+import { useGetMetal, useGetSubCategory } from 'src/hooks/products-data/getProductsData'
 import { Category } from 'src/types/components/category'
 
 const EarRingsMenu = ({ menuData }: { menuData: Category | undefined }) => {
   const [subCategoryData] = useGetSubCategory()
   const subCategory = subCategoryData.filter((data) => data.name === menuData?.sub_category?.name)
-  console.log(menuData)
-  console.log(subCategoryData)
-  console.log(subCategory)
+  const [metalData] = useGetMetal()
   return (
     <section className="flex h-auto gap-2">
       <div className="flex w-4/12 border-r border-r-slate-300 p-2">
@@ -58,14 +56,10 @@ const EarRingsMenu = ({ menuData }: { menuData: Category | undefined }) => {
         <p className="text-sm">Shop by Metal & Stone</p>
         <span className="mt-2 block h-0.5 w-1/4 bg-red-400" />
         <div className="mt-2 grid grid-cols-1 gap-2">
-          {metalsData.map((metal, index) => (
-            <a
-              href={metal.link}
-              className="flex items-center gap-2 p-1 hover:cursor-pointer hover:text-red-400"
-              key={index}
-            >
-              <span className="rounded-full bg-red-400 p-1.5" />
-              <p className="text-sm">{metal.name}</p>
+          {metalData.map((data, index) => (
+            <a href="#" className="flex items-center gap-2 p-1 hover:cursor-pointer hover:text-red-400" key={index}>
+              <span className="rounded-full bg-yellow-400 p-1.5" />
+              <p className="text-sm">{data.name}</p>
             </a>
           ))}
         </div>

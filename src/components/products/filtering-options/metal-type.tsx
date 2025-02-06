@@ -12,7 +12,6 @@ const MetalType = () => {
     setValue('metalType', { ...currentValues, [id]: checked })
   }
   const [metalData] = useGetMetal()
-  console.log(metalData)
   return (
     <div>
       {metalData.map((data, index) => (
