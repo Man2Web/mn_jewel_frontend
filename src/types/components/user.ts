@@ -1,10 +1,4 @@
-export interface UserCart {
-  id: number
-  documentId: string
-  createdAt: string
-  updatedAt: string
-  publishedAt: string
-}
+import { Product } from './product'
 
 export interface User {
   id: number
@@ -17,7 +11,8 @@ export interface User {
   createdAt: string
   updatedAt: string
   publishedAt: string
-  user_cart: UserCart
+  userCart: Product[]
+  favourites: Product[]
 }
 
 // export interface Product {

@@ -5,7 +5,7 @@ import { Label } from 'src/components/ui/label'
 import { useGetUserData } from 'src/hooks/user/user'
 
 const Profile = () => {
-  const [userData] = useGetUserData()
+  const { userData } = useGetUserData()
   return (
     <section className="p-4 lg:px-6 lg:py-8">
       <div className="my-2">

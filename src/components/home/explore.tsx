@@ -14,7 +14,11 @@ const Explore = () => {
       />
       <div className="flex items-center gap-4">
         {bannerImages.map((data, index) => (
-          <a key={index} href="#" className="flex min-h-fit w-1/3 flex-col items-center hover:text-red-400">
+          <a
+            key={index}
+            href={`products?metalType=${data.material_type}`}
+            className="flex max-h-[700px] min-h-[700px] w-1/3 flex-col items-center object-contain hover:text-red-400"
+          >
             <ImageEffect
               image_source={`${import.meta.env.VITE_STRAPI}${data?.homepageBanner.url}`}
               image_alt_text={data.name}
@@ -24,7 +28,9 @@ const Explore = () => {
         ))}
       </div>
       <div className="flex justify-center py-2">
-        <Button variant="primary">Explore More</Button>
+        <Button onClick={() => (window.location.href = '/products')} variant="primary">
+          Explore More
+        </Button>
       </div>
     </section>
   )

@@ -4,7 +4,7 @@ import { Button } from '../ui/button'
 const Footer = () => {
   return (
     <footer className="bg-red-50">
-      <div className="flex flex-col justify-between border border-x-0 border-red-400 px-6 py-8 lg:flex-row">
+      <div className="flex flex-col justify-between border-t border-red-400 px-6 py-8 lg:flex-row">
         <div>
           <h1 className="py-2 font-serif text-xl">About</h1>
           <div className="flex flex-col">

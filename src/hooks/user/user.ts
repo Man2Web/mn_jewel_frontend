@@ -7,11 +7,16 @@ import { User } from 'src/types/components/user'
 function useGetUserData() {
   const jwt = localStorage.getItem('token')
   const [userData, setUserData] = useState<User>()
+  const context = useContext(MyContext)
+  if (!context) {
+    throw new Error('MyContext must be used within a MyContextProvider')
+  }
+  const { setUserCartData, setUserFavouritesData } = context
   useEffect(() => {
     if (!jwt) return
-    getCartData()
+    getUserData()
   }, [])
-  const getCartData = async () => {
+  const getUserData = async () => {
     try {
       const response = await axios.get(`${import.meta.env.VITE_STRAPI_API}/users/me?populate=*`, {
         headers: {
@@ -19,39 +24,13 @@ function useGetUserData() {
         },
       })
       setUserData(response.data)
+      setUserCartData(response.data.userCart)
+      setUserFavouritesData(response.data.favourites)
     } catch (error) {
       console.error(error)
     }
   }
-  return [userData]
-}
-
-function useGetUserCartData() {
-  const context = useContext(MyContext)
-  if (!context) {
-    throw new Error('MyContext must be used within a MyContextProvider')
-  }
-  const { setUserCartData } = context
-  const jwt = localStorage.getItem('token')
-  const [userData] = useGetUserData()
-  useEffect(() => {
-    if (!jwt) return
-    if (!userData) return
-    getCartData(userData?.user_cart.documentId)
-  }, [userData])
-  const getCartData = async (userCartId: string | undefined) => {
-    try {
-      const response = await axios.get(`${import.meta.env.VITE_STRAPI_API}/user-carts/${userCartId}?populate=*`, {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      })
-      setUserCartData(response.data.data.products)
-    } catch (error) {
-      console.error(error)
-    }
-  }
-  return { getCartData }
+  return { userData, getUserData }
 }
 
 function useAddToCart() {
@@ -61,8 +40,7 @@ function useAddToCart() {
   }
   const { userCartData } = context
   const jwt = localStorage.getItem('token')
-  const [userData] = useGetUserData()
-  const { getCartData } = useGetUserCartData()
+  const { userData, getUserData } = useGetUserData()
   const prevCartItems = userCartData.map((data) => data.id)
   const addProduct = async (productId: number | undefined) => {
     if (!jwt) {
@@ -70,20 +48,19 @@ function useAddToCart() {
       return
     }
     try {
-      await axios.put(
-        `${import.meta.env.VITE_STRAPI_API}/user-carts/${userData?.user_cart.documentId}`,
+      const response = await axios.put(
+        `${import.meta.env.VITE_STRAPI_API}/users/${userData?.id}?populate=*`,
         {
-          data: {
-            products: [...prevCartItems, productId],
-          },
+          userCart: [...prevCartItems, productId],
         },
         {
           headers: {
             Authorization: `Bearer ${jwt}`,
+            'Content-Type': 'application/json',
           },
         },
       )
-      getCartData(userData?.user_cart.documentId)
+      getUserData()
     } catch (error) {
       console.error(error)
       toast.error('Error adding product to cart')
@@ -99,35 +76,105 @@ function useRemoveFromCart() {
   }
   const { userCartData } = context
   const jwt = localStorage.getItem('token')
-  const [userData] = useGetUserData()
-  const { getCartData } = useGetUserCartData()
+  const { userData, getUserData } = useGetUserData()
   const removeProduct = async (productId: number | undefined) => {
     if (!jwt) {
-      toast.error('Please login to add product to cart')
+      toast.error('Please login to remove product from cart')
       return
     }
-    const udpatedCartItems = userCartData.filter((data) => data.id !== productId).map((data) => data.id)
+    const updatedCartItems = userCartData.filter((data) => data.id !== productId).map((data) => data.id)
     try {
-      await axios.put(
-        `${import.meta.env.VITE_STRAPI_API}/user-carts/${userData?.user_cart.documentId}`,
+      const response = await axios.put(
+        `${import.meta.env.VITE_STRAPI_API}/users/${userData?.id}?populate=*`,
         {
-          data: {
-            products: [...udpatedCartItems],
-          },
+          userCart: updatedCartItems,
         },
         {
           headers: {
             Authorization: `Bearer ${jwt}`,
+            'Content-Type': 'application/json',
           },
         },
       )
-      getCartData(userData?.user_cart.documentId)
+      getUserData()
     } catch (error) {
       console.error(error)
-      toast.error('Error adding product to cart')
+      toast.error('Error removing product from cart')
     }
   }
   return [removeProduct]
 }
 
-export { useGetUserData, useAddToCart, useGetUserCartData, useRemoveFromCart }
+function useAddToFavourites() {
+  const context = useContext(MyContext)
+  if (!context) {
+    throw new Error('MyContext must be used within a MyContextProvider')
+  }
+  const { userFavouritesData } = context
+  const jwt = localStorage.getItem('token')
+  const { userData, getUserData } = useGetUserData()
+  const prevFavourites = userFavouritesData.map((data) => data.id)
+  const addProduct = async (productId: number | undefined) => {
+    if (!jwt) {
+      toast.error('Please login to add product to favourites')
+      return
+    }
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_STRAPI_API}/users/${userData?.id}?populate=*`,
+        {
+          favourites: [...prevFavourites, productId],
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      getUserData()
+    } catch (error) {
+      console.error(error)
+      toast.error('Error adding product to favourites')
+    }
+  }
+  return [addProduct]
+}
+
+function useRemoveFromFavourites() {
+  const context = useContext(MyContext)
+  if (!context) {
+    throw new Error('MyContext must be used within a MyContextProvider')
+  }
+  const { userFavouritesData } = context
+  const jwt = localStorage.getItem('token')
+  const { userData, getUserData } = useGetUserData()
+  const removeProduct = async (productId: number | undefined) => {
+    if (!jwt) {
+      toast.error('Please login to remove product from favourites')
+      return
+    }
+    const updatedFavourites = userFavouritesData.filter((data) => data.id !== productId).map((data) => data.id)
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_STRAPI_API}/users/${userData?.id}?populate=*`,
+        {
+          favourites: updatedFavourites,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      getUserData()
+    } catch (error) {
+      console.error(error)
+      toast.error('Error removing product from favourites')
+    }
+  }
+  return [removeProduct]
+}
+
+export { useGetUserData, useAddToCart, useRemoveFromCart, useAddToFavourites, useRemoveFromFavourites }

@@ -7,7 +7,7 @@ import { useGetMaterialPrice } from 'src/hooks/data/getMaterialPrice'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table'
 import { MyContext } from '../layout/context'
-import { useGetUserCartData } from 'src/hooks/user/user'
+import { useGetUserData } from 'src/hooks/user/user'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -17,8 +17,8 @@ export function Header() {
   if (!context) {
     throw new Error('MyContext must be used within a MyContextProvider')
   }
-  useGetUserCartData()
-  const { userCartData } = context
+  useGetUserData()
+  const { userCartData, userFavouritesData } = context
   const isLoggedIn = localStorage.getItem('token')
   return (
     <div>
@@ -142,9 +142,14 @@ export function Header() {
           <a href={isLoggedIn ? '/profile' : '/auth'}>
             <UserIcon strokeWidth={1} />
           </a>
-          <div>
+          <a href="#" className="relative hover:cursor-pointer">
             <HeartIcon strokeWidth={1} />
-          </div>
+            {userFavouritesData && userFavouritesData.length > 0 && (
+              <span className="absolute right-[-4px] top-[-8px] flex h-4 w-4 justify-center rounded-full bg-red-400 text-xs text-white">
+                {userFavouritesData.length}
+              </span>
+            )}
+          </a>
           <a href="/cart" className="relative hover:cursor-pointer">
             <ShoppingBagIcon strokeWidth={1} />
             {userCartData && userCartData.length > 0 && (

@@ -1,15 +1,23 @@
 import { HeartIcon } from 'lucide-react'
+import { useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import Slider from 'react-slick'
+import { MyContext } from 'src/components/layout/context'
 import MobileEnquiry from 'src/components/product/mobile-enquiry'
 import ProductFeatures from 'src/components/product/product-features'
 import ProductInformation from 'src/components/product/product-information'
 import SimilarProducts from 'src/components/product/similar-products'
 import useGetProductData from 'src/hooks/products/getProductData'
+import { useAddToFavourites, useRemoveFromFavourites } from 'src/hooks/user/user'
 
 const Product = () => {
   const { productId } = useParams()
   const [productData] = useGetProductData(productId)
+  const context = useContext(MyContext)
+  if (!context) {
+    throw new Error('MyContext must be used within a MyContextProvider')
+  }
+  const { userFavouritesData } = context
   const settings = {
     autoplay: true,
     autoplaySpeed: 2500,
@@ -39,6 +47,9 @@ const Product = () => {
       },
     ],
   }
+  const [addProduct] = useAddToFavourites()
+  const [removeProduct] = useRemoveFromFavourites()
+  const isProductInCart = userFavouritesData.filter((data) => data.id === productData?.id)
   return (
     <section>
       <div className="flex flex-col px-4 py-6 lg:flex-row">
@@ -54,9 +65,21 @@ const Product = () => {
               </div>
             ))}
           </Slider>
-          <div className="absolute right-2 top-2 rounded-full bg-white p-1 opacity-80 md:right-4">
-            <HeartIcon size={20} strokeWidth={0.6} />
-          </div>
+          {isProductInCart.length > 0 && isProductInCart ? (
+            <div
+              onClick={() => removeProduct(productData?.id)}
+              className="absolute right-2 top-2 rounded-full bg-white p-1 opacity-80 hover:cursor-pointer md:right-4"
+            >
+              <HeartIcon size={20} strokeWidth={0.6} color="red" fill="red" />
+            </div>
+          ) : (
+            <div
+              onClick={() => addProduct(productData?.id)}
+              className="absolute right-2 top-2 rounded-full bg-white p-1 opacity-80 hover:cursor-pointer md:right-4"
+            >
+              <HeartIcon size={20} strokeWidth={0.6} />
+            </div>
+          )}
           <div className="my-4 hidden w-full lg:block">
             <ProductFeatures />
           </div>

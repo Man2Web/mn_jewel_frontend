@@ -14,7 +14,11 @@ const Categories = () => {
       <SectionSeperator title="Shop By Categories" description="Explore our wide range of products" />
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         {isHomePageCategories.map((category, index) => (
-          <a href={category.link} className={`flex flex-col items-center`} key={index}>
+          <a
+            href={`products?productType=${category?.name}`}
+            className={`flex flex-col items-center hover:cursor-pointer`}
+            key={index}
+          >
             <ImageEffect
               className=""
               image_source={`${import.meta.env.VITE_STRAPI}${category.homePageImage.url}`}
