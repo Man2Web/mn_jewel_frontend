@@ -30,7 +30,7 @@ const ForgotPass = () => {
               <Button className="flex h-full w-[125px] font-semibold" variant="outline">
                 🏁 (+91)
               </Button>
-              <Input placeholder="8790988098" />
+              <Input type="tel" placeholder="8790988098" />
             </div>
           </div>
         ) : (

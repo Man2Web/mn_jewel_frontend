@@ -11,7 +11,7 @@ const EarRingsMenu = ({ menuData }: { menuData: Category | undefined }) => {
       <div className="flex w-4/12 border-r border-r-slate-300 p-2">
         <a href={`products?productType=${menuData?.name}`} className="h-full object-contain">
           <img
-            src={`${import.meta.env.VITE_STRAPI}${menuData?.homePageImage.url}`}
+            src={`${menuData?.homePageImage.url}`}
             alt={menuData?.name}
             className="max-h-[300px] min-h-[300px] w-full rounded-md"
           />
@@ -27,11 +27,7 @@ const EarRingsMenu = ({ menuData }: { menuData: Category | undefined }) => {
               className="flex max-h-[80px] min-h-[80px] min-w-[80px] max-w-[80px] items-center gap-2 rounded-sm  hover:text-red-400"
               key={index}
             >
-              <img
-                className="h-full w-full"
-                src={`${import.meta.env.VITE_STRAPI}${data?.png_Image.url}`}
-                alt={data.name}
-              />
+              <img className="h-full w-full" src={`${data?.png_Image.url}`} alt={data.name} />
               <p className="text-sm">{data.name}</p>
             </a>
           ))}

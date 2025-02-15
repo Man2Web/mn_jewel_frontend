@@ -22,9 +22,9 @@ const LoginForm = () => {
         <Label>Phone Number</Label>
         <div className="flex items-center gap-2">
           <Button className="flex h-full w-[125px] items-center font-semibold" variant="outline">
-            <img className="h-6 pr-2" src="src\assets\icons\flag.png" /> +91
+            <img className="h-6 pr-2" src="/assets/flag.png" alt="flag" /> +91
           </Button>
-          <Input {...register('username')} placeholder="8790988098" />
+          <Input {...register('username')} placeholder="8790988098" type="tel" />
         </div>
         {errors.username && <p className="mt-2 text-sm text-red-400">{errors.username.message}</p>}
       </div>

@@ -23,7 +23,7 @@ const UserCart = ({
         <div>
           <img
             className="max-h-32 w-[150px] max-w-[150px] rounded-sm md:max-h-40 md:w-[200px] md:max-w-[200px]"
-            src={`${import.meta.env.VITE_STRAPI}${productData?.product_Images[0].url}`}
+            src={`${productData?.product_Images[0].url}`}
           />
         </div>
         <div className="flex flex-col gap-2">

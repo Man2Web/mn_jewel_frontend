@@ -9,7 +9,11 @@ const CategorySlider = () => {
         <div className="flex flex-col items-center" key={index}>
           <img
             className="max-h-[75px] min-h-[75px] min-w-[75px] max-w-[75px] rounded-full border border-yellow-600 p-1"
-            src={`${import.meta.env.VITE_STRAPI}${data?.homepageBanner.url}`}
+            src={`${
+              data?.homepageBanner?.url
+                ? data?.homepageBanner?.url
+                : 'https://i.ytimg.com/vi/rKrGDVuIzxA/maxresdefault.jpg'
+            }`}
             alt={data.name}
           />
           <p className="block text-xs">{data.name}</p>

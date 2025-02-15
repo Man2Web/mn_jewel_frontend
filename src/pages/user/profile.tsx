@@ -2,6 +2,7 @@ import { UserIcon } from 'lucide-react'
 import { Button } from 'src/components/ui/button'
 import { Input } from 'src/components/ui/input'
 import { Label } from 'src/components/ui/label'
+import { userLogout } from 'src/hooks/functions/userLogout'
 import { useGetUserData } from 'src/hooks/user/user'
 
 const Profile = () => {
@@ -29,19 +30,16 @@ const Profile = () => {
             <Label>Phone Number</Label>
             <div className="flex items-center gap-2">
               <Button disabled className="flex h-full w-[125px] font-semibold" variant="outline">
-                <img className="h-6 pr-2" src="\src\assets\icons\flag.png" /> +91
+                <img className="h-6 pr-2" src="/assets/flag.png" /> +91
               </Button>
-              <Input type="text" placeholder="8790988098" value={userData?.username} disabled />
+              <Input type="tel" placeholder="8790988098" value={userData?.username} disabled />
             </div>
           </div>
         </div>
-        <div className="flex gap-2">
-          <div className="w-full">
-            <Button variant="primary">Update Details</Button>
-          </div>
-          <div className="w-full">
-            <Button variant="primary">Update Details</Button>
-          </div>
+        <div className="flex">
+          <Button onClick={() => userLogout()} variant="primary">
+            Logout
+          </Button>
         </div>
       </div>
     </section>

@@ -30,7 +30,10 @@ const Auth = () => {
         </p>
       </div>
       <div className="order-1 h-48 w-full lg:order-2 lg:h-full lg:w-1/2">
-        <img className="h-full w-full rounded-lg" src="https://images4.alphacoders.com/133/1339103.png" />
+        <img
+          className="h-full w-full rounded-lg"
+          src="https://mn-product-bucket.s3.ap-south-1.amazonaws.com/login_2_f55d5aee15.jpg"
+        />
       </div>
     </div>
   )

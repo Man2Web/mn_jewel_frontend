@@ -42,7 +42,7 @@ export function Header() {
         <div className="flex space-x-8">
           <a href="/">
             <img
-              src="https://www.mnjewelpark.com/mnjewel/uploads/2020/12/cropped-MN-JEWEL-copy-2.png"
+              src="https://d1uukejij9whar.cloudfront.net/logo_9721e4d6dd.png"
               alt="logo"
               className="h-12 rounded-sm"
             />

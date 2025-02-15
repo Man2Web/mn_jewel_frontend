@@ -34,7 +34,7 @@ const InquireProduct = ({ productId }: { productId: string | undefined }) => {
             <Button className="flex h-full w-[125px] font-semibold" variant="outline">
               <img className="h-6 pr-2" src="\src\assets\icons\flag.png" /> +91
             </Button>
-            <Input {...register('phone_number')} type="text" placeholder="8790988098" />
+            <Input {...register('phone_number')} type="tel" placeholder="8790988098" />
           </div>
           <p className="text-sm text-red-400">{errors.phone_number?.message}</p>
         </div>

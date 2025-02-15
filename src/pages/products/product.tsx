@@ -59,7 +59,7 @@ const Product = () => {
               <div key={index}>
                 <img
                   className="h-96 w-full rounded-lg lg:h-[750px] lg:w-[900px]"
-                  src={`${import.meta.env.VITE_STRAPI}${data.url}`}
+                  src={`${data.url}`}
                   alt="Product Image"
                 />
               </div>

@@ -17,9 +17,6 @@ const ProductCard = ({ product, bestSellingSection }: { product: Product; bestSe
     autoplay: autoplay,
     autoplaySpeed: 1500,
   }
-  if (!product.product_Images) {
-    return <Loader />
-  }
   const context = useContext(MyContext)
   if (!context) {
     throw new Error('MyContext must be used within a MyContextProvider')
@@ -36,16 +33,21 @@ const ProductCard = ({ product, bestSellingSection }: { product: Product; bestSe
         <CardHeader className="p-0">
           <div className="relative overflow-hidden">
             <Slider {...settings}>
-              {product.product_Images.map((data, index) => (
-                <img
-                  key={index}
-                  className={`${
-                    bestSellingSection ? 'h-[250px] w-[250px]' : 'h-[150px] w-[150px]'
-                  } rounded-t-lg object-cover`}
-                  src={`${import.meta.env.VITE_STRAPI}${data.url}`}
-                  alt="product image"
-                />
-              ))}
+              {product.product_Images ? (
+                product.product_Images.map((data, index) => (
+                  <img
+                    key={index}
+                    className={`${
+                      bestSellingSection ? 'h-[250px] w-[250px]' : 'h-[150px] w-[150px]'
+                    } rounded-t-lg object-cover`}
+                    src={`${data.url}`}
+                    alt="product image"
+                  />
+                ))
+              ) : (
+                // <Skeleton className="h-full w-full" />
+                <Loader />
+              )}
             </Slider>
             {isProductInCart.length > 0 && isProductInCart ? (
               <div className="absolute right-2 top-2 rounded-full bg-white p-1 opacity-80">

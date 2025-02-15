@@ -19,11 +19,7 @@ const Categories = () => {
             className={`flex flex-col items-center hover:cursor-pointer`}
             key={index}
           >
-            <ImageEffect
-              className=""
-              image_source={`${import.meta.env.VITE_STRAPI}${category.homePageImage.url}`}
-              image_alt_text={category.name}
-            />
+            <ImageEffect className="" image_source={`${category.homePageImage.url}`} image_alt_text={category.name} />
             <p className="hidden pt-2 text-sm lg:block">{category.name}</p>
           </a>
         ))}

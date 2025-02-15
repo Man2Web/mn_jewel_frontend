@@ -12,7 +12,7 @@ function useBannerHook() {
     try {
       const response = await axios.get(`${import.meta.env.VITE_STRAPI_API}/home-banners?populate=*`)
       const images = response.data.data.map((data: { cover_img: { url: string } }) => {
-        return `${import.meta.env.VITE_STRAPI}${data.cover_img.url}`
+        return `${data.cover_img.url}`
       })
       setBannerImages(images)
     } catch (error) {

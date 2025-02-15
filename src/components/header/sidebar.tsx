@@ -38,10 +38,7 @@ const Sidebar = ({ setIsMenuOpen }: HeaderProps) => {
             className="flex items-center justify-between rounded-sm bg-red-50 pr-2"
           >
             <div className="flex items-center gap-2">
-              <img
-                className="min-h-12 min-w-12 max-w-12 max-h-12"
-                src={`${import.meta.env.VITE_STRAPI}${data?.navBarPngImage.url}`}
-              />
+              <img className="min-h-12 min-w-12 max-w-12 max-h-12" src={`${data?.navBarPngImage.url}`} />
               <p className="text-sm">{data.name}</p>
             </div>
             <div>
