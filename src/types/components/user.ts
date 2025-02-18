@@ -13,11 +13,31 @@ export interface User {
   publishedAt: string
   userCart: Product[]
   favourites: Product[]
+  orders: orderItemInterface[]
 }
 
 export interface UserCartData {
   product: Product
   quantity: number
+}
+
+export interface orderItemInterface {
+  id: number
+  documentId: string
+  createdAt: Date
+  updatedAt: Date
+  publishedAt: Date
+  totalPrice: number
+  products: UserCartData[]
+  userAddress: {
+    id: number
+    email: string
+    phoneNumber: string
+    name: string
+    address: string
+    city: string
+    pincode: string
+  }
 }
 
 // export interface Product {

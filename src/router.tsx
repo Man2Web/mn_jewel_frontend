@@ -12,6 +12,7 @@ const Product = lazy(() => import('./pages/products/product'))
 const Products = lazy(() => import('./pages/products/index'))
 const Cart = lazy(() => import('./pages/user/cart'))
 const Profile = lazy(() => import('./pages/user/profile'))
+const Orders = lazy(() => import('./pages/user/orders'))
 
 type PrivateRouteProps = RouteObject & {
   getLayout: boolean
@@ -53,6 +54,12 @@ export const routerObjects: PrivateRouteProps[] = [
   {
     path: '/profile',
     Component: Profile,
+    getLayout: true,
+    private: true,
+  },
+  {
+    path: '/orders',
+    Component: Orders,
     getLayout: true,
     private: true,
   },

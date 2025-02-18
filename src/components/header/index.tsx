@@ -8,6 +8,14 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table'
 import { MyContext } from '../layout/context'
 import { useGetUserData } from 'src/hooks/user/user'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -139,8 +147,18 @@ export function Header() {
               </Tooltip>
             </TooltipProvider>
           </div>
-          <a href={isLoggedIn ? '/profile' : '/auth'}>
-            <UserIcon strokeWidth={1} />
+          <a href={!isLoggedIn ? '/auth' : '#'}>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <UserIcon strokeWidth={1} />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => (window.location.href = '/profile')}>Profile</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => (window.location.href = '/orders')}>Orders</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </a>
           <a href="#" className="relative hover:cursor-pointer">
             <HeartIcon strokeWidth={1} />

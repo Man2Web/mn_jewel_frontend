@@ -16,11 +16,14 @@ export const purchaseCheckoutForm = async (
     quantity: item.quantity,
   }))
 
+  const totalPrice = userCartProducts.reduce((acc, data) => acc + data.quantity * data.product.calculatedPrice, 0)
+
   const payload = {
     data: {
       user: userData?.id,
       products: userCartProductsData,
       userAddress: { ...data },
+      totalPrice,
     },
   }
 
@@ -33,7 +36,27 @@ export const purchaseCheckoutForm = async (
     })
 
     if (response.status === 200 || response.status === 201) {
+      try {
+        await axios.put(
+          `${import.meta.env.VITE_STRAPI_API}/users/${userData?.id}?populate=*`,
+          {
+            userCart: [],
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+      } catch (error) {
+        console.error(error)
+        toast.error('Error adding product to cart')
+      }
       toast.success("We've received your enquiry. We'll get back to you soon.")
+      setTimeout(() => {
+        window.location.href = '/cart'
+      }, 1500)
     } else {
       toast.error('Something went wrong')
     }

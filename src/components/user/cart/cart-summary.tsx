@@ -2,7 +2,6 @@ import { IndianRupeeIcon } from 'lucide-react'
 import { UserCartData } from 'src/types/components/user'
 
 const CartSummary = ({ userCartData }: { userCartData: UserCartData[] }) => {
-  console.log(userCartData)
   const totalPrice = userCartData.reduce((acc, data) => acc + data.quantity * data.product.calculatedPrice, 0)
   return (
     <div className="">

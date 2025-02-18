@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useContext, useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { MyContext } from 'src/components/layout/context'
-import { User, UserCartData } from 'src/types/components/user'
+import { orderItemInterface, User, UserCartData } from 'src/types/components/user'
 
 function useGetUserData() {
   const jwt = localStorage.getItem('token')
@@ -48,7 +48,7 @@ function useAddToCart() {
       return
     }
     try {
-      const response = await axios.put(
+      await axios.put(
         `${import.meta.env.VITE_STRAPI_API}/users/${userData?.id}?populate=*`,
         {
           userCart: [...prevCartItems, productId],
@@ -208,4 +208,40 @@ const useUserCartData = () => {
   return { userCartProducts, setUserCartProducts }
 }
 
-export { useGetUserData, useAddToCart, useRemoveFromCart, useAddToFavourites, useRemoveFromFavourites, useUserCartData }
+const useGetOrderData = (orderId: string) => {
+  const jwt = localStorage.getItem('token')
+  const [orderData, setOrderData] = useState<orderItemInterface>()
+  useEffect(() => {
+    if (!jwt) return
+    getProductsData()
+  }, [orderId])
+
+  const getProductsData = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_STRAPI_API}/orders/${orderId}?populate[products][populate]=*&populate[userAddress]=*`,
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      setOrderData(response.data.data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  return [orderData]
+}
+
+export {
+  useGetUserData,
+  useAddToCart,
+  useRemoveFromCart,
+  useAddToFavourites,
+  useRemoveFromFavourites,
+  useUserCartData,
+  useGetOrderData,
+}
