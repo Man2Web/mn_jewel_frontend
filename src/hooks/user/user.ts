@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useContext, useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { MyContext } from 'src/components/layout/context'
-import { User } from 'src/types/components/user'
+import { User, UserCartData } from 'src/types/components/user'
 
 function useGetUserData() {
   const jwt = localStorage.getItem('token')
@@ -177,4 +177,35 @@ function useRemoveFromFavourites() {
   return [removeProduct]
 }
 
-export { useGetUserData, useAddToCart, useRemoveFromCart, useAddToFavourites, useRemoveFromFavourites }
+const useUserCartData = () => {
+  const context = useContext(MyContext)
+  if (!context) {
+    throw new Error('MyContext must be used within a MyContextProvider')
+  }
+  const { userCartData } = context
+  const userCartItems = userCartData.map((data) => data.documentId)
+
+  const [userCartProducts, setUserCartProducts] = useState<UserCartData[]>([])
+
+  useEffect(() => {
+    if (userCartItems.length === 0) return
+
+    const getProductsData = async () => {
+      try {
+        const responses = await Promise.all(
+          userCartItems.map((id) => axios.get(`${import.meta.env.VITE_STRAPI_API}/products/${id}?populate=*`)),
+        )
+        const products = responses.map((response) => ({ product: response.data.data, quantity: 1 }))
+        setUserCartProducts(products)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    getProductsData()
+  }, [])
+
+  return { userCartProducts, setUserCartProducts }
+}
+
+export { useGetUserData, useAddToCart, useRemoveFromCart, useAddToFavourites, useRemoveFromFavourites, useUserCartData }

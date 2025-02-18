@@ -15,6 +15,11 @@ export interface User {
   favourites: Product[]
 }
 
+export interface UserCartData {
+  product: Product
+  quantity: number
+}
+
 // export interface Product {
 //   id: number
 //   documentId: string
