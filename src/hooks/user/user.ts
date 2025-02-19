@@ -188,7 +188,7 @@ const useUserCartData = () => {
   const [userCartProducts, setUserCartProducts] = useState<UserCartData[]>([])
 
   useEffect(() => {
-    // if (userCartItems.length === 0) return
+    if (userCartItems.length === 0) return
 
     const getProductsData = async () => {
       try {
