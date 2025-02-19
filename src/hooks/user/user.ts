@@ -188,23 +188,23 @@ const useUserCartData = () => {
   const [userCartProducts, setUserCartProducts] = useState<UserCartData[]>([])
 
   useEffect(() => {
-    if (userCartItems.length === 0) return
-
-    const getProductsData = async () => {
-      try {
-        const responses = await Promise.all(
-          userCartItems.map((id) => axios.get(`${import.meta.env.VITE_STRAPI_API}/products/${id}?populate=*`)),
-        )
-        const products = responses.map((response) => ({ product: response.data.data, quantity: 1 }))
-        setUserCartProducts(products)
-      } catch (error) {
-        console.error(error)
-      }
+    if (userCartItems.length === 0) {
+      setUserCartProducts([])
+      return
     }
-
     getProductsData()
-  }, [])
-
+  }, [userCartData])
+  const getProductsData = async () => {
+    try {
+      const responses = await Promise.all(
+        userCartItems.map((id) => axios.get(`${import.meta.env.VITE_STRAPI_API}/products/${id}?populate=*`)),
+      )
+      const products = responses.map((response) => ({ product: response.data.data, quantity: 1 }))
+      setUserCartProducts(products)
+    } catch (error) {
+      console.error(error)
+    }
+  }
   return { userCartProducts, setUserCartProducts }
 }
 
