@@ -69,11 +69,11 @@ export function Header() {
               </IconEffect>
               <p>Arni Road, Vellore</p>
             </a>
-            <a href="tel:+918790899807" className="flex items-center gap-1">
+            <a href="tel:+918925872477" className="flex items-center gap-1">
               <IconEffect>
                 <Phone strokeWidth={1} />
               </IconEffect>
-              <p>+91 8790899807</p>
+              <p>+91 8925872477</p>
             </a>
           </div>
         </div>

@@ -2,3 +2,7 @@
 .slick-prev::before {
   display: none;
 }
+
+.otp-slot {
+  -webkit-text-security: disc;
+}

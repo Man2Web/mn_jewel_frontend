@@ -22,6 +22,7 @@ const ProductInformation = ({ product }: { product: Product | undefined }) => {
   }
   const { userCartData } = context
   const isProductInCart = userCartData.filter((data) => data.id === product?.id)
+  console.log(product.tag)
   return (
     <Dialog>
       <div className="lg:p-4">
@@ -80,14 +81,24 @@ const ProductInformation = ({ product }: { product: Product | undefined }) => {
               })}
             />
           )}
-          <ProductDetails
-            title="Other Information"
-            points={[
-              { key: 'Ornament Type', value: product.category.name },
-              { key: 'Metal Color', value: product.metal_Color },
-              { key: 'Tags', value: product.tag.name },
-            ]}
-          />
+          {!product.tag ? (
+            <ProductDetails
+              title="Other Information"
+              points={[
+                { key: 'Ornament Type', value: product.category.name },
+                { key: 'Metal Color', value: product.metal_Color },
+              ]}
+            />
+          ) : (
+            <ProductDetails
+              title="Other Information"
+              points={[
+                { key: 'Ornament Type', value: product.category.name },
+                { key: 'Metal Color', value: product.metal_Color },
+                { key: 'Tags', value: product.tag?.name },
+              ]}
+            />
+          )}
         </div>
         <div className="w-full pb-4">
           <ProductPriceBreakdown title="Price Breakdown" product={product} />

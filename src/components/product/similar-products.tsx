@@ -39,9 +39,11 @@ const SimilarProducts = () => {
       <div className="overflow-hidden">
         <Slider {...settings}>
           {products.map((product, index) => (
-            <a href={`${product.documentId}`} className="px-2 lg:px-0" key={index}>
-              <ProductCard product={product} bestSellingSection={true} />
-            </a>
+            <div key={index} className="px-2">
+              <a href={`${product.documentId}`}>
+                <ProductCard product={product} bestSellingSection={true} />
+              </a>
+            </div>
           ))}
         </Slider>
       </div>
