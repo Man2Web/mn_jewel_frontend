@@ -1,5 +1,4 @@
-import { DiamondIcon, HeartIcon, MapPin, MenuIcon, Phone, Search, ShoppingBagIcon, UserIcon } from 'lucide-react'
-import { Input } from '../ui/input'
+import { DiamondIcon, HeartIcon, MapPin, MenuIcon, Phone, ShoppingBagIcon, UserIcon } from 'lucide-react'
 import Navbar from './navbar'
 import { useContext, useState } from 'react'
 import Sidebar from './sidebar'
@@ -16,10 +15,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
+import InputTypeWriter from './input-typewriter'
+import IconEffect from '../elements/icon-effect'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [product_Name, setProduct_Name] = useState('')
   const [materialPrice] = useGetMaterialPrice()
   const context = useContext(MyContext)
   if (!context) {
@@ -45,7 +45,9 @@ export function Header() {
       </div>
       <header className="flex w-full items-center border-b md:px-4 md:py-2 lg:justify-between">
         <div onClick={() => setIsMenuOpen((prev) => !prev)} className="p-4  hover:cursor-pointer lg:hidden">
-          <MenuIcon strokeWidth={1} />
+          <IconEffect>
+            <MenuIcon strokeWidth={1} />
+          </IconEffect>
         </div>
         <div className="flex space-x-8">
           <a href="/">
@@ -62,33 +64,26 @@ export function Header() {
               className="flex items-center gap-1"
               rel="noreferrer"
             >
-              <MapPin strokeWidth={1} />
+              <IconEffect>
+                <MapPin strokeWidth={1} />
+              </IconEffect>
               <p>Arni Road, Vellore</p>
             </a>
             <a href="tel:+918790899807" className="flex items-center gap-1">
-              <Phone strokeWidth={1} />
+              <IconEffect>
+                <Phone strokeWidth={1} />
+              </IconEffect>
               <p>+91 8790899807</p>
             </a>
           </div>
         </div>
         <div className="hidden items-center lg:flex">
           <div className="relative flex w-[400px] items-center">
-            <Input
-              onChange={(e) => setProduct_Name(e.target.value)}
-              type="text"
-              placeholder="Search for Diamon Bracelets"
-              className="w-full"
-            />
-            <Search
-              onClick={() => {
-                window.location.href = `products?productName=${product_Name}`
-              }}
-              className="absolute right-2 opacity-20 hover:cursor-pointer"
-            />
+            <InputTypeWriter />
           </div>
         </div>
         <div className="ml-auto flex items-center space-x-4 px-4 lg:ml-0">
-          <div className="hidden cursor-pointer items-center gap-4 rounded-full border border-red-200 bg-red-50 px-4 py-2 hover:border-red-400 hover:bg-red-100 lg:flex">
+          <div className="hidden cursor-pointer items-center gap-4 rounded-full border border-red-200 bg-red-50 px-4 py-2 transition-colors delay-100 ease-in hover:border-red-400 hover:bg-red-100 lg:flex">
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger className="flex items-center gap-4 text-sm font-semibold">
@@ -147,10 +142,12 @@ export function Header() {
               </Tooltip>
             </TooltipProvider>
           </div>
-          <a href={!isLoggedIn ? '/auth' : '#'}>
+          {isLoggedIn ? (
             <DropdownMenu>
               <DropdownMenuTrigger>
-                <UserIcon strokeWidth={1} />
+                <IconEffect>
+                  <UserIcon strokeWidth={1} />
+                </IconEffect>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
@@ -159,9 +156,17 @@ export function Header() {
                 <DropdownMenuItem onClick={() => (window.location.href = '/orders')}>Orders</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </a>
+          ) : (
+            <a href="/auth">
+              <IconEffect>
+                <UserIcon color="inherit" strokeWidth={1} />
+              </IconEffect>
+            </a>
+          )}
           <a href="#" className="relative hover:cursor-pointer">
-            <HeartIcon strokeWidth={1} />
+            <IconEffect>
+              <HeartIcon strokeWidth={1} />
+            </IconEffect>
             {userFavouritesData && userFavouritesData.length > 0 && (
               <span className="absolute right-[-4px] top-[-8px] flex h-4 w-4 justify-center rounded-full bg-red-400 text-xs text-white">
                 {userFavouritesData.length}
@@ -169,7 +174,9 @@ export function Header() {
             )}
           </a>
           <a href="/cart" className="relative hover:cursor-pointer">
-            <ShoppingBagIcon strokeWidth={1} />
+            <IconEffect>
+              <ShoppingBagIcon strokeWidth={1} />
+            </IconEffect>
             {userCartData && userCartData.length > 0 && (
               <span className="absolute right-[-4px] top-[-8px] flex h-4 w-4 justify-center rounded-full bg-red-400 text-xs text-white">
                 {userCartData.length}
@@ -179,20 +186,7 @@ export function Header() {
         </div>
       </header>
       <div className="flex items-center p-2 lg:hidden">
-        <div className="relative mx-auto flex w-full items-center">
-          <Input
-            onChange={(e) => setProduct_Name(e.target.value)}
-            type="text"
-            placeholder="Search for Diamon Bracelets"
-            className="w-full"
-          />
-          <Search
-            onClick={() => {
-              window.location.href = `products?productName=${product_Name}`
-            }}
-            className="absolute right-2 opacity-20"
-          />
-        </div>
+        <InputTypeWriter />
       </div>
       <Navbar />
       <div

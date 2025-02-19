@@ -5,6 +5,7 @@ import { Button } from '../ui/button'
 import { userLogout } from 'src/hooks/functions/userLogout'
 import { useGetCategories } from 'src/hooks/products-data/getProductsData'
 import { Category } from 'src/types/components/category'
+import IconEffect from '../elements/icon-effect'
 
 const Sidebar = ({ setIsMenuOpen }: HeaderProps) => {
   const [isEarMenuOpen, setIsEarMenuOpen] = useState(false)
@@ -15,7 +16,7 @@ const Sidebar = ({ setIsMenuOpen }: HeaderProps) => {
   if (isHomePageCategories.length === 0) return null
   return (
     <section className="absolute top-0 z-10 h-full w-full bg-white">
-      <div className="flex items-center justify-between border border-b-yellow-500 p-4">
+      <div className="flex items-center justify-between border-b border-b-yellow-500 p-4">
         <div className="flex gap-2">
           <a href="/">
             <img
@@ -25,7 +26,9 @@ const Sidebar = ({ setIsMenuOpen }: HeaderProps) => {
             />
           </a>
         </div>
-        <XIcon onClick={() => setIsMenuOpen(false)} className="ml-auto " strokeWidth={1} />
+        <IconEffect>
+          <XIcon onClick={() => setIsMenuOpen(false)} className="ml-auto " strokeWidth={1} />
+        </IconEffect>
       </div>
       <div className="flex flex-col gap-2 p-4">
         {isHomePageCategories.map((data, index) => (

@@ -17,14 +17,18 @@ const Explore = () => {
           <a
             key={index}
             href={`products?metalType=${data.material_type}`}
-            className="flex max-h-[700px] min-h-[700px] w-1/3 flex-col items-center object-contain hover:text-red-400"
+            className="flex max-h-[700px] min-h-[700px] w-1/3 flex-col items-center object-cover hover:text-red-400"
           >
-            <ImageEffect image_source={`${data?.homepageBanner.url}`} image_alt_text={data.name} />
+            <ImageEffect
+              className="max-h-[700px] min-h-[700px]"
+              image_source={`${data?.homepageBanner.url}`}
+              image_alt_text={data.name}
+            />
             <p className="py-2 text-sm">{data.name}</p>
           </a>
         ))}
       </div>
-      <div className="flex justify-center py-2">
+      <div className="mt-12 flex justify-center">
         <Button onClick={() => (window.location.href = '/products')} variant="primary">
           Explore More
         </Button>

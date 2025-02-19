@@ -7,24 +7,13 @@ const ProductPriceBreakdown = ({ title, product }: { title: string; product: Pro
   const otherStonePrice = product.stone_information.reduce((total, item) => {
     return total + item.stone_price
   }, 0)
-  const gstPrice = (product.gst / 100) * (itemBasePrice + valueAdditionPrice)
+  const gstPrice = (product.gst / 100) * (itemBasePrice + valueAdditionPrice + otherStonePrice)
   return (
     <div className="flex flex-col rounded-lg border border-red-400 bg-red-50 p-2">
       <h1 className="text-lg">{title}</h1>
       <span className="mb-2 mt-1 h-0.5 w-full bg-red-400" />
-      {/* <div className="flex flex-col gap-2">
-        {points.map((data, index) => (
-          <div className="flex flex-col gap-2" key={index}>
-            <div className="flex justify-between">
-              <p className="text-sm">{data.key}</p>
-              <p className="text-sm opacity-50">{data.value}</p>
-            </div>
-          </div>
-        ))}
-      </div> */}
       <div>
         <Table>
-          {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
           <TableHeader>
             <TableRow>
               <TableHead>Component</TableHead>

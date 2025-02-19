@@ -1,4 +1,4 @@
-import { FacebookIcon } from 'lucide-react'
+import { FacebookIcon, InstagramIcon, YoutubeIcon } from 'lucide-react'
 import { Button } from '../ui/button'
 
 const Footer = () => {
@@ -103,13 +103,13 @@ const Footer = () => {
                 href="#"
                 className="rounded-full bg-red-400 p-2 text-white transition-colors delay-100 ease-in hover:bg-red-500"
               >
-                <FacebookIcon />
+                <InstagramIcon />
               </a>
               <a
                 href="#"
                 className="rounded-full bg-red-400 p-2 text-white transition-colors delay-100 ease-in hover:bg-red-500"
               >
-                <FacebookIcon />
+                <YoutubeIcon />
               </a>
             </div>
           </div>

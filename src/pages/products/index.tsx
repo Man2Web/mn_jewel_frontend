@@ -35,8 +35,8 @@ const Products = () => {
               handleSubmit(onSubmit)()
             }}
           >
-            <div className="w-1/2 items-center gap-2 lg:flex lg:w-full">
-              <Label>Sort By</Label>
+            <div className="flex w-1/2 flex-col items-start gap-2 lg:flex-row lg:items-center">
+              <Label>Sort</Label>
               <Select
                 onValueChange={(value) => setValue('sortOption', value, { shouldValidate: true })}
                 defaultValue="bestsellers"
@@ -57,11 +57,11 @@ const Products = () => {
                 </SelectContent>
               </Select>
             </div>
-            <div className="w-1/2 items-center gap-2 lg:flex">
+            <div className="flex w-1/2 flex-col items-start gap-2 lg:flex-row lg:items-center">
+              <Label>Filters</Label>
               <Drawer>
-                <Label>Filters</Label>
-                <DrawerTrigger>
-                  <Button variant="outline" className="w-[180px] px-3 py-5 font-normal">
+                <DrawerTrigger className="w-full">
+                  <Button variant="outline" className="w-full px-3 py-5 font-normal">
                     Show Filters
                   </Button>
                 </DrawerTrigger>
@@ -73,10 +73,10 @@ const Products = () => {
         <p className="my-4 font-semibold capitalize opacity-50 lg:hidden">
           (showing {products.length.toLocaleString()} designs)
         </p>
-        <div className="grid grid-cols-1 items-center justify-center lg:grid-cols-5">
+        <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5">
           {products.length > 0 ? (
             products.map((product, index) => (
-              <a href={'/products/' + product.documentId} key={index} className="flex justify-center p-2">
+              <a href={'/products/' + product.documentId} key={index} className="block max-w-full rounded-lg">
                 <ProductCard product={product} bestSellingSection />
               </a>
             ))

@@ -56,13 +56,12 @@ const Product = () => {
         <div className="relative overflow-hidden lg:w-1/2 lg:px-2">
           <Slider {...settings}>
             {productData?.product_Images.map((data, index) => (
-              <div key={index}>
-                <img
-                  className="h-96 w-full rounded-lg lg:h-[750px] lg:w-[900px]"
-                  src={`${data.url}`}
-                  alt="Product Image"
-                />
-              </div>
+              <img
+                key={index}
+                className="h-96 w-full rounded-lg object-cover lg:h-[750px] lg:w-[900px]"
+                src={`${data.url}`}
+                alt="Product Image"
+              />
             ))}
           </Slider>
           {isProductInCart.length > 0 && isProductInCart ? (

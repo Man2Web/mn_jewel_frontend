@@ -1,4 +1,5 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import IconEffect from 'src/components/elements/icon-effect'
 import { priceData } from 'src/data/components/header'
 import { useGetMetal, useGetSubCategory } from 'src/hooks/products-data/getProductsData'
 import { Category } from 'src/types/components/category'
@@ -15,8 +16,10 @@ const EarRingsMenu = ({
   const [metalData] = useGetMetal()
   return (
     <section className="absolute top-0 z-20 h-full w-full overflow-y-scroll bg-white">
-      <div onClick={() => setIsEarMenuOpen(false)} className="flex items-center border border-b-yellow-500 px-2 py-4">
-        <ChevronLeft strokeWidth={2} />
+      <div onClick={() => setIsEarMenuOpen(false)} className="flex items-center border-b border-b-yellow-500 px-2 py-4">
+        <IconEffect>
+          <ChevronLeft strokeWidth={2} />
+        </IconEffect>
         <p className="text-sm font-medium">{menuData?.name}</p>
       </div>
       <div className="p-4">

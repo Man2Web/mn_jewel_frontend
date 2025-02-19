@@ -12,7 +12,7 @@ const Tour = () => {
       />
       <div className="flex flex-col gap-4 lg:flex-row">
         {tourData.map((data, index) => (
-          <a href={data.link} key={index} className="w-ful lg;w-1/3">
+          <a href={data.link} key={index} className="w-full lg:w-1/3">
             <ImageEffect className="rounded-b-none" image_source={data.img} image_alt_text={data.description} />
             <div className="flex items-center gap-2 rounded-b-xl bg-red-50 p-2">
               <span className="text-red-400">

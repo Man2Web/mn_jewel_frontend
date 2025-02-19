@@ -16,7 +16,7 @@ const Categories = () => {
         {isHomePageCategories.map((category, index) => (
           <a
             href={`products?productType=${category?.name}`}
-            className={`flex flex-col items-center hover:cursor-pointer`}
+            className={`flex flex-col items-center hover:cursor-pointer hover:text-red-400`}
             key={index}
           >
             <ImageEffect className="" image_source={`${category.homePageImage.url}`} image_alt_text={category.name} />
