@@ -1,9 +1,10 @@
 import Slider from 'react-slick'
 import ProductCard from './product-card'
 import useGetAllProducts from 'src/hooks/products/getAllProducts'
+import SkeletonLoader from '../products/skeleton'
 
 const SimilarProducts = () => {
-  const [products] = useGetAllProducts()
+  const { productsData, loading } = useGetAllProducts()
   const settings = {
     slidesToShow: 5,
     slidesToScroll: 5,
@@ -38,14 +39,17 @@ const SimilarProducts = () => {
       <h1 className="pb-2 text-2xl">Similar Products</h1>
       <div className="overflow-hidden">
         <Slider {...settings}>
-          {products.map((product, index) => (
-            <div key={index} className="px-2">
-              <a href={`${product.documentId}`}>
-                <ProductCard product={product} bestSellingSection={true} />
-              </a>
-            </div>
-          ))}
+          {!loading &&
+            productsData.length > 0 &&
+            productsData.map((product, index) => (
+              <div key={index} className="px-2">
+                <a href={`${product.documentId}`}>
+                  <ProductCard product={product} bestSellingSection={true} />
+                </a>
+              </div>
+            ))}
         </Slider>
+        {loading && <SkeletonLoader />}
       </div>
     </section>
   )

@@ -57,24 +57,24 @@ export function Header() {
               className="h-12 rounded-sm"
             />
           </a>
-          <div className="hidden gap-6 lg:flex">
-            <a
-              target="_blank"
-              href="https://www.google.com/maps/place/MN+Jewel+Park/@12.906834,79.133984,13z/data=!4m6!3m5!1s0x3bad38e73a2806d3:0x27ddd4555ccdee12!8m2!3d12.9068336!4d79.133984!16s%2Fg%2F1thd07pl?hl=en&entry=ttu&g_ep=EgoyMDI1MDEwMS4wIKXMDSoASAFQAw%3D%3D"
-              className="flex items-center gap-1"
-              rel="noreferrer"
-            >
-              <IconEffect>
+          <div className="hidden items-center gap-6 lg:flex">
+            <IconEffect>
+              <a
+                target="_blank"
+                href="https://www.google.com/maps/place/MN+Jewel+Park/@12.906834,79.133984,13z/data=!4m6!3m5!1s0x3bad38e73a2806d3:0x27ddd4555ccdee12!8m2!3d12.9068336!4d79.133984!16s%2Fg%2F1thd07pl?hl=en&entry=ttu&g_ep=EgoyMDI1MDEwMS4wIKXMDSoASAFQAw%3D%3D"
+                className="flex items-center gap-1"
+                rel="noreferrer"
+              >
                 <MapPin strokeWidth={1} />
-              </IconEffect>
-              <p>Arni Road, Vellore</p>
-            </a>
-            <a href="tel:+918925872477" className="flex items-center gap-1">
-              <IconEffect>
+                <p>Arni Road, Vellore</p>
+              </a>
+            </IconEffect>
+            <IconEffect>
+              <a href="tel:+918056736999" className="flex items-center gap-1">
                 <Phone strokeWidth={1} />
-              </IconEffect>
-              <p>+91 8925872477</p>
-            </a>
+                <p>+91 8056736999</p>
+              </a>
+            </IconEffect>
           </div>
         </div>
         <div className="hidden items-center lg:flex">
@@ -159,30 +159,34 @@ export function Header() {
           ) : (
             <a href="/auth">
               <IconEffect>
-                <UserIcon color="inherit" strokeWidth={1} />
+                <UserIcon strokeWidth={1} />
               </IconEffect>
             </a>
           )}
-          <a href="#" className="relative hover:cursor-pointer">
-            <IconEffect>
-              <HeartIcon strokeWidth={1} />
-            </IconEffect>
-            {userFavouritesData && userFavouritesData.length > 0 && (
-              <span className="absolute right-[-4px] top-[-8px] flex h-4 w-4 justify-center rounded-full bg-red-400 text-xs text-white">
-                {userFavouritesData.length}
-              </span>
-            )}
-          </a>
-          <a href="/cart" className="relative hover:cursor-pointer">
-            <IconEffect>
-              <ShoppingBagIcon strokeWidth={1} />
-            </IconEffect>
-            {userCartData && userCartData.length > 0 && (
-              <span className="absolute right-[-4px] top-[-8px] flex h-4 w-4 justify-center rounded-full bg-red-400 text-xs text-white">
-                {userCartData.length}
-              </span>
-            )}
-          </a>
+          {isLoggedIn && (
+            <div className="flex gap-4">
+              <a href="/favourites" className="relative hover:cursor-pointer">
+                <IconEffect>
+                  <HeartIcon strokeWidth={1} />
+                </IconEffect>
+                {userFavouritesData && userFavouritesData.length > 0 && (
+                  <span className="absolute right-[-4px] top-[-8px] flex h-4 w-4 justify-center rounded-full bg-red-400 text-xs text-white">
+                    {userFavouritesData.length}
+                  </span>
+                )}
+              </a>
+              <a href="/cart" className="relative hover:cursor-pointer">
+                <IconEffect>
+                  <ShoppingBagIcon strokeWidth={1} />
+                </IconEffect>
+                {userCartData && userCartData.length > 0 && (
+                  <span className="absolute right-[-4px] top-[-8px] flex h-4 w-4 justify-center rounded-full bg-red-400 text-xs text-white">
+                    {userCartData.length}
+                  </span>
+                )}
+              </a>
+            </div>
+          )}
         </div>
       </header>
       <div className="flex items-center p-2 lg:hidden">

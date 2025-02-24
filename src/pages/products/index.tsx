@@ -1,10 +1,12 @@
 import { useForm } from 'react-hook-form'
 import ProductCard from 'src/components/product/product-card'
 import FiltersMenu from 'src/components/products/filters-menu'
+import SkeletonLoader from 'src/components/products/skeleton'
 import { Button } from 'src/components/ui/button'
 import { Drawer, DrawerTrigger } from 'src/components/ui/drawer'
 import { Label } from 'src/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from 'src/components/ui/select'
+import NoDataAvailable from 'src/components/user/no-data-available'
 import useGetAllProducts from 'src/hooks/products/getAllProducts'
 import { ProductsFormInterface } from 'src/types/forms/products-form'
 
@@ -20,13 +22,13 @@ const Products = () => {
     console.log(data)
   }
   const data = watch()
-  const [products] = useGetAllProducts(data)
+  const { productsData, loading } = useGetAllProducts(data)
   return (
     <section>
       <div className="px-2 py-4 lg:px-6 lg:py-8">
         <div className="flex flex-col md:flex-row lg:items-center lg:justify-between">
           <p className="my-4 hidden font-semibold capitalize opacity-50 lg:block">
-            (showing {products.length.toLocaleString()} designs)
+            (showing {productsData.length.toLocaleString()} designs)
           </p>
           <form
             className="flex items-center gap-2"
@@ -71,19 +73,21 @@ const Products = () => {
           </form>
         </div>
         <p className="my-4 font-semibold capitalize opacity-50 lg:hidden">
-          (showing {products.length.toLocaleString()} designs)
+          (showing {productsData.length.toLocaleString()} designs)
         </p>
         <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5">
-          {products.length > 0 ? (
-            products.map((product, index) => (
+          {!loading &&
+            productsData.length > 0 &&
+            productsData.map((product, index) => (
               <a href={'/products/' + product.documentId} key={index} className="block max-w-full rounded-lg">
                 <ProductCard product={product} bestSellingSection />
               </a>
-            ))
-          ) : (
-            <p>No Products Available</p>
-          )}
+            ))}
         </div>
+        {!loading && productsData.length === 0 && (
+          <NoDataAvailable title="No Products Available, Consider Changing Filters" />
+        )}
+        {loading && <SkeletonLoader />}
       </div>
     </section>
   )

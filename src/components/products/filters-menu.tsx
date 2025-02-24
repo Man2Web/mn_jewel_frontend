@@ -127,8 +127,13 @@ const FiltersMenu = ({ register, methods }: FiltersMenuProps) => {
           </div>
         </div>
         <DrawerFooter className="flex flex-col justify-center lg:flex-row lg:gap-2">
-          <Button variant="primary">Apply Filters</Button>
-          <Button disabled variant="primary">
+          {/* <Button variant="primary">Apply Filters</Button> */}
+          <Button
+            onClick={() => {
+              window.location.href = '/products'
+            }}
+            variant="primary"
+          >
             Clear Filters
           </Button>
         </DrawerFooter>

@@ -7,7 +7,7 @@ const Explore = () => {
   const [metalData] = useGetMetal()
   const bannerImages = metalData.filter((data) => data.isHomePageBanner === true)
   return (
-    <section className="hidden px-6 py-8 lg:block">
+    <section className="hidden p-2 lg:block">
       <SectionSeperator
         title="Explore Jewellery"
         description="Discover Jewellery pieces for every style, Start Shopping"

@@ -37,8 +37,8 @@ const ProductCard = ({ product, bestSellingSection }: { product: Product; bestSe
                 <img
                   key={index}
                   className={`${
-                    bestSellingSection ? 'h-[250px] w-[250px]' : 'h-[150px] w-[150px]'
-                  } rounded-t-lg object-cover`}
+                    bestSellingSection ? 'h-[250px] w-[250px] lg:h-[350px]' : 'h-[150px] w-[150px]'
+                  } rounded-lg object-cover`}
                   src={`${data.url}`}
                   alt="product image"
                 />

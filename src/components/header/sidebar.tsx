@@ -1,4 +1,4 @@
-import { ChevronRight, IndianRupeeIcon, LogOutIcon, StoreIcon, UserIcon, XIcon } from 'lucide-react'
+import { ChevronRight, LogOutIcon, StoreIcon, UserIcon, XIcon } from 'lucide-react'
 import { useState } from 'react'
 import EarRingsMenu from './mobile/ear-rings-menu'
 import { Button } from '../ui/button'
@@ -20,7 +20,7 @@ const Sidebar = ({ setIsMenuOpen }: HeaderProps) => {
         <div className="flex gap-2">
           <a href="/">
             <img
-              src="https://www.mnjewelpark.com/mnjewel/uploads/2020/12/cropped-MN-JEWEL-copy-2.png"
+              src="https://d1uukejij9whar.cloudfront.net/logo_9721e4d6dd.png"
               alt="logo"
               className="h-10 rounded-sm"
             />
@@ -52,14 +52,15 @@ const Sidebar = ({ setIsMenuOpen }: HeaderProps) => {
       </div>
       <div className="absolute bottom-0 flex w-full flex-col gap-2 px-4 py-2">
         <div className="flex gap-2">
-          <div className="flex max-h-10 w-1/2 items-center gap-2 rounded-sm border border-red-400 px-4 py-2">
-            <IndianRupeeIcon color="red" size={12} strokeWidth={1} />
-            <p className="text-xs">Gold Rate</p>
-          </div>
-          <div className="flex max-h-10 w-1/2 items-center gap-2 rounded-sm border border-red-400 px-4 py-2">
+          <a
+            href="https://www.google.com/maps/place/MN+Jewel+Park/@12.906834,79.133984,13z/data=!4m6!3m5!1s0x3bad38e73a2806d3:0x27ddd4555ccdee12!8m2!3d12.9068336!4d79.133984!16s%2Fg%2F1thd07pl?hl=en&entry=ttu&g_ep=EgoyMDI1MDEwMS4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank"
+            className="flex max-h-10 w-full items-center justify-center gap-2 rounded-sm border border-red-400 px-4 py-2"
+            rel="noreferrer"
+          >
             <StoreIcon color="red" size={12} strokeWidth={1} />
             <p className="text-xs">Store Locator</p>
-          </div>
+          </a>
         </div>
         {token ? (
           <Button

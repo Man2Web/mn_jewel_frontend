@@ -31,8 +31,8 @@ const ProductPriceBreakdown = ({ title, product }: { title: string; product: Pro
             </TableRow>
             <TableRow>
               <TableCell>{product.material_type.name}</TableCell>
-              <TableCell>{product.material_type.price} / gms</TableCell>
-              <TableCell>{product.item_Net_Weight} / gms</TableCell>
+              <TableCell>{product.material_type.price.toLocaleString()} / gms</TableCell>
+              <TableCell>{product.item_Net_Weight} gms</TableCell>
               <TableCell>{itemBasePrice.toLocaleString()}</TableCell>
             </TableRow>
             <TableRow>
@@ -45,7 +45,7 @@ const ProductPriceBreakdown = ({ title, product }: { title: string; product: Pro
               <TableRow key={index}>
                 <TableCell className="capitalize">{data.stone_name}</TableCell>
                 <TableCell>-</TableCell>
-                <TableCell>{data.stone_weight} / gms</TableCell>
+                <TableCell>{data.stone_weight} gms</TableCell>
                 <TableCell>{data.stone_price.toLocaleString()}</TableCell>
               </TableRow>
             ))}

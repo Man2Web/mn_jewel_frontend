@@ -10,7 +10,7 @@ const Categories = () => {
   const isHomePageCategories = categoriesData.filter((data) => data.homePageView !== false)
   if (isHomePageCategories.length === 0) return null
   return (
-    <section className="px-6 py-8">
+    <section className="p-2">
       <SectionSeperator title="Shop By Categories" description="Explore our wide range of products" />
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         {isHomePageCategories.map((category, index) => (

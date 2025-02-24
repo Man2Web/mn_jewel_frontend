@@ -236,6 +236,35 @@ const useGetOrderData = (orderId: string) => {
   return [orderData]
 }
 
+function useGetUserCartItems() {
+  const jwt = localStorage.getItem('token')
+  const [userData, setUserData] = useState<User>()
+  const context = useContext(MyContext)
+  if (!context) {
+    throw new Error('MyContext must be used within a MyContextProvider')
+  }
+  const { setUserCartData, setUserFavouritesData } = context
+  useEffect(() => {
+    if (!jwt) return
+    getUserData()
+  }, [])
+  const getUserData = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_STRAPI_API}/users/me?populate=*`, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      })
+      setUserData(response.data)
+      setUserCartData(response.data.userCart)
+      setUserFavouritesData(response.data.favourites)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  return { userData, getUserData }
+}
+
 export {
   useGetUserData,
   useAddToCart,

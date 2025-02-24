@@ -53,10 +53,9 @@ export const purchaseCheckoutForm = async (
         console.error(error)
         toast.error('Error adding product to cart')
       }
-      toast.success("We've received your enquiry. We'll get back to you soon.")
       setTimeout(() => {
-        window.location.href = '/cart'
-      }, 1500)
+        window.location.href = '/bookingconfirmation'
+      }, 1300)
     } else {
       toast.error('Something went wrong')
     }

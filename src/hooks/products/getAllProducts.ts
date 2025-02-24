@@ -6,10 +6,12 @@ import { ProductsFormInterface, ProductsFormInterfaceParams } from 'src/types/fo
 
 function useGetAllProducts(filters?: ProductsFormInterface) {
   const [productsData, setProductsData] = useState<Product[]>([])
+  const [loading, setLoading] = useState(false)
   const [searchParams] = useSearchParams()
   const productName = searchParams.get('productName')
   const getProducts = useCallback(async () => {
     try {
+      setLoading(true)
       const productTypeFilters = Object.keys(filters?.productType || {}).filter((key) => filters?.productType?.[key])
       const SubProductTypeFilters = Object.keys(filters?.subCategory || {}).filter((key) => filters?.subCategory?.[key])
       const materialFilters = Object.keys(filters?.materialType || {}).filter((key) => filters?.materialType?.[key])
@@ -125,6 +127,10 @@ function useGetAllProducts(filters?: ProductsFormInterface) {
       setProductsData(data.data)
     } catch (error) {
       console.error(error)
+    } finally {
+      setTimeout(() => {
+        setLoading(false)
+      }, 1000)
     }
   }, [
     filters?.priceRange?.minPrice,
@@ -143,7 +149,7 @@ function useGetAllProducts(filters?: ProductsFormInterface) {
     getProducts()
   }, [getProducts])
 
-  return [productsData]
+  return { productsData, loading }
 }
 
 export default useGetAllProducts

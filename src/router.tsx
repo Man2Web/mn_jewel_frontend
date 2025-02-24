@@ -6,6 +6,18 @@ import Auth from './pages/auth'
 import ForgotPass from './pages/auth/forgot-pass'
 import Loader from './components/layout/loader'
 import PrivateRoute from './components/layout/private-route'
+import RefundPolicy from './pages/policies/refund'
+import ReturnPolicy from './pages/policies/return'
+import TermsAndConditions from './pages/policies/terms-conditions'
+import PrivacyPolicy from './pages/policies/privacy'
+import ShippingAndDelivery from './pages/policies/shipping-delivery'
+import About from './pages/policies/about'
+import ContactUs from './pages/policies/contact'
+import FAQ from './pages/policies/faq'
+import Favourites from './pages/user/favourites'
+import VideoShopping from './components/home/video-shopping'
+import CommingSoon from './components/elements/coming-soon'
+import BookingConfirmation from './pages/booking/confirmation'
 
 const Home = lazy(() => import('./pages/home'))
 const Product = lazy(() => import('./pages/products/product'))
@@ -46,6 +58,12 @@ export const routerObjects: PrivateRouteProps[] = [
     getLayout: false,
   },
   {
+    path: '/favourites',
+    Component: Favourites,
+    getLayout: true,
+    private: true,
+  },
+  {
     path: '/cart',
     Component: Cart,
     getLayout: true,
@@ -60,6 +78,62 @@ export const routerObjects: PrivateRouteProps[] = [
   {
     path: '/orders',
     Component: Orders,
+    getLayout: true,
+    private: true,
+  },
+  {
+    path: '/refund',
+    Component: RefundPolicy,
+    getLayout: true,
+  },
+  {
+    path: '/return',
+    Component: ReturnPolicy,
+    getLayout: true,
+  },
+  {
+    path: '/shipping',
+    Component: ShippingAndDelivery,
+    getLayout: true,
+  },
+  {
+    path: '/terms',
+    Component: TermsAndConditions,
+    getLayout: true,
+  },
+  {
+    path: '/privacy',
+    Component: PrivacyPolicy,
+    getLayout: true,
+  },
+  {
+    path: '/about',
+    Component: About,
+    getLayout: true,
+  },
+  {
+    path: '/contact',
+    Component: ContactUs,
+    getLayout: true,
+  },
+  {
+    path: '/faq',
+    Component: FAQ,
+    getLayout: true,
+  },
+  {
+    path: '/videoshopping',
+    Component: VideoShopping,
+    getLayout: true,
+  },
+  {
+    path: '/commingsoon',
+    Component: CommingSoon,
+    getLayout: true,
+  },
+  {
+    path: '/bookingconfirmation',
+    Component: BookingConfirmation,
     getLayout: true,
     private: true,
   },

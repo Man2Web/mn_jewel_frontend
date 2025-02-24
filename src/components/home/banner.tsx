@@ -13,12 +13,12 @@ const Banner: React.FC = () => {
     autoplay: true,
   }
   return (
-    <section className="overflow-hidden">
+    <section className="overflow-hidden p-2">
       <Slider {...settings}>
         {bannerImages ? (
           bannerImages?.map((data, index) => (
-            <div key={index} className="flex h-auto w-full items-center justify-center bg-gray-200">
-              <img className="h-64 w-full max-w-full lg:h-[600px]" src={data} alt="img" />
+            <div key={index} className="flex h-auto w-full items-center justify-center">
+              <img className="h-48 w-full max-w-full rounded-lg lg:h-[600px]" src={data} alt="img" />
             </div>
           ))
         ) : (

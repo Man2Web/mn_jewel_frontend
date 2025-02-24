@@ -75,27 +75,24 @@ export const exploreData = [
 
 export const tourData = [
   {
-    name: 'Jewellery Care',
-    link: '#',
+    name: 'FAQ',
+    link: '/faq',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-
-    img: 'https://media.istockphoto.com/id/1276740597/photo/indian-traditional-gold-necklace.jpg?s=612x612&w=0&k=20&c=OYp1k0OVJObYq9hqVK_r6NwYa_W54km4nya1R-ovIUY=',
+      'Find answers to the most frequently asked questions about our products, services, and policies. Get the information you need quickly and easily.',
+    img: 'https://d1uukejij9whar.cloudfront.net/about_5874a0858c.jpeg',
   },
   {
-    name: 'Jewellery Care',
-    link: '#',
+    name: 'About Us',
+    link: '/about',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-
-    img: 'https://media.istockphoto.com/id/1276740597/photo/indian-traditional-gold-necklace.jpg?s=612x612&w=0&k=20&c=OYp1k0OVJObYq9hqVK_r6NwYa_W54km4nya1R-ovIUY=',
+      'Learn more about our company, our mission, and our values. Discover the story behind our brand and what drives us to deliver the best products and services.',
+    img: 'https://d1uukejij9whar.cloudfront.net/terms_3b7c3f2a0e.jpeg',
   },
   {
-    name: 'Jewellery Care',
-    link: '#',
+    name: 'Terms & Conditions',
+    link: '/terms',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-
-    img: 'https://media.istockphoto.com/id/1276740597/photo/indian-traditional-gold-necklace.jpg?s=612x612&w=0&k=20&c=OYp1k0OVJObYq9hqVK_r6NwYa_W54km4nya1R-ovIUY=',
+      'Read our terms and conditions to understand the rules and guidelines for using our website and services. Ensure you are informed about your rights and responsibilities.',
+    img: 'https://d1uukejij9whar.cloudfront.net/df10020a_1452_429f_a8a5_30694b8893eb_d727509f5f.jpeg',
   },
 ]
