@@ -14,6 +14,7 @@ export const purchaseCheckoutForm = async (
   const userCartProductsData = userCartProducts.map((item) => ({
     product: item.product.id,
     quantity: item.quantity,
+    documentId: item.product.documentId,
   }))
 
   const totalPrice = userCartProducts.reduce((acc, data) => acc + data.quantity * data.product.calculatedPrice, 0)
@@ -28,34 +29,24 @@ export const purchaseCheckoutForm = async (
   }
 
   try {
-    const response = await axios.post(`${import.meta.env.VITE_STRAPI_API}/orders`, payload, {
+    const response = await axios.post(`${import.meta.env.VITE_PAYMENT_API}/payment`, payload, {
       headers: {
         Authorization: `Bearer ${jwt}`,
         'Content-Type': 'application/json',
       },
     })
 
+    console.log(response)
     if (response.status === 200 || response.status === 201) {
       try {
-        await axios.put(
-          `${import.meta.env.VITE_STRAPI_API}/users/${userData?.id}?populate=*`,
-          {
-            userCart: [],
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-              'Content-Type': 'application/json',
-            },
-          },
-        )
+        window.location.href = response.data.url
       } catch (error) {
         console.error(error)
         toast.error('Error adding product to cart')
       }
-      setTimeout(() => {
-        window.location.href = '/bookingconfirmation'
-      }, 1300)
+      // setTimeout(() => {
+      //   window.location.href = '/bookingconfirmation'
+      // }, 1300)
     } else {
       toast.error('Something went wrong')
     }
