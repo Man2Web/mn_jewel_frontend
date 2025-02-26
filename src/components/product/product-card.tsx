@@ -61,7 +61,7 @@ const ProductCard = ({ product, bestSellingSection }: { product: Product; bestSe
       <CardContent className="p-0">
         <div className="flex items-center py-2">
           <IndianRupee size={14} />
-          <p>{Number(product.calculatedPrice).toLocaleString()}</p>
+          <p>{Number(product.calculatedPrice.toFixed(2)).toLocaleString()}</p>
         </div>
         <p className="text-sm opacity-70">{product.product_Name}</p>
       </CardContent>

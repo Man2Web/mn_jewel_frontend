@@ -10,7 +10,6 @@ export const purchaseCheckoutForm = async (
 ) => {
   const jwt = localStorage.getItem('token')
   if (!jwt) return
-
   const userCartProductsData = userCartProducts.map((item) => ({
     product: item.product.id,
     quantity: item.quantity,
@@ -27,7 +26,6 @@ export const purchaseCheckoutForm = async (
       totalPrice,
     },
   }
-
   try {
     const response = await axios.post(`${import.meta.env.VITE_PAYMENT_API}/payment`, payload, {
       headers: {
@@ -36,7 +34,6 @@ export const purchaseCheckoutForm = async (
       },
     })
 
-    console.log(response)
     if (response.status === 200 || response.status === 201) {
       try {
         window.location.href = response.data.url
@@ -44,9 +41,6 @@ export const purchaseCheckoutForm = async (
         console.error(error)
         toast.error('Error adding product to cart')
       }
-      // setTimeout(() => {
-      //   window.location.href = '/bookingconfirmation'
-      // }, 1300)
     } else {
       toast.error('Something went wrong')
     }

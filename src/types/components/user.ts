@@ -38,6 +38,7 @@ export interface orderItemInterface {
     city: string
     pincode: string
   }
+  orderStatus: boolean
 }
 
 // export interface Product {

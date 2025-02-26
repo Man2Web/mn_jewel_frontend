@@ -32,12 +32,12 @@ const UserCartItem = ({
           <h1 className="font-serif text-xl">{productData?.product_Name}</h1>
           <div className="flex items-center py-2">
             <IndianRupeeIcon size={18} strokeWidth={2} />
-            <h1 className="flex items-center gap-2 text-xl">
-              {Number(productData?.calculatedPrice).toLocaleString()}
-              <span className="text-sm font-medium opacity-50">(Approx)</span>
+            <h1 className="text-md flex items-center gap-2 md:text-xl">
+              {Number(productData?.calculatedPrice.toFixed(2)).toLocaleString()}
+              <span className="text-xs font-medium opacity-50 md:text-sm">(Approx)</span>
             </h1>
           </div>
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2 md:justify-between md:gap-0">
             <div>
               <Select
                 onValueChange={(value) => {
@@ -49,9 +49,9 @@ const UserCartItem = ({
                     ),
                   )
                 }}
-                defaultValue={`${cartItem.quantity}`}
+                value={`${cartItem.quantity}`}
               >
-                <SelectTrigger className="w-[100px]">
+                <SelectTrigger className="w-[75px] md:w-[100px]">
                   <SelectValue placeholder="Quantity" />
                 </SelectTrigger>
                 <SelectContent>

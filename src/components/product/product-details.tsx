@@ -19,7 +19,7 @@ const ProductDetails = ({
             {data.price && (
               <div className="flex justify-between">
                 <p className="text-sm">{data.key} price</p>
-                <p className="text-sm opacity-50">{data.price.toLocaleString()}</p>
+                <p className="text-sm opacity-50">{Number(data.price.toLocaleString()).toFixed(2)}</p>
               </div>
             )}
           </div>

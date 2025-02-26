@@ -18,7 +18,7 @@ const CartSummary = ({ userCartData }: { userCartData: UserCartData[] }) => {
               </p>
               <p className="flex items-center">
                 <IndianRupeeIcon size={14} />
-                {Number(data.quantity * data.product.calculatedPrice).toLocaleString()} /-
+                {Number((data.quantity * data.product.calculatedPrice).toFixed(2)).toLocaleString()} /-
               </p>
             </div>
           ))}

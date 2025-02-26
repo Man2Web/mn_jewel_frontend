@@ -132,7 +132,13 @@ export const routerObjects: PrivateRouteProps[] = [
     getLayout: true,
   },
   {
-    path: '/bookingconfirmation',
+    path: '/bookingsuccess',
+    Component: BookingConfirmation,
+    getLayout: true,
+    private: true,
+  },
+  {
+    path: '/bookingfailed',
     Component: BookingConfirmation,
     getLayout: true,
     private: true,

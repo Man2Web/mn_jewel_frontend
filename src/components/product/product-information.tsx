@@ -31,7 +31,7 @@ const ProductInformation = ({ product }: { product: Product | undefined }) => {
         <div className="flex items-center py-2">
           <IndianRupeeIcon size={18} strokeWidth={2} />
           <h1 className="flex items-center gap-2 text-xl">
-            {Number(product.calculatedPrice).toLocaleString()}
+            {Number(product.calculatedPrice.toFixed(2)).toLocaleString()}
             <span className="text-sm font-medium opacity-50">(Approx)</span>
           </h1>
         </div>

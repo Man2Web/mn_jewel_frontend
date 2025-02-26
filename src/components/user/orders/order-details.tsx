@@ -18,7 +18,7 @@ const OrderDetails = ({ order }: { order: orderItemInterface }) => {
           </div>
           <div className="flex flex-col gap-1 text-sm">
             <p className="font-semibold">Total</p>
-            <p>{Number(ordersData?.totalPrice).toLocaleString()} /-</p>
+            <p>{Number(ordersData?.totalPrice.toFixed(2)).toLocaleString()} /-</p>
           </div>
           <div className="flex flex-col gap-1 text-sm">
             <p className="font-semibold">Shiped To</p>
@@ -29,6 +29,10 @@ const OrderDetails = ({ order }: { order: orderItemInterface }) => {
           <div className="flex flex-col gap-1 text-sm">
             <p className="font-semibold">Order ID</p>
             <p>{order.documentId}</p>
+          </div>
+          <div className="flex flex-col gap-1 text-sm">
+            <p className="font-semibold">Order Status</p>
+            <p>{order.orderStatus ? 'Confirmed' : 'Failed'}</p>
           </div>
         </div>
       </div>

@@ -1,10 +1,8 @@
-import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { Button } from 'src/components/ui/button'
 import { Input } from 'src/components/ui/input'
 import { Label } from 'src/components/ui/label'
 import { Textarea } from 'src/components/ui/textarea'
-import { useGetUserData } from 'src/hooks/user/user'
 import { OrderForm } from 'src/types/forms/order-form'
 
 interface AddressCollectionFormProps {
@@ -12,19 +10,19 @@ interface AddressCollectionFormProps {
 }
 
 const AddressCollectionForm = ({ methods }: AddressCollectionFormProps) => {
-  const { userData } = useGetUserData()
+  // const { userData } = useGetUserData()
   const {
     register,
     setValue,
     formState: { errors },
   } = methods
 
-  useEffect(() => {
-    if (userData) {
-      setValue('email', userData?.email)
-      setValue('phoneNumber', userData.username)
-    }
-  }, [userData])
+  // useEffect(() => {
+  //   if (userData) {
+  //     setValue('email', userData?.email)
+  //     setValue('phoneNumber', userData.username)
+  //   }
+  // }, [userData])
 
   return (
     <div>

@@ -36,7 +36,7 @@ export function Header() {
             <span key={index} className="mx-4 flex items-center gap-2">
               <DiamondIcon fill="yellow" size={10} />
               <p className="text-red-400">
-                {data.name}: {data.price.toLocaleString()}
+                {data.name}: {Number(data.price.toFixed(2)).toLocaleString()}
               </p>
               <DiamondIcon fill="yellow" size={10} />
             </span>
