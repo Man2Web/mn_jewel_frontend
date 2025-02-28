@@ -22,7 +22,6 @@ const ProductInformation = ({ product }: { product: Product | undefined }) => {
   }
   const { userCartData } = context
   const isProductInCart = userCartData.filter((data) => data.id === product?.id)
-  console.log(product.tag)
   return (
     <Dialog>
       <div className="lg:p-4">

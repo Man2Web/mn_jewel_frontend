@@ -47,8 +47,8 @@ const Product = () => {
       },
     ],
   }
-  const [addProduct] = useAddToFavourites()
-  const [removeProduct] = useRemoveFromFavourites()
+  const [addProductToFavourite] = useAddToFavourites()
+  const [removeFromFavourite] = useRemoveFromFavourites()
   const isProductInCart = userFavouritesData.filter((data) => data.id === productData?.id)
   return (
     <section>
@@ -66,14 +66,14 @@ const Product = () => {
           </Slider>
           {isProductInCart.length > 0 && isProductInCart ? (
             <div
-              onClick={() => removeProduct(productData?.id)}
+              onClick={() => removeFromFavourite(productData?.id)}
               className="absolute right-2 top-2 rounded-full bg-white p-1 opacity-80 hover:cursor-pointer md:right-4"
             >
               <HeartIcon size={20} strokeWidth={0.6} color="red" fill="red" />
             </div>
           ) : (
             <div
-              onClick={() => addProduct(productData?.id)}
+              onClick={() => addProductToFavourite(productData?.id)}
               className="absolute right-2 top-2 rounded-full bg-white p-1 opacity-80 hover:cursor-pointer md:right-4"
             >
               <HeartIcon size={20} strokeWidth={0.6} />

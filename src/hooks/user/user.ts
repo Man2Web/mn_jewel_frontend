@@ -114,7 +114,7 @@ function useAddToFavourites() {
   const jwt = localStorage.getItem('token')
   const { userData, getUserData } = useGetUserData()
   const prevFavourites = userFavouritesData.map((data) => data.id)
-  const addProduct = async (productId: number | undefined) => {
+  const addProductToFavourite = async (productId: number | undefined) => {
     if (!jwt) {
       toast.error('Please login to add product to favourites')
       return
@@ -138,7 +138,7 @@ function useAddToFavourites() {
       toast.error('Error adding product to favourites')
     }
   }
-  return [addProduct]
+  return [addProductToFavourite]
 }
 
 function useRemoveFromFavourites() {
@@ -149,7 +149,7 @@ function useRemoveFromFavourites() {
   const { userFavouritesData } = context
   const jwt = localStorage.getItem('token')
   const { userData, getUserData } = useGetUserData()
-  const removeProduct = async (productId: number | undefined) => {
+  const removeFromFavourite = async (productId: number | undefined) => {
     if (!jwt) {
       toast.error('Please login to remove product from favourites')
       return
@@ -174,7 +174,7 @@ function useRemoveFromFavourites() {
       toast.error('Error removing product from favourites')
     }
   }
-  return [removeProduct]
+  return [removeFromFavourite]
 }
 
 const useUserCartData = () => {

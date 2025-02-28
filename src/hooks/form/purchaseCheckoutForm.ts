@@ -33,10 +33,9 @@ export const purchaseCheckoutForm = async (
         'Content-Type': 'application/json',
       },
     })
-
     if (response.status === 200 || response.status === 201) {
       try {
-        window.location.href = response.data.url
+        window.location.href = response.data.redirectUrl
       } catch (error) {
         console.error(error)
         toast.error('Error adding product to cart')

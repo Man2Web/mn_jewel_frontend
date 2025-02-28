@@ -1,7 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import ProductFeatures from 'src/components/product/product-features'
 import { Button } from 'src/components/ui/button'
 import AddressCollectionForm from 'src/components/user/cart/address-collection-form'
 import UserCartItem from 'src/components/user/cart/cart-items'
@@ -27,7 +26,7 @@ const Cart = () => {
           onSubmit={handleSubmit((data) => purchaseCheckoutForm(data, userCartProducts, userData))}
           className="p-4 lg:px-6 lg:py-8"
         >
-          <ProductFeatures />
+          {/* <ProductFeatures /> */}
           <div className="flex flex-col justify-between gap-2 lg:flex-row">
             <section className="w-full lg:w-4/6">
               <div className="my-2">

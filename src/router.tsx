@@ -18,6 +18,7 @@ import Favourites from './pages/user/favourites'
 import VideoShopping from './components/home/video-shopping'
 import CommingSoon from './components/elements/coming-soon'
 import BookingConfirmation from './pages/booking/confirmation'
+import BookingFailureConfirmation from './pages/booking/failure'
 
 const Home = lazy(() => import('./pages/home'))
 const Product = lazy(() => import('./pages/products/product'))
@@ -139,7 +140,7 @@ export const routerObjects: PrivateRouteProps[] = [
   },
   {
     path: '/bookingfailed',
-    Component: BookingConfirmation,
+    Component: BookingFailureConfirmation,
     getLayout: true,
     private: true,
   },
