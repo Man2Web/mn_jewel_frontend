@@ -8,12 +8,14 @@ import CartSummary from 'src/components/user/cart/cart-summary'
 import NoDataAvailable from 'src/components/user/no-data-available'
 import { purchaseCheckoutForm } from 'src/hooks/form/purchaseCheckoutForm'
 import { useGetUserData, useUserCartData } from 'src/hooks/user/user'
+import { Coupon } from 'src/types/components/coupon'
 import { OrderForm, OrderFormSchema } from 'src/types/forms/order-form'
 
 const Cart = () => {
   const { userCartProducts, setUserCartProducts } = useUserCartData()
   const [productsAvailable, setProductsAvailable] = useState(false)
   const [progress, setProgress] = useState(0)
+  const [userSelectedCoupon, setUserSelectedCoupon] = useState<Coupon>()
   const methods = useForm<OrderForm>({
     resolver: zodResolver(OrderFormSchema),
   })
@@ -23,7 +25,7 @@ const Cart = () => {
     <section>
       {userCartProducts.length > 0 ? (
         <form
-          onSubmit={handleSubmit((data) => purchaseCheckoutForm(data, userCartProducts, userData))}
+          onSubmit={handleSubmit((data) => purchaseCheckoutForm(data, userCartProducts, userData, userSelectedCoupon))}
           className="p-4 lg:px-6 lg:py-8"
         >
           {/* <ProductFeatures /> */}
@@ -52,7 +54,11 @@ const Cart = () => {
             <section className="w-full lg:w-2/6">
               {userCartProducts.length > 0 && (
                 <div className="w-full">
-                  <CartSummary userCartData={userCartProducts} />
+                  <CartSummary
+                    userSelectedCoupon={userSelectedCoupon}
+                    setUserSelectedCoupon={setUserSelectedCoupon}
+                    userCartData={userCartProducts}
+                  />
                 </div>
               )}
             </section>

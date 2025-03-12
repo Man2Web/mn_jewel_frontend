@@ -46,6 +46,8 @@ export interface MaterialType {
   createdAt: string
   updatedAt: string
   publishedAt: string
+  digitalOrder: boolean
+  digitalIcon: ProductImage
 }
 
 export interface Category {

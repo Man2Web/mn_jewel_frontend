@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { useEffect, useState, useCallback } from 'react'
-import { MaterialResponse, MultiMaterialResponse } from 'src/types/components/material'
 import { MaterialType } from 'src/types/components/product'
 
 function useGetMaterialPriceById({ materialId }: { materialId: string }) {
@@ -8,9 +7,7 @@ function useGetMaterialPriceById({ materialId }: { materialId: string }) {
 
   const getPrice = useCallback(async () => {
     try {
-      const response = await axios.get<MaterialResponse>(
-        `${import.meta.env.VITE_STRAPI_API}/material-types/${materialId}`,
-      )
+      const response = await axios.get(`${import.meta.env.VITE_STRAPI_API}/material-types/${materialId}`)
       setMaterialPrice(response.data.data)
     } catch (error) {
       console.error(error)
@@ -29,7 +26,11 @@ function useGetMaterialPrice() {
 
   const getPrice = useCallback(async () => {
     try {
-      const response = await axios.get<MultiMaterialResponse>(`${import.meta.env.VITE_STRAPI_API}/material-types`)
+      const response = await axios.get(`${import.meta.env.VITE_STRAPI_API}/material-types`, {
+        params: {
+          populate: '*',
+        },
+      })
       setMaterialPrice(response.data.data)
     } catch (error) {
       console.error(error)

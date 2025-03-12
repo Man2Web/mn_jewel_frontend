@@ -1,4 +1,4 @@
-import { Product } from './product'
+import { MaterialType, Product } from './product'
 
 export interface User {
   id: number
@@ -14,11 +14,32 @@ export interface User {
   userCart: Product[]
   favourites: Product[]
   orders: orderItemInterface[]
+  totalGoldGrams: number
+  totalGoldRedeemed: number
+  totalSilverGrams: number
+  totalSilverRedeemed: number
+  digital_orders: digitalOrder[]
 }
 
 export interface UserCartData {
   product: Product
   quantity: number
+}
+
+export interface digitalOrder {
+  id: number
+  documentId: string
+  orderPrice: number
+  grams: number
+  createdAt: string
+  updatedAt: string
+  publishedAt: string
+  paymentStatus: string
+  transactionType: string
+  user: User
+  material_type: MaterialType
+  goldPrice: number
+  transactionId: string
 }
 
 export interface orderItemInterface {

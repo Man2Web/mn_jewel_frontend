@@ -51,6 +51,7 @@ export interface Material {
   isHomePageBanner: boolean
   isMobileNavbar: boolean
   products: Product[]
+  digitalOrder: boolean
 }
 
 interface Pagination {

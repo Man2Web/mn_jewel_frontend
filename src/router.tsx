@@ -19,6 +19,7 @@ import VideoShopping from './components/home/video-shopping'
 import CommingSoon from './components/elements/coming-soon'
 import BookingConfirmation from './pages/booking/confirmation'
 import BookingFailureConfirmation from './pages/booking/failure'
+// import Wallet from './pages/user/wallet'
 
 const Home = lazy(() => import('./pages/home'))
 const Product = lazy(() => import('./pages/products/product'))
@@ -26,6 +27,7 @@ const Products = lazy(() => import('./pages/products/index'))
 const Cart = lazy(() => import('./pages/user/cart'))
 const Profile = lazy(() => import('./pages/user/profile'))
 const Orders = lazy(() => import('./pages/user/orders'))
+const Wallet = lazy(() => import('./pages/user/wallet'))
 
 type PrivateRouteProps = RouteObject & {
   getLayout: boolean
@@ -141,6 +143,12 @@ export const routerObjects: PrivateRouteProps[] = [
   {
     path: '/bookingfailed',
     Component: BookingFailureConfirmation,
+    getLayout: true,
+    private: true,
+  },
+  {
+    path: '/wallet',
+    Component: Wallet,
     getLayout: true,
     private: true,
   },

@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useContext, useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { MyContext } from 'src/components/layout/context'
-import { orderItemInterface, User, UserCartData } from 'src/types/components/user'
+import { digitalOrder, orderItemInterface, User, UserCartData } from 'src/types/components/user'
 
 function useGetUserData() {
   const jwt = localStorage.getItem('token')
@@ -236,33 +236,32 @@ const useGetOrderData = (orderId: string) => {
   return [orderData]
 }
 
-function useGetUserCartItems() {
+function useGetUserWallet() {
+  const [walletData, setWalletData] = useState<digitalOrder[]>([])
+  const { userData } = useGetUserData()
   const jwt = localStorage.getItem('token')
-  const [userData, setUserData] = useState<User>()
-  const context = useContext(MyContext)
-  if (!context) {
-    throw new Error('MyContext must be used within a MyContextProvider')
-  }
-  const { setUserCartData, setUserFavouritesData } = context
   useEffect(() => {
-    if (!jwt) return
-    getUserData()
-  }, [])
-  const getUserData = async () => {
+    if (!userData || !jwt) return
+    getData()
+  }, [userData])
+
+  const getData = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_STRAPI_API}/users/me?populate=*`, {
+      const response = await axios.get(`${import.meta.env.VITE_STRAPI_API}/users/me`, {
+        params: {
+          'populate[digital_orders][populate][material_type][populate]': 'digitalIcon',
+        },
         headers: {
           Authorization: `Bearer ${jwt}`,
+          'Content-Type': 'application/json',
         },
       })
-      setUserData(response.data)
-      setUserCartData(response.data.userCart)
-      setUserFavouritesData(response.data.favourites)
+      setWalletData(response.data.digital_orders.sort((a: digitalOrder, b: digitalOrder) => b.id - a.id))
     } catch (error) {
       console.error(error)
     }
   }
-  return { userData, getUserData }
+  return { walletData }
 }
 
 export {
@@ -273,4 +272,5 @@ export {
   useRemoveFromFavourites,
   useUserCartData,
   useGetOrderData,
+  useGetUserWallet,
 }

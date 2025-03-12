@@ -1,5 +1,6 @@
 import axios from 'axios'
 import toast from 'react-hot-toast'
+import { Coupon } from 'src/types/components/coupon'
 import { User, UserCartData } from 'src/types/components/user'
 import { OrderForm } from 'src/types/forms/order-form'
 
@@ -7,6 +8,7 @@ export const purchaseCheckoutForm = async (
   data: OrderForm,
   userCartProducts: UserCartData[],
   userData: User | undefined,
+  userSelectedCoupon: Coupon | undefined,
 ) => {
   const jwt = localStorage.getItem('token')
   if (!jwt) return
@@ -14,16 +16,15 @@ export const purchaseCheckoutForm = async (
     product: item.product.id,
     quantity: item.quantity,
     documentId: item.product.documentId,
+    categoryId: item.product.category.id,
   }))
-
-  const totalPrice = userCartProducts.reduce((acc, data) => acc + data.quantity * data.product.calculatedPrice, 0)
 
   const payload = {
     data: {
       user: userData?.id,
       products: userCartProductsData,
       userAddress: { ...data },
-      totalPrice,
+      userSelectedCoupon: { documentId: userSelectedCoupon?.documentId, id: userSelectedCoupon?.id },
     },
   }
   try {

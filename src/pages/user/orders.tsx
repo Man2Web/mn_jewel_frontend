@@ -2,11 +2,8 @@ import NoDataAvailable from 'src/components/user/no-data-available'
 import OrderDetails from 'src/components/user/orders/order-details'
 import { useGetUserData } from 'src/hooks/user/user'
 
-// const OrderDetails = lazy(() => import('src/components/user/orders/order-details'))
-
 const Orders = () => {
   const { userData } = useGetUserData()
-  //   console.log(userData)
   return (
     <section>
       {userData && userData?.orders.length > 0 ? (
