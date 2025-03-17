@@ -19,6 +19,8 @@ import VideoShopping from './components/home/video-shopping'
 import CommingSoon from './components/elements/coming-soon'
 import BookingConfirmation from './pages/booking/confirmation'
 import BookingFailureConfirmation from './pages/booking/failure'
+// import SchemesData from './pages/user/schemes-data'
+// import SchemeDetails from './pages/schemes/scheme-details'
 // import Wallet from './pages/user/wallet'
 
 const Home = lazy(() => import('./pages/home'))
@@ -28,6 +30,9 @@ const Cart = lazy(() => import('./pages/user/cart'))
 const Profile = lazy(() => import('./pages/user/profile'))
 const Orders = lazy(() => import('./pages/user/orders'))
 const Wallet = lazy(() => import('./pages/user/wallet'))
+const Schemes = lazy(() => import('./pages/schemes/schemes'))
+const SchemeDetails = lazy(() => import('./pages/schemes/scheme-details'))
+const SchemesData = lazy(() => import('./pages/user/schemes-data'))
 
 type PrivateRouteProps = RouteObject & {
   getLayout: boolean
@@ -149,6 +154,24 @@ export const routerObjects: PrivateRouteProps[] = [
   {
     path: '/wallet',
     Component: Wallet,
+    getLayout: true,
+    private: true,
+  },
+  {
+    path: '/schemes',
+    Component: Schemes,
+    getLayout: true,
+    private: true,
+  },
+  {
+    path: '/schemes/:id',
+    Component: SchemeDetails,
+    getLayout: true,
+    private: true,
+  },
+  {
+    path: 'user/schemes',
+    Component: SchemesData,
     getLayout: true,
     private: true,
   },

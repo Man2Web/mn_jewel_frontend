@@ -42,8 +42,8 @@ const DigitalBuy = () => {
     setValue('grams', gramsValue, { shouldValidate: true })
 
     if (userSelectedMaterial) {
-      const calculatedAmount = (gramsValue * userSelectedMaterial.price).toFixed(2)
-      setValue('amount', Number(calculatedAmount), { shouldValidate: true })
+      const calculatedAmount = parseFloat((gramsValue * userSelectedMaterial.price).toFixed(2))
+      setValue('amount', calculatedAmount, { shouldValidate: true })
     }
   }
 
@@ -57,7 +57,7 @@ const DigitalBuy = () => {
       setValue('grams', Number(calculatedGrams), { shouldValidate: true })
     }
   }
-
+  console.log(watch('amount'), userSelectedMaterial?.price)
   return (
     <section className="">
       <div className="w-full">

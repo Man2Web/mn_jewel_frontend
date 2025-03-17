@@ -25,10 +25,5 @@ export const calculateUserWalletBalance = (digitalOrders: digitalOrder[] | undef
     }
   })
 
-  const calculateProfitLossPercentage = (investedAmount: number, currentMarketValue: number): number => {
-    if (investedAmount <= 0) return 0 // Prevents incorrect percentage calculation
-    return ((currentMarketValue - investedAmount) / investedAmount) * 100
-  }
-
-  return { userCreditBalance, userDebitBalance, userInvestedAmount, calculateProfitLossPercentage }
+  return { userCreditBalance, userDebitBalance, userInvestedAmount }
 }

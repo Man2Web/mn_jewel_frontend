@@ -154,6 +154,8 @@ export function Header() {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => (window.location.href = '/profile')}>Profile</DropdownMenuItem>
                 <DropdownMenuItem onClick={() => (window.location.href = '/orders')}>Orders</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => (window.location.href = '/wallet')}>Wallet</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => (window.location.href = '/user/schemes')}>Schemes</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (

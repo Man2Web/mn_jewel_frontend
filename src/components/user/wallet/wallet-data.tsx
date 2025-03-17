@@ -6,20 +6,9 @@ interface WalletDataProps {
   userCreditBalance: { [key: string]: number }
   userDebitBalance: { [key: string]: number }
   userInvestedAmount: { [key: string]: number }
-  calculateProfitLossPercentage: (
-    totalCreditGrams: number,
-    totalInvestedAmount: number,
-    totalDebitGrams: number,
-    currentMarketPrice: number,
-  ) => number
 }
 
-const WalletData: React.FC<WalletDataProps> = ({
-  userCreditBalance,
-  userDebitBalance,
-  userInvestedAmount,
-  calculateProfitLossPercentage,
-}) => {
+const WalletData: React.FC<WalletDataProps> = ({ userCreditBalance, userDebitBalance, userInvestedAmount }) => {
   const [materialPrice] = useGetMaterialPrice()
   const digitalMaterials = materialPrice.filter((data) => data.digitalOrder === true)
 
@@ -30,14 +19,11 @@ const WalletData: React.FC<WalletDataProps> = ({
         const totalDebitGrams = userDebitBalance[data.material_type] || 0
         const totalInvestedAmount = userInvestedAmount[data.material_type] || 0
         const currentMarketPrice = data.price
+        const totalWeight = totalCreditGrams - totalDebitGrams
+        const currentMarketValue = totalWeight * currentMarketPrice
 
-        const profitOrLoss = calculateProfitLossPercentage(
-          totalCreditGrams,
-          totalInvestedAmount,
-          totalDebitGrams,
-          currentMarketPrice,
-        )
-
+        const profitOrLoss =
+          totalInvestedAmount > 0 ? ((currentMarketValue - totalInvestedAmount) / totalInvestedAmount) * 100 : 0
         return (
           <div
             key={index}
