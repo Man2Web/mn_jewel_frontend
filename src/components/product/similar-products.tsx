@@ -38,18 +38,19 @@ const SimilarProducts = () => {
     <section>
       <h1 className="pb-2 text-2xl">Similar Products</h1>
       <div className="overflow-hidden">
-        <Slider {...settings}>
-          {!loading &&
-            productsData.length > 0 &&
-            productsData.map((product, index) => (
+        {!loading && productsData.length > 0 ? (
+          <Slider {...settings}>
+            {productsData.map((product, index) => (
               <div key={index} className="px-2">
                 <a href={`${product.documentId}`}>
                   <ProductCard product={product} bestSellingSection={true} />
                 </a>
               </div>
             ))}
-        </Slider>
-        {loading && <SkeletonLoader />}
+          </Slider>
+        ) : (
+          <SkeletonLoader />
+        )}
       </div>
     </section>
   )
