@@ -6,8 +6,8 @@ import SkeletonLoader from '../products/skeleton'
 const SimilarProducts = () => {
   const { productsData, loading } = useGetAllProducts()
   const settings = {
-    slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToShow: 4,
+    slidesToScroll: 4,
     infinite: false,
     responsive: [
       {

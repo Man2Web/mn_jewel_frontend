@@ -75,7 +75,7 @@ const Products = () => {
         <p className="my-4 font-semibold capitalize opacity-50 lg:hidden">
           (showing {productsData.length.toLocaleString()} designs)
         </p>
-        <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5">
+        <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
           {!loading &&
             productsData.length > 0 &&
             productsData.map((product, index) => (

@@ -18,7 +18,11 @@ const Banner: React.FC = () => {
         {bannerImages ? (
           bannerImages?.map((data, index) => (
             <div key={index} className="flex h-auto w-full items-center justify-center">
-              <img className="h-48 w-full max-w-full rounded-lg lg:h-[600px]" src={data} alt="img" />
+              <img
+                className="h-48 w-full max-w-full rounded-lg sm:h-[400px] md:h-[500px]  lg:h-[600px]"
+                src={data}
+                alt="img"
+              />
             </div>
           ))
         ) : (
