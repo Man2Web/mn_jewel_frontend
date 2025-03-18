@@ -24,7 +24,7 @@ const Auth = () => {
         {login ? <LoginForm /> : <SignUpForm />}
         <p className="flex justify-center pt-8 text-sm">
           Dont have an Account?{' '}
-          <div onClick={() => setLogin((prev) => !prev)} className="cursor-pointer pl-1 text-red-400">
+          <div onClick={() => setLogin((prev) => !prev)} className="cursor-pointer pl-1 text-brandColor">
             {login ? 'Sign Up' : 'Sign In'}
           </div>
         </p>

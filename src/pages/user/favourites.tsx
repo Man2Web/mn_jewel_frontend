@@ -21,7 +21,7 @@ const Favourites = () => {
             <section className="w-full">
               <div className="my-2">
                 <h1 className="font-serif text-2xl">Favourites</h1>
-                <span className="block h-0.5 w-1/5 bg-red-400 md:w-[100px]" />
+                <span className="block h-0.5 w-1/5 bg-brandColor md:w-[100px]" />
               </div>
               {userFavouritesData.map((data, index) => (
                 <div key={index}>

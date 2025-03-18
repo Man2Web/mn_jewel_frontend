@@ -8,7 +8,7 @@ const OrderDetails = ({ order }: { order: orderItemInterface }) => {
   const orderTimeDetails = ordersData?.createdAt ? new Date(ordersData.createdAt) : null
   return (
     <div className="rounded-lg border-2 border-red-100">
-      <div className="flex flex-col justify-between gap-4 bg-red-50 p-4 lg:flex-row lg:gap-0">
+      <div className="flex flex-col justify-between gap-4 bg-brandSecondary p-4 lg:flex-row lg:gap-0">
         <div className="flex gap-4">
           <div className="flex flex-col gap-1 text-sm">
             <p className="font-semibold">Ordered On</p>

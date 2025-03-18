@@ -9,9 +9,9 @@ const ProductPriceBreakdown = ({ title, product }: { title: string; product: Pro
   }, 0)
   const gstPrice = (product.gst / 100) * (itemBasePrice + valueAdditionPrice + otherStonePrice)
   return (
-    <div className="flex flex-col rounded-lg border border-red-400 bg-red-50 p-2">
+    <div className="flex flex-col rounded-lg border border-brandColor bg-brandSecondary p-2">
       <h1 className="text-lg">{title}</h1>
-      <span className="mb-2 mt-1 h-0.5 w-full bg-red-400" />
+      <span className="mb-2 mt-1 h-0.5 w-full bg-brandColor" />
       <div>
         <Table>
           <TableHeader>
@@ -24,7 +24,7 @@ const ProductPriceBreakdown = ({ title, product }: { title: string; product: Pro
           </TableHeader>
           <TableBody>
             <TableRow>
-              <TableCell className="text-red-400">Metal</TableCell>
+              <TableCell className="text-brandColor">Metal</TableCell>
               <TableCell>-</TableCell>
               <TableCell>-</TableCell>
               <TableCell>-</TableCell>
@@ -36,7 +36,7 @@ const ProductPriceBreakdown = ({ title, product }: { title: string; product: Pro
               <TableCell>{Number(itemBasePrice.toFixed(2)).toLocaleString()}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className="text-red-400">Stone</TableCell>
+              <TableCell className="text-brandColor">Stone</TableCell>
               <TableCell>-</TableCell>
               <TableCell>-</TableCell>
               <TableCell>-</TableCell>
@@ -50,25 +50,25 @@ const ProductPriceBreakdown = ({ title, product }: { title: string; product: Pro
               </TableRow>
             ))}
             <TableRow>
-              <TableCell className="text-red-400">Making Charges</TableCell>
+              <TableCell className="text-brandColor">Making Charges</TableCell>
               <TableCell>{product.value_Addition} %</TableCell>
               <TableCell>-</TableCell>
               <TableCell>{Number(valueAdditionPrice.toFixed(2)).toLocaleString()}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className="text-red-400">Sub Total</TableCell>
+              <TableCell className="text-brandColor">Sub Total</TableCell>
               <TableCell>-</TableCell>
               <TableCell>-</TableCell>
               <TableCell>{Number((itemBasePrice + valueAdditionPrice).toFixed(2)).toLocaleString()}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className="text-red-400">{`Tax (GST ${product.gst} %)`}</TableCell>
+              <TableCell className="text-brandColor">{`Tax (GST ${product.gst} %)`}</TableCell>
               <TableCell>-</TableCell>
               <TableCell>-</TableCell>
               <TableCell>{Number(gstPrice.toFixed(2)).toLocaleString()}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className="text-red-400">Grand Total</TableCell>
+              <TableCell className="text-brandColor">Grand Total</TableCell>
               <TableCell>-</TableCell>
               <TableCell>-</TableCell>
               <TableCell>

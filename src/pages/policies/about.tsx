@@ -5,7 +5,7 @@ const About = () => {
     <div className="px-4 py-6">
       <SectionSeperator title="About Us" description="" />
       <div className="prose prose-lg mx-auto ">
-        <h2 className="text-2xl font-bold text-red-400">Celebrating 40 Years of Timeless Elegance</h2>
+        <h2 className="text-2xl font-bold text-brandColor">Celebrating 40 Years of Timeless Elegance</h2>
         <p>
           At MN Jewel Park, we believe that jewelry is more than just an ornament—it’s a reflection of tradition, love,
           and craftsmanship. Established in 1984, we have been a trusted name in Vellore for 40 years, offering

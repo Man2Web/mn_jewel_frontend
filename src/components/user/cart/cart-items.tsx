@@ -85,7 +85,7 @@ const UserCartItem = ({
         </div>
       </div>
       {productData && productData?.stock_Quantity <= 0 && (
-        <p className="mx-auto pt-2 text-sm text-red-400">
+        <p className="mx-auto pt-2 text-sm text-brandColor">
           This item is currently out of stock remove the item from the cart to proceed to checkout.
         </p>
       )}

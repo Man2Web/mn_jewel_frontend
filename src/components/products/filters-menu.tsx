@@ -46,8 +46,8 @@ const FiltersMenu = ({ register, methods }: FiltersMenuProps) => {
               onClick={() => {
                 setOpenMenu(0)
               }}
-              className={`border-b  px-4 py-2 text-sm font-semibold hover:text-red-400 ${
-                openMenu === 0 ? 'text-red-400' : ''
+              className={`border-b  px-4 py-2 text-sm font-semibold hover:text-brandColor ${
+                openMenu === 0 ? 'text-brandColor' : ''
               }`}
             >
               Product Type
@@ -56,8 +56,8 @@ const FiltersMenu = ({ register, methods }: FiltersMenuProps) => {
               onClick={() => {
                 setOpenMenu(1)
               }}
-              className={`border-b  px-4 py-2 text-sm font-semibold hover:text-red-400 ${
-                openMenu === 1 ? 'text-red-400' : ''
+              className={`border-b  px-4 py-2 text-sm font-semibold hover:text-brandColor ${
+                openMenu === 1 ? 'text-brandColor' : ''
               }`}
             >
               Sub Category
@@ -66,8 +66,8 @@ const FiltersMenu = ({ register, methods }: FiltersMenuProps) => {
               onClick={() => {
                 setOpenMenu(2)
               }}
-              className={`border-b  px-4 py-2 text-sm font-semibold hover:text-red-400 ${
-                openMenu === 2 ? 'text-red-400' : ''
+              className={`border-b  px-4 py-2 text-sm font-semibold hover:text-brandColor ${
+                openMenu === 2 ? 'text-brandColor' : ''
               }`}
             >
               Material
@@ -76,8 +76,8 @@ const FiltersMenu = ({ register, methods }: FiltersMenuProps) => {
               onClick={() => {
                 setOpenMenu(3)
               }}
-              className={`border-b  px-4 py-2 text-sm font-semibold hover:text-red-400 ${
-                openMenu === 3 ? 'text-red-400' : ''
+              className={`border-b  px-4 py-2 text-sm font-semibold hover:text-brandColor ${
+                openMenu === 3 ? 'text-brandColor' : ''
               }`}
             >
               Metal
@@ -86,31 +86,33 @@ const FiltersMenu = ({ register, methods }: FiltersMenuProps) => {
               onClick={() => {
                 setOpenMenu(4)
               }}
-              className={`border-b  px-4 py-2 text-sm font-semibold hover:text-red-400 ${
-                openMenu === 4 ? 'text-red-400' : ''
+              className={`border-b  px-4 py-2 text-sm font-semibold hover:text-brandColor ${
+                openMenu === 4 ? 'text-brandColor' : ''
               }`}
             >
               Metal Color
             </div>
             <div
               onClick={() => setOpenMenu(5)}
-              className={`border-b  px-4 py-2 text-sm font-semibold hover:text-red-400 ${
-                openMenu === 5 ? 'text-red-400' : ''
+              className={`border-b  px-4 py-2 text-sm font-semibold hover:text-brandColor ${
+                openMenu === 5 ? 'text-brandColor' : ''
               }`}
             >
               Price
             </div>
             <div
               onClick={() => setOpenMenu(6)}
-              className={`border-b  px-4 py-2 text-sm font-semibold hover:text-red-400 ${
-                openMenu === 6 ? 'text-red-400' : ''
+              className={`border-b  px-4 py-2 text-sm font-semibold hover:text-brandColor ${
+                openMenu === 6 ? 'text-brandColor' : ''
               }`}
             >
               Gender
             </div>
             <div
               onClick={() => setOpenMenu(7)}
-              className={`px-4 py-2 text-sm font-semibold hover:text-red-400 ${openMenu === 7 ? 'text-red-400' : ''}`}
+              className={`px-4 py-2 text-sm font-semibold hover:text-brandColor ${
+                openMenu === 7 ? 'text-brandColor' : ''
+              }`}
             >
               Ocassion
             </div>

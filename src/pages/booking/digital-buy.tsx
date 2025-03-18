@@ -63,7 +63,7 @@ const DigitalBuy = () => {
       <div className="w-full">
         <div className="my-2">
           <h1 className="font-serif text-2xl ">Digital Invest</h1>
-          <span className="block h-0.5 w-1/5 bg-red-400 md:w-[100px]" />
+          <span className="block h-0.5 w-1/5 bg-brandColor md:w-[100px]" />
         </div>
       </div>
       <div className="my-4 w-full ">
@@ -94,7 +94,7 @@ const DigitalBuy = () => {
                   ))}
                 </SelectContent>
               </Select>
-              {errors.materialType && <p className="mt-2 text-sm text-red-400">{errors.materialType.message}</p>}
+              {errors.materialType && <p className="mt-2 text-sm text-brandColor">{errors.materialType.message}</p>}
             </div>
 
             {/* Grams Input */}
@@ -108,7 +108,7 @@ const DigitalBuy = () => {
                 placeholder="Enter grams"
                 onChange={handleGramsChange}
               />
-              {errors.grams && <p className="mt-2 text-sm text-red-400">{errors.grams.message}</p>}
+              {errors.grams && <p className="mt-2 text-sm text-brandColor">{errors.grams.message}</p>}
             </div>
 
             {/* Amount Input */}
@@ -122,7 +122,7 @@ const DigitalBuy = () => {
                 placeholder="Enter amount"
                 onChange={handleAmountChange}
               />
-              {errors.amount && <p className="mt-2 text-sm text-red-400">{errors.amount.message}</p>}
+              {errors.amount && <p className="mt-2 text-sm text-brandColor">{errors.amount.message}</p>}
             </div>
 
             <Button type="submit" className="w-full" variant="primary">

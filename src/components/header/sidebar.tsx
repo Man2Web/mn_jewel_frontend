@@ -16,7 +16,7 @@ const Sidebar = ({ setIsMenuOpen }: HeaderProps) => {
   if (isHomePageCategories.length === 0) return null
   return (
     <section className="absolute top-0 z-10 h-full w-full bg-white">
-      <div className="flex items-center justify-between border-b border-b-yellow-500 p-4">
+      <div className="flex items-center justify-between border-b border-b-brandAccent-dark p-4">
         <div className="flex gap-2">
           <a href="/">
             <img
@@ -38,7 +38,7 @@ const Sidebar = ({ setIsMenuOpen }: HeaderProps) => {
               setIsEarMenuOpen(true)
               setMenuData(data)
             }}
-            className="flex items-center justify-between rounded-sm bg-red-50 pr-2"
+            className="flex items-center justify-between rounded-sm bg-brandSecondary pr-2"
           >
             <div className="flex items-center gap-2">
               <img className="min-h-12 min-w-12 max-w-12 max-h-12" src={`${data?.navBarPngImage.url}`} />
@@ -55,7 +55,7 @@ const Sidebar = ({ setIsMenuOpen }: HeaderProps) => {
           <a
             href="https://www.google.com/maps/place/MN+Jewel+Park/@12.906834,79.133984,13z/data=!4m6!3m5!1s0x3bad38e73a2806d3:0x27ddd4555ccdee12!8m2!3d12.9068336!4d79.133984!16s%2Fg%2F1thd07pl?hl=en&entry=ttu&g_ep=EgoyMDI1MDEwMS4wIKXMDSoASAFQAw%3D%3D"
             target="_blank"
-            className="flex max-h-10 w-full items-center justify-center gap-2 rounded-sm border border-red-400 px-4 py-2"
+            className="flex max-h-10 w-full items-center justify-center gap-2 rounded-sm border border-brandColor px-4 py-2"
             rel="noreferrer"
           >
             <StoreIcon color="red" size={12} strokeWidth={1} />

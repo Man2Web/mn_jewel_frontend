@@ -17,7 +17,7 @@ const Explore = () => {
           <a
             key={index}
             href={`products?metalType=${data.material_type}`}
-            className="flex max-h-[700px] min-h-[700px] w-1/3 flex-col items-center object-cover hover:text-red-400"
+            className="flex max-h-[700px] min-h-[700px] w-1/3 flex-col items-center object-cover hover:text-brandColor"
           >
             <ImageEffect
               className="max-h-[700px] min-h-[700px]"

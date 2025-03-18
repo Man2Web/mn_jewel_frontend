@@ -56,7 +56,7 @@ const ForgotPass = () => {
         </Button>
         <p className="flex justify-center pt-8 text-sm">
           Remember Your Password?{' '}
-          <a className="pl-1 text-red-400" href="#">
+          <a className="pl-1 text-brandColor" href="#">
             Sign In
           </a>
         </p>

@@ -21,7 +21,7 @@ const SignUpForm = () => {
       <div>
         <Label>Email</Label>
         <Input {...register('email')} placeholder="John Doe" type="text" />
-        {errors.email && <p className="mt-2 text-sm text-red-400">{errors.email.message}</p>}
+        {errors.email && <p className="mt-2 text-sm text-brandColor">{errors.email.message}</p>}
       </div>
       <div>
         <Label>Phone Number</Label>
@@ -40,7 +40,7 @@ const SignUpForm = () => {
             }}
           />
         </div>
-        {errors.username && <p className="mt-2 text-sm text-red-400">{errors.username.message}</p>}
+        {errors.username && <p className="mt-2 text-sm text-brandColor">{errors.username.message}</p>}
       </div>
       <div>
         <Label>Password</Label>
@@ -57,9 +57,9 @@ const SignUpForm = () => {
             </InputOTP>
           )}
         />
-        {errors.password && <p className="mt-2 text-sm text-red-400">{errors.password.message}</p>}
+        {errors.password && <p className="mt-2 text-sm text-brandColor">{errors.password.message}</p>}
       </div>
-      <a className="flex justify-end pt-2 text-sm text-red-400" href="#">
+      <a className="flex justify-end pt-2 text-sm text-brandColor" href="#">
         Forgot Password?
       </a>
       <Button type="submit" className="my-2 w-full" variant="primary">

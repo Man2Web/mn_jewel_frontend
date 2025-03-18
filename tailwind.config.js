@@ -12,6 +12,13 @@ module.exports = {
     },
     extend: {
       colors: {
+        brandColor: '#f87171', //red-400
+        brandSecondary: '#fef2f2', //red-50
+        brandAccent: {
+          light: '#FACC15', //yellow-400
+          dark: '#EAB308', //yellow-500
+          darker: '#CA8A04', //yellow-600
+        },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

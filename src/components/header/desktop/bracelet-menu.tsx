@@ -5,12 +5,12 @@ const BraceletMenu = () => {
     <section className="flex h-auto gap-2">
       <div className="w-4/12 border border-y-0 border-l-0 border-r-slate-300 p-2">
         <p className="text-sm">Shop by Style</p>
-        <span className="mt-2 block h-0.5 w-1/4 bg-red-400" />
+        <span className="mt-2 block h-0.5 w-1/4 bg-brandColor" />
         <div className="mt-2 grid grid-cols-2 gap-2">
           {earRingsData.map((earRing, index) => (
             <a
               href={earRing.link}
-              className="flex max-h-[80px] min-h-[80px] min-w-[80px] max-w-[80px] items-center gap-2 rounded-sm  hover:text-red-400"
+              className="flex max-h-[80px] min-h-[80px] min-w-[80px] max-w-[80px] items-center gap-2 rounded-sm  hover:text-brandColor"
               key={index}
             >
               <img className="h-full w-full" src={earRing.img} alt={earRing.name} />
@@ -21,13 +21,13 @@ const BraceletMenu = () => {
       </div>
       <div className="w-3/12 border border-y-0 border-l-0 border-r-slate-300 p-2">
         <p className="text-sm">Shop by Price</p>
-        <span className="mt-2 block h-0.5 w-1/4 bg-red-400" />
+        <span className="mt-2 block h-0.5 w-1/4 bg-brandColor" />
         <div className="mt-2 grid grid-cols-1 gap-2">
           {priceData.map((price, index) => (
             <a
               key={index}
               href={price.link}
-              className="mx-auto w-full p-1 text-sm hover:cursor-pointer hover:text-red-400"
+              className="mx-auto w-full p-1 text-sm hover:cursor-pointer hover:text-brandColor"
             >
               {price.name}
             </a>
@@ -36,15 +36,15 @@ const BraceletMenu = () => {
       </div>
       <div className="w-3/12 border border-y-0 border-l-0 border-r-slate-300 p-2">
         <p className="text-sm">Shop by Metal & Stone</p>
-        <span className="mt-2 block h-0.5 w-1/4 bg-red-400" />
+        <span className="mt-2 block h-0.5 w-1/4 bg-brandColor" />
         <div className="mt-2 grid grid-cols-1 gap-2">
           {metalsData.map((metal, index) => (
             <a
               href={metal.link}
-              className="flex items-center gap-2 p-1 hover:cursor-pointer hover:text-red-400"
+              className="flex items-center gap-2 p-1 hover:cursor-pointer hover:text-brandColor"
               key={index}
             >
-              <span className="rounded-full bg-red-400 p-1.5" />
+              <span className="rounded-full bg-brandColor p-1.5" />
               <p className="text-sm">{metal.name}</p>
             </a>
           ))}

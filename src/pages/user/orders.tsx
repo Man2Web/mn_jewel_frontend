@@ -10,7 +10,7 @@ const Orders = () => {
         <div className="p-4 lg:px-6 lg:py-8">
           <div className="my-2">
             <h1 className="font-serif text-2xl ">Orders</h1>
-            <span className="block h-0.5 w-1/5 bg-red-400 md:w-[100px]" />
+            <span className="block h-0.5 w-1/5 bg-brandColor md:w-[100px]" />
           </div>
           <div className="flex flex-col gap-4">
             {userData.orders.map((data, index) => (

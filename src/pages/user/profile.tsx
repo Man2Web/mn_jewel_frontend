@@ -11,11 +11,11 @@ const Profile = () => {
     <section className="p-4 lg:px-6 lg:py-8">
       <div className="my-2">
         <h1 className="font-serif text-2xl ">Profile</h1>
-        <span className="block h-0.5 w-1/5 bg-red-400 md:w-[100px]" />
+        <span className="block h-0.5 w-1/5 bg-brandColor md:w-[100px]" />
       </div>
       <div className="flex flex-col items-center gap-2">
-        <div className="flex h-20 w-20 items-center justify-center rounded-full border border-red-400 bg-red-100 p-4">
-          <span className="text-red-400">
+        <div className="flex h-20 w-20 items-center justify-center rounded-full border border-brandColor bg-red-100 p-4">
+          <span className="text-brandColor">
             <UserIcon size={30} />
           </span>
         </div>
