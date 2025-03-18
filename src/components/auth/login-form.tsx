@@ -35,7 +35,7 @@ const LoginForm = () => {
             }}
           />
         </div>
-        {errors.username && <p className="mt-2 text-sm text-red-400">{errors.username.message}</p>}
+        {errors.username && <p className="mt-2 text-sm text-brandColor">{errors.username.message}</p>}
       </div>
       <div>
         <Label>Password</Label>
@@ -52,9 +52,9 @@ const LoginForm = () => {
             </InputOTP>
           )}
         />
-        {errors.password && <p className="mt-2 text-sm text-red-400">{errors.password.message}</p>}
+        {errors.password && <p className="mt-2 text-sm text-brandColor">{errors.password.message}</p>}
       </div>
-      <a className="flex justify-end pt-2 text-sm text-red-400" href="#">
+      <a className="flex justify-end pt-2 text-sm text-brandColor" href="#">
         Forgot Password?
       </a>
       <Button type="submit" className="my-2 w-full" variant="primary">

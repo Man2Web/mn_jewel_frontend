@@ -30,13 +30,13 @@ const CartSummary = ({
       <div className="my-2 flex justify-between">
         <div>
           <h1 className="font-serif text-2xl ">Order Summary</h1>
-          <span className="block h-0.5 w-1/5 bg-red-400 md:w-[200px]" />
+          <span className="block h-0.5 w-1/5 bg-brandColor md:w-[200px]" />
         </div>
         <DialogTrigger>
           <Button variant="primary">Available Coupon</Button>
         </DialogTrigger>
       </div>
-      <div className="rounded-md border border-red-400 bg-red-50 p-4">
+      <div className="rounded-md border border-brandColor bg-brandSecondary p-4">
         <div className="flex flex-col gap-2">
           {userCartData.map((data, index) => (
             <div key={index} className="flex justify-between">
@@ -56,7 +56,7 @@ const CartSummary = ({
                 {userSelectedCoupon && (
                   <span
                     onClick={() => setUserSelectedCoupon(undefined)}
-                    className="font-serif text-sm text-red-400 hover:cursor-pointer"
+                    className="font-serif text-sm text-brandColor hover:cursor-pointer"
                   >
                     Remove Coupon
                   </span>
@@ -68,7 +68,7 @@ const CartSummary = ({
               </p>
             </div>
           )}
-          <span className="my-2 block  h-0.5 w-full bg-red-400" />
+          <span className="my-2 block  h-0.5 w-full bg-brandColor" />
           <div className="flex justify-between">
             <p className="font-serif">Total Price</p>
             <p className="flex items-center">

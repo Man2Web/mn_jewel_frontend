@@ -11,7 +11,7 @@ const Navbar = () => {
   if (isHomePageCategories.length === 0) return null
   return (
     <nav
-      className="hidden w-full border border-solid border-b-slate-200 border-t-yellow-600 py-2 lg:relative lg:flex lg:px-32 xl:px-60"
+      className="hidden w-full border border-solid border-b-slate-200 border-t-brandAccent-darker py-2 lg:relative lg:flex lg:px-32 xl:px-60"
       onMouseLeave={() => setActiveMenu(null)}
     >
       <ul className="mx-auto flex gap-4 lg:px-32 xl:px-60">
@@ -22,7 +22,7 @@ const Navbar = () => {
               setActiveMenu(index)
               setMenuData(data)
             }}
-            className="mx-auto cursor-pointer px-2 text-sm opacity-70 transition-colors duration-300 hover:font-semibold hover:text-yellow-500"
+            className="mx-auto cursor-pointer px-2 text-sm opacity-70 transition-colors duration-300 hover:font-semibold hover:text-brandAccent-dark"
           >
             {data.name}
           </li>

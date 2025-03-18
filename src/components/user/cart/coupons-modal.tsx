@@ -29,12 +29,15 @@ const CouponsModal = ({
       </DialogHeader>
       {coupons.length > 0 &&
         coupons.map((data, index) => (
-          <div className="flex items-center justify-between rounded-lg border border-red-400 bg-red-50 p-2" key={index}>
+          <div
+            className="flex items-center justify-between rounded-lg border border-brandColor bg-brandSecondary p-2"
+            key={index}
+          >
             <div>
               <h1 className="font-serif text-lg">{data.couponName}</h1>
               <p className="text-sm">{data.couponDescription}</p>
               {totalPrice < Number(data.minCartValue) && (
-                <p className="text-sm text-red-400">
+                <p className="text-sm text-brandColor">
                   Add items worth {Number(Number(data.minCartValue - totalPrice).toFixed(2)).toLocaleString()} to avail
                   this Coupon
                 </p>

@@ -9,8 +9,8 @@ const DigitalOrder = ({ orderData }: { orderData: digitalOrder }) => {
     return ''
   }
   return (
-    <div className="justify-between gap-4 rounded-lg border border-red-400 lg:flex-row lg:gap-0">
-      <div className="flex items-center justify-between rounded-lg bg-red-50 p-2 font-serif">
+    <div className="justify-between gap-4 rounded-lg border border-brandColor lg:flex-row lg:gap-0">
+      <div className="flex items-center justify-between rounded-lg bg-brandSecondary p-2 font-serif">
         <div className="flex items-center gap-2 text-sm">
           <div>
             <img className="max-h-4" src={orderData.material_type.digitalIcon.url} />

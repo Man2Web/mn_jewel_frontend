@@ -30,7 +30,7 @@ const AddressCollectionForm = ({ methods }: AddressCollectionFormProps) => {
         <div className="w-full lg:w-1/2">
           <Label>Email</Label>
           <Input {...register('email')} type="email" placeholder="JohnDoe@gmail.com" />
-          {errors.email && <p className="text-sm text-red-400">{errors.email.message}</p>}
+          {errors.email && <p className="text-sm text-brandColor">{errors.email.message}</p>}
         </div>
         <div className="w-full lg:w-1/2">
           <Label>Phone Number</Label>
@@ -40,29 +40,29 @@ const AddressCollectionForm = ({ methods }: AddressCollectionFormProps) => {
             </Button>
             <Input {...register('phoneNumber')} type="tel" placeholder="8780899897" />
           </div>
-          {errors.phoneNumber && <p className="text-sm text-red-400">{errors.phoneNumber.message}</p>}
+          {errors.phoneNumber && <p className="text-sm text-brandColor">{errors.phoneNumber.message}</p>}
         </div>
       </div>
       <div className="w-full lg:w-1/2">
         <Label>Full Name</Label>
         <Input {...register('name')} type="text" placeholder="John Doe" />
-        {errors.name && <p className="text-sm text-red-400">{errors.name.message}</p>}
+        {errors.name && <p className="text-sm text-brandColor">{errors.name.message}</p>}
       </div>
       <div>
         <Label>Address</Label>
         <Textarea {...register('address')} placeholder="Local Street 1st lane" />
-        {errors.address && <p className="text-sm text-red-400">{errors.address.message}</p>}
+        {errors.address && <p className="text-sm text-brandColor">{errors.address.message}</p>}
       </div>
       <div className="flex flex-col lg:flex-row lg:gap-2">
         <div className="w-full lg:w-1/2">
           <Label>City</Label>
           <Input {...register('city')} type="text" placeholder="Vellore" />
-          {errors.city && <p className="text-sm text-red-400">{errors.city.message}</p>}
+          {errors.city && <p className="text-sm text-brandColor">{errors.city.message}</p>}
         </div>
         <div className="w-full lg:w-1/2">
           <Label>Pincode</Label>
           <Input {...register('pincode')} type="tel" placeholder="500012" />
-          {errors.pincode && <p className="text-sm text-red-400">{errors.pincode.message}</p>}
+          {errors.pincode && <p className="text-sm text-brandColor">{errors.pincode.message}</p>}
         </div>
       </div>
     </div>

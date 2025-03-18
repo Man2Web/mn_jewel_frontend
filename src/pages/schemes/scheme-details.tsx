@@ -13,13 +13,13 @@ const SchemeDetails = () => {
       <div className="w-full">
         <div className="my-2">
           <h1 className="font-serif text-2xl">Scheme Details</h1>
-          <span className="block h-0.5 w-1/5 bg-red-400 md:w-[100px]" />
+          <span className="block h-0.5 w-1/5 bg-brandColor md:w-[100px]" />
         </div>
       </div>
       {schemeData ? (
         <div className="w-full">
           <div className="flex items-center justify-between">
-            <h1 className="font-serif text-xl text-red-400">{schemeData?.name}</h1>
+            <h1 className="font-serif text-xl text-brandColor">{schemeData?.name}</h1>
             <img className="h-8 w-auto" src={schemeData?.logo?.url} />
           </div>
           <div className="mt-4 flex flex-col gap-2">
@@ -38,7 +38,7 @@ const SchemeDetails = () => {
           <div>
             <div className="my-2">
               <h1 className="font-serif text-xl">Note</h1>
-              <span className="block h-0.5 w-1/5 bg-red-400 md:w-[75px]" />
+              <span className="block h-0.5 w-1/5 bg-brandColor md:w-[75px]" />
             </div>
             <div className="flex flex-col gap-2">
               <p>{schemeData?.planDescription}</p>

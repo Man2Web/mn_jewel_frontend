@@ -8,7 +8,7 @@ const CategorySlider = () => {
       {metalData.map((data, index) => (
         <div className="flex flex-col items-center" key={index}>
           <img
-            className="max-h-[75px] min-h-[75px] min-w-[75px] max-w-[75px] rounded-full border border-yellow-600 p-1"
+            className="max-h-[75px] min-h-[75px] min-w-[75px] max-w-[75px] rounded-full border border-brandAccent-darker p-1"
             src={`${
               data?.homepageBanner?.url
                 ? data?.homepageBanner?.url

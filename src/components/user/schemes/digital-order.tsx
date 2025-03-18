@@ -6,11 +6,11 @@ const DigitalSchemeTransaction = ({ orderData }: { orderData: SchemeTransaction 
   const orderPaymentStatusColor = (paymentStatus: string) => {
     if (paymentStatus === 'Success') return 'text-green-600'
     else if (paymentStatus === 'Failed') return 'text-red-600'
-    return 'text-yellow-600'
+    return 'text-brandAccent-darker'
   }
   return (
-    <div className="justify-between gap-4 rounded-lg border border-red-400 lg:flex-row lg:gap-0">
-      <div className="flex items-center justify-between rounded-lg bg-red-50 p-2 font-serif">
+    <div className="justify-between gap-4 rounded-lg border border-brandColor lg:flex-row lg:gap-0">
+      <div className="flex items-center justify-between rounded-lg bg-brandSecondary p-2 font-serif">
         <div className="flex items-center gap-2 text-sm">
           <div>
             <img className="max-h-4" src={orderData?.scheme?.logo.url} />

@@ -4,9 +4,13 @@ const SectionSeperator = ({ title, description }: { title: string; description: 
   return (
     <section>
       <div className="flex items-center justify-center space-x-4">
-        <span className="block h-0.5 w-14 rounded-l-full bg-yellow-400" />
-        <GemIcon strokeWidth={1.5} color="#FACC15" />
-        <span className="block h-0.5 w-14 rounded-r-full bg-yellow-400" />
+        <span className="block h-0.5 w-14 rounded-l-full bg-brandAccent-light" />
+        <span className="text-brandAccent-light">
+          {' '}
+          <GemIcon strokeWidth={1.5} />
+        </span>
+
+        <span className="block h-0.5 w-14 rounded-r-full bg-brandAccent-light" />
       </div>
       <div className="py-2">
         <h1 className="flex justify-center font-serif text-xl capitalize tracking-wide lg:text-2xl">{title}</h1>

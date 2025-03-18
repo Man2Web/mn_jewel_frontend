@@ -12,7 +12,7 @@ const Wallet = () => {
       <div className="w-full lg:w-1/2">
         <div className="my-2">
           <h1 className="font-serif text-2xl ">Wallet</h1>
-          <span className="block h-0.5 w-1/5 bg-red-400 md:w-[100px]" />
+          <span className="block h-0.5 w-1/5 bg-brandColor md:w-[100px]" />
         </div>
         <WalletData
           userCreditBalance={userCreditBalance}
@@ -27,7 +27,7 @@ const Wallet = () => {
         <div className="flex max-h-[80vh] w-full flex-col">
           <div className="my-2">
             <h1 className="font-serif text-2xl ">Transactions</h1>
-            <span className="block h-0.5 w-1/5 bg-red-400 md:w-[100px]" />
+            <span className="block h-0.5 w-1/5 bg-brandColor md:w-[100px]" />
           </div>
           <div className="scrollbar-hide no-scrollbar flex h-full w-full flex-col gap-2 overflow-y-scroll">
             {Number(walletData.length) > 0 &&

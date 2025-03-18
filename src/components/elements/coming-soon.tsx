@@ -5,7 +5,7 @@ const CommingSoon = () => {
   return (
     <div className="flex h-screen flex-col items-center justify-center gap-4">
       <HammerIcon color="#F87171" size={42} strokeWidth={1.2} />
-      <h1 className="font-serif text-2xl text-red-400">
+      <h1 className="font-serif text-2xl text-brandColor">
         Comming Soon, Meanwhile you can check our wide range of products...
       </h1>
       <div>

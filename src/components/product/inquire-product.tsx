@@ -26,7 +26,7 @@ const InquireProduct = ({ productId }: { productId: string | undefined }) => {
         <div>
           <Label>Name</Label>
           <Input {...register('name')} type="text" placeholder="John Doe" />
-          <p className="text-sm text-red-400">{errors.name?.message}</p>
+          <p className="text-sm text-brandColor">{errors.name?.message}</p>
         </div>
         <div>
           <Label>Phone Number</Label>
@@ -36,19 +36,19 @@ const InquireProduct = ({ productId }: { productId: string | undefined }) => {
             </Button>
             <Input {...register('phone_number')} type="tel" placeholder="8790988098" />
           </div>
-          <p className="text-sm text-red-400">{errors.phone_number?.message}</p>
+          <p className="text-sm text-brandColor">{errors.phone_number?.message}</p>
         </div>
 
         <div>
           <Label>Email</Label>
           <Input {...register('email')} type="email" placeholder="John@Doe.com" />
-          <p className="text-sm text-red-400">{errors.email?.message}</p>
+          <p className="text-sm text-brandColor">{errors.email?.message}</p>
         </div>
 
         <div>
           <Label>Additional Message</Label>
           <Textarea {...register('additional_message')} placeholder="Can you customize this by my name?" />
-          <p className="text-sm text-red-400">{errors.additional_message?.message}</p>
+          <p className="text-sm text-brandColor">{errors.additional_message?.message}</p>
         </div>
 
         <Button variant="primary" className="w-full">

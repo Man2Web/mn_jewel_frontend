@@ -18,8 +18,8 @@ const Tour = () => {
               image_source={data.img}
               image_alt_text={data.description}
             />
-            <div className="flex flex-grow items-center gap-2 rounded-b-xl bg-red-50 p-2">
-              <span className="text-red-400">
+            <div className="flex flex-grow items-center gap-2 rounded-b-xl bg-brandSecondary p-2">
+              <span className="text-brandColor">
                 <HomeIcon className="h-12 w-12 lg:h-10 lg:w-10" strokeWidth={1} />
               </span>
               <div className="flex-grow">

@@ -27,7 +27,7 @@ const WalletData: React.FC<WalletDataProps> = ({ userCreditBalance, userDebitBal
         return (
           <div
             key={index}
-            className="relative flex w-full flex-col gap-2 rounded-lg border border-red-400 bg-red-50 p-2"
+            className="relative flex w-full flex-col gap-2 rounded-lg border border-brandColor bg-brandSecondary p-2"
           >
             <div>
               <img className="h-8 w-auto" src={data?.digitalIcon?.url} />
@@ -58,7 +58,7 @@ const WalletData: React.FC<WalletDataProps> = ({ userCreditBalance, userDebitBal
                 </div>
               </div>
             </div>
-            <h1 className="absolute right-0 top-0 mr-2 mt-2 font-serif text-xl text-red-400">{data.name}</h1>
+            <h1 className="absolute right-0 top-0 mr-2 mt-2 font-serif text-xl text-brandColor">{data.name}</h1>
           </div>
         )
       })}

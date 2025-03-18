@@ -30,12 +30,12 @@ export function Header() {
   const isLoggedIn = localStorage.getItem('token')
   return (
     <div>
-      <div className="overflow-hidden border-b border-red-400 bg-red-50 py-1 text-sm lg:hidden">
+      <div className="overflow-hidden border-b border-brandColor bg-brandSecondary py-1 text-sm lg:hidden">
         <div className="flex animate-marquee gap-2 whitespace-nowrap ">
           {materialPrice.map((data, index) => (
             <span key={index} className="mx-4 flex items-center gap-2">
               <DiamondIcon fill="yellow" size={10} />
-              <p className="text-red-400">
+              <p className="text-brandColor">
                 {data.name}: {Number(data.price.toFixed(2)).toLocaleString()}
               </p>
               <DiamondIcon fill="yellow" size={10} />
@@ -83,7 +83,7 @@ export function Header() {
           </div>
         </div>
         <div className="ml-auto flex items-center space-x-4 px-4 lg:ml-0">
-          <div className="hidden cursor-pointer items-center gap-4 rounded-full border border-red-200 bg-red-50 px-4 py-2 transition-colors delay-100 ease-in hover:border-red-400 hover:bg-red-100 lg:flex">
+          <div className="hidden cursor-pointer items-center gap-4 rounded-full border border-red-200 bg-brandSecondary px-4 py-2 transition-colors delay-100 ease-in hover:border-brandColor hover:bg-red-100 lg:flex">
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger className="flex items-center gap-4 text-sm font-semibold">
@@ -172,7 +172,7 @@ export function Header() {
                   <HeartIcon strokeWidth={1} />
                 </IconEffect>
                 {userFavouritesData && userFavouritesData.length > 0 && (
-                  <span className="absolute right-[-4px] top-[-8px] flex h-4 w-4 justify-center rounded-full bg-red-400 text-xs text-white">
+                  <span className="absolute right-[-4px] top-[-8px] flex h-4 w-4 justify-center rounded-full bg-brandColor text-xs text-white">
                     {userFavouritesData.length}
                   </span>
                 )}
@@ -182,7 +182,7 @@ export function Header() {
                   <ShoppingBagIcon strokeWidth={1} />
                 </IconEffect>
                 {userCartData && userCartData.length > 0 && (
-                  <span className="absolute right-[-4px] top-[-8px] flex h-4 w-4 justify-center rounded-full bg-red-400 text-xs text-white">
+                  <span className="absolute right-[-4px] top-[-8px] flex h-4 w-4 justify-center rounded-full bg-brandColor text-xs text-white">
                     {userCartData.length}
                   </span>
                 )}

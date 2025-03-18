@@ -6,7 +6,7 @@ const Schemes = () => {
       <div className="w-full">
         <div className="my-2">
           <h1 className="font-serif text-2xl ">Schemes</h1>
-          <span className="block h-0.5 w-1/5 bg-red-400 md:w-[100px]" />
+          <span className="block h-0.5 w-1/5 bg-brandColor md:w-[100px]" />
         </div>
         <SchemesData />
       </div>
