@@ -67,7 +67,7 @@ const ContactUs = () => {
             <a
               target="_blank"
               href="https://www.facebook.com/mnjewelparkvellore/"
-              className="rounded-full bg-brandColor p-2 text-white transition-colors delay-100 ease-in hover:bg-brandColor"
+              className="rounded-full bg-brandColor p-2 text-white transition-colors delay-100 ease-in hover:bg-red-500"
               rel="noreferrer"
             >
               <FacebookIcon />
@@ -75,7 +75,7 @@ const ContactUs = () => {
             <a
               target="_blank"
               href="https://www.instagram.com/mn_jewelpark/"
-              className="rounded-full bg-brandColor p-2 text-white transition-colors delay-100 ease-in hover:bg-brandColor"
+              className="rounded-full bg-brandColor p-2 text-white transition-colors delay-100 ease-in hover:bg-red-500"
               rel="noreferrer"
             >
               <InstagramIcon />
