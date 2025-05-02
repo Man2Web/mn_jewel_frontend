@@ -27,7 +27,7 @@ const EarRingsMenu = ({
       </div>
       <div className="p-4">
         <img
-          src={`${menuData?.homePageImage.url}`}
+          src={`${import.meta.env.VITE_STRAPI}${menuData?.homePageImage.url}`}
           alt={menuData?.name}
           className="max-h-[150px] min-h-[150px] w-full rounded-md"
         />
@@ -48,7 +48,11 @@ const EarRingsMenu = ({
               className="flex min-h-[50px] min-w-[50px] flex-col items-center gap-2 rounded-sm border border-brandColor px-4 py-2"
               key={index}
             >
-              <img className="h-full w-full" src={`${data?.png_Image.url}`} alt={data.name} />
+              <img
+                className="h-full w-full"
+                src={`${import.meta.env.VITE_STRAPI}${data?.png_Image.url}`}
+                alt={data.name}
+              />
               <p className="text-sm">{data.name}</p>
             </a>
           ))}

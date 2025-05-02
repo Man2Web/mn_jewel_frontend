@@ -4,6 +4,7 @@ import SectionSeperator from './section-seperator'
 import { ArrowRight, HomeIcon } from 'lucide-react'
 
 const Tour = () => {
+  console.log(tourData)
   return (
     <section className="p-2">
       <SectionSeperator

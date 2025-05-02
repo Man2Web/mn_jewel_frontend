@@ -59,7 +59,7 @@ const Product = () => {
               <img
                 key={index}
                 className="h-96 w-full  rounded-lg object-cover md:h-[550px] lg:h-[750px] lg:w-[900px] lg:object-fill"
-                src={`${data.url}`}
+                src={`${import.meta.env.VITE_STRAPI}${data.url}`}
                 alt="Product Image"
               />
             ))}

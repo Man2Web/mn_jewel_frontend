@@ -51,11 +51,7 @@ export function Header() {
         </div>
         <div className="flex space-x-8">
           <a href="/">
-            <img
-              src="https://d1uukejij9whar.cloudfront.net/logo_9721e4d6dd.png"
-              alt="logo"
-              className="h-12 rounded-sm"
-            />
+            <img src="public\assets\logo.png" alt="logo" className="h-12 rounded-sm" />
           </a>
           <div className="hidden items-center gap-6 lg:flex">
             <IconEffect>

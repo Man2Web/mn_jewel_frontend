@@ -19,11 +19,7 @@ const Sidebar = ({ setIsMenuOpen }: HeaderProps) => {
       <div className="flex items-center justify-between border-b border-b-brandAccent-dark p-4">
         <div className="flex gap-2">
           <a href="/">
-            <img
-              src="https://d1uukejij9whar.cloudfront.net/logo_9721e4d6dd.png"
-              alt="logo"
-              className="h-10 rounded-sm"
-            />
+            <img src="public\assets\logo.png" alt="logo" className="h-10 rounded-sm" />
           </a>
         </div>
         <IconEffect>
@@ -41,7 +37,10 @@ const Sidebar = ({ setIsMenuOpen }: HeaderProps) => {
             className="flex items-center justify-between rounded-sm bg-brandSecondary pr-2"
           >
             <div className="flex items-center gap-2">
-              <img className="min-h-12 min-w-12 max-w-12 max-h-12" src={`${data?.navBarPngImage.url}`} />
+              <img
+                className="min-h-12 min-w-12 max-w-12 max-h-12"
+                src={`${import.meta.env.VITE_STRAPI}${data?.navBarPngImage.url}`}
+              />
               <p className="text-sm">{data.name}</p>
             </div>
             <div>

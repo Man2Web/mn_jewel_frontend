@@ -10,16 +10,10 @@ const Customize = () => {
       />
       <div className="flex flex-col gap-4 lg:flex-row">
         <a href="/videoshopping" target="_blank" className="w-full lg:w-1/2">
-          <ImageEffect
-            image_source="https://d1uukejij9whar.cloudfront.net/video_Shopping_e261847124.png"
-            image_alt_text="store image"
-          />
+          <ImageEffect image_source="public\assets\banner_one.png" image_alt_text="store image" />
         </a>
         <a href="/commingsoon" target="_blank" className="hidden w-full lg:block lg:w-1/2">
-          <ImageEffect
-            image_source="https://d1uukejij9whar.cloudfront.net/Saving_scheme_Banner_22fe2c1eb7.png"
-            image_alt_text="ear piercing"
-          />
+          <ImageEffect image_source="public\assets\banner_two.png" image_alt_text="ear piercing" />
         </a>
         {/* <div className="flex w-full gap-2 lg:hidden lg:w-1/2">
           {customizeData.map((data, index) => (

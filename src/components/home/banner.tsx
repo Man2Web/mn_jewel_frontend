@@ -20,7 +20,7 @@ const Banner: React.FC = () => {
             <div key={index} className="flex h-auto w-full items-center justify-center">
               <img
                 className="h-48 w-full max-w-full rounded-lg sm:h-[400px] md:h-[500px]  lg:h-[600px]"
-                src={data}
+                src={`${import.meta.env.VITE_STRAPI}${data}`}
                 alt="img"
               />
             </div>

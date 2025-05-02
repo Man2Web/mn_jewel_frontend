@@ -20,7 +20,7 @@ const ProductCard = ({ product, bestSellingSection }: { product: Product; bestSe
               className={`${
                 bestSellingSection ? 'h-full w-full lg:h-[350px]' : 'h-[150px] w-[150px]'
               } rounded-lg object-cover`}
-              src={`${product.product_Images[0].url}`}
+              src={`${import.meta.env.VITE_STRAPI}${product.product_Images[0].url}`}
               alt="product image"
             />
             {isProductInCart.length > 0 && isProductInCart ? (
